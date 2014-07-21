@@ -1,0 +1,59 @@
+ey1 00.00.fge-eyrewell.txt 00.00.westmelton.raw
+stc is eyc/140720.eyc & stcp is eyc/140719.eyc
+2014 201 Jul 2014.201 2014.201.2200.00.fge-eyrewell.txt
+
+ftp starts at 2014-07-21 11:22:01.266496000+12:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 The GeoNet Data Management Centre v2
+Remote system type is UNIX.
+Using binary mode to transfer files.
+331 Anonymous login ok, send your complete email address as your password
+230 Welcome anonymous
+250 CWD command successful
+250 CWD command successful
+250 CWD command successful
+local: 2014.201.2200.00.fge-eyrewell.txt remote: 2014.201.2200.00.fge-eyrewell.txt
+227 Entering Passive Mode (161,65,59,67,252,176).
+150 Opening BINARY mode data connection for 2014.201.2200.00.fge-eyrewell.txt (400012 bytes)
+226 Transfer complete
+400012 bytes received in 0.00561 secs (7e+04 Kbytes/sec)
+local: 2014.201.2200.00.westmelton.raw remote: 2014.201.2200.00.westmelton.raw
+227 Entering Passive Mode (161,65,59,67,255,88).
+150 Opening BINARY mode data connection for 2014.201.2200.00.westmelton.raw (205200 bytes)
+226 Transfer complete
+205200 bytes received in 0.00416 secs (4.8e+04 Kbytes/sec)
+local: 2014.201.2200.00.fge-benmore.raw remote: 2014.201.2200.00.fge-benmore.raw
+227 Entering Passive Mode (161,65,59,67,251,71).
+150 Opening BINARY mode data connection for 2014.201.2200.00.fge-benmore.raw (187200 bytes)
+226 Transfer complete
+187200 bytes received in 0.00419 secs (4.4e+04 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2014-07-21 11:22:01.409578000+12:00
+
+fge file has 3626 lines, gsm file has 3600 lines
+ 14   201  14
+ data/2014.201.2200.00.fge-eyrewell.txt      
+ data/2014.201.2200.00.westmelton.raw        
+ 14   201  14
+ 14   201  14
+ 201 14
+ Yr 14; Mth 7; Day  20; 20 14   140720  hour  22   140720
+ 23 2 14 -88.  23.  7.69999981  567.299988  0.  0.  0.100000001  0. -1.5
+  0.239999995
+  fcor =  -1.5
+ Writing 14072022.ey1
+Prepare to run sendone 14072022.ey1    14072021.ey1
+ ihr =  22
+ ihr =  22
+Finished sendone
+Connected to ftp-isgi.latmos.ipsl.fr (194.254.40.44).
+220 Bonjour a ISGI !
+Name (ftp-isgi.latmos.ipsl.fr:tanjap): 530 Permission denied.
+530 Please login with USER and PASS.
+local: eyr201407202200pmin.min remote: eyr201407202200pmin.min
+530 Please login with USER and PASS.
+Passive mode refused.
+221 Goodbye.
+Removing eyr201407192200pmin.min
+/amp/magobs/eyr/eyc/volt
+Volts*100 = 0

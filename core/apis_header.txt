@@ -1,0 +1,22 @@
+ Format                 IAGA-2002                                    |
+ Source of Data         GNS Science, New Zealand                     |
+ Station Name           Apia                                         |
+ IAGA CODE              API                                          |
+ Geodetic Latitude      -13.810                                      |
+ Geodetic Longitude     171.780                                      |
+ Elevation              2                                            |
+ Reported               XYZF                                         |
+ Sensor Orientation     HDZF                                         |
+ Digital Sampling       1.0 seconds                                  |
+ Data Interval Type     1-minute (instant)                           |
+ Data Type              Provisional                                  |
+ # Station operated by Meteorology Division of Ministry of           |
+ # Natural Resorces, Environment and Meteorology, Samoa              |
+ # D-conversion:                                                     |
+ # = H/3438*10000.                                                   |
+ # which is word 8 in the INTERMAGNET binary format and is used      |
+ # to convert variations of D in minutes of arc <-> nT.              |
+ # Approx H   33420                                                  |
+ # padded with spaces - never with tabs.                             |
+ # Definitive values will be reported as XYZF                        |
+DATE       TIME         DOY     APIX      APIY      APIZ      APIF   |

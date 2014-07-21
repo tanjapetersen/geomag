@@ -1,0 +1,21 @@
+ Format                 IAGA-2002                                    |
+ Source of Data         GNS Science, New Zealand                     |
+ Station Name           Scott Base                                   |
+ IAGA CODE              SBA                                          |
+ Geodetic Latitude      -77.850                                      |
+ Geodetic Longitude     166.762                                      |
+ Elevation              10                                           |
+ Reported               XYZF                                         |
+ Sensor Orientation     HDZF                                         |
+ Digital Sampling       1.0 seconds                                  |
+ Data Interval Type     Filtered 1-minute (00:30 - 01:29)            |
+ Data Type              Provisional                                  |
+ # Co-ordinates in NZGD 2000                                         |
+ # D-conversion:                                                     |
+ # = H/3438*10000.                                                   |
+ # which is word 8 in the INTERMAGNET binary format and is used      |
+ # to convert variations of D in minutes of arc <-> nT.              |
+ # Approx H   11600                                                  |
+ # padded with spaces - never with tabs.                             |
+ # Definitive values will be reported as XYZF                        |
+DATE       TIME         DOY     SBAX      SBAY      SBAZ      SBAF   |

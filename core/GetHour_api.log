@@ -1,0 +1,52 @@
+api2014.201.2200.00.fge-apia.txt
+ftp starts at 2014-07-21 11:25:01.217416000+12:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 The GeoNet Data Management Centre v2
+Remote system type is UNIX.
+Using binary mode to transfer files.
+331 Anonymous login ok, send your complete email address as your password
+230 Welcome anonymous
+250 CWD command successful
+250 CWD command successful
+250 CWD command successful
+local: 2014.201.2200.00.fge-apia.txt remote: 2014.201.2200.00.fge-apia.txt
+227 Entering Passive Mode (161,65,59,67,255,48).
+150 Opening BINARY mode data connection for 2014.201.2200.00.fge-apia.txt (399995 bytes)
+226 Transfer complete
+399995 bytes received in 0.0102 secs (3.8e+04 Kbytes/sec)
+local: 2014.201.2200.00.gsm-apia.raw remote: 2014.201.2200.00.gsm-apia.raw
+227 Entering Passive Mode (161,65,59,67,254,247).
+150 Opening BINARY mode data connection for 2014.201.2200.00.gsm-apia.raw (204709 bytes)
+226 Transfer complete
+204709 bytes received in 0.00883 secs (2.3e+04 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2014-07-21 11:25:01.316434000+12:00
+
+Counting lines in the data files:
+fge has 3625 lines, gsm has 3600 lines
+Calling hour1a.f now...
+ 14   201  14
+ data/2014.201.2200.00.fge-apia.txt          
+ data/2014.201.2200.00.gsm-apia.raw          
+ 14   201  14
+ 14   201  14
+ 201 14
+ Yr 14; Mth 7; Day  20; 20 14   140720  hour  22   140720
+ 1 1 11 -103.  11.  53.2999992  39.  0.  0.  0.  0.  0.  1.
+  fcor =   0.
+ Writing 14072022.ap1
+
+Prepare to run sendone 14072022.ap1   14072021.ap1
+ ihr =  22
+ ihr =  22
+Finished sendone
+
+Connecting to Keeling ...
+sftp>   cd magdata/minute/API
+sftp>   put api201407202200pmin.min
+Uploading api201407202200pmin.min to /home/keeling/magdata/minute/API/api201407202200pmin.min
+Sending files to Edinburgh ...
+Writing Daily IAGA-2002 Files...
+Finished GetHour1a.csh for
+
+
