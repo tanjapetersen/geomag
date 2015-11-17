@@ -1,5 +1,5 @@
 	program hour1a
-c   This program reads 1 sec fluxgate .txt files and 1 sec proton .txt files
+c  blah. This program reads 1 sec fluxgate .txt files and 1 sec proton .txt files
 c   For Eyrewell, reads the seperate Benmore file, to combine with other files
 c   Remove dud Proton Mag readings and try and despike 
 c   Need to read fge to get Benmore correction, therefore combine fge & gsm
