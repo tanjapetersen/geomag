@@ -35,7 +35,7 @@
 	common /a/ data	
 c   Next few lines are to set up output file name and header
 	
-	bfact = 0.14		!	bfact HARD-WIRED HERE FOR NOW
+	bfact = 0.14		!	bfact HARD-WIRED HERE FOR NOW (see constants.eyr)
 	pi = 3.1415926535
 	call date_and_time(nowdate)
 	call getarg(1,stn)
@@ -51,14 +51,17 @@ c   Next few lines are to set up output file name and header
 	ddp = '000000'
 	dfp = '000000'
 	dxp = '000000'
+!   Limits that define which values to keep and which to throw out
 	dlow = -20.0
-	dmax = +20.0
+!	dmax = +20.0 ! was used before EYR re-location to West Melton
+        dmax = +40.0
 	flow = -50.0
 	fmax = +80.0
 	hlow = -100.0
 	hmax = +100.0
 	zlow = -100.0
 	zmax = +100.0
+
  	do n = 1,1000			! Reading loop for lines of data in list.stn
 	   read(8,'(a72)',iostat=eof) line
      	   print *,line(1:50),' EOF ',eof

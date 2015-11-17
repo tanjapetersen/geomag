@@ -1,8 +1,8 @@
 #!/bin/csh 
-
-# HaveDay1.csh like LateDay1.csh but no FTP.    process VERSION, no .eyc,.eys 
-# Now does second files as well as minute files
-# Process an old day of magnetic data from ftp.geonet.org.nz 
+##### This version is for SBA manual processing
+##### with new Overhauser (1-sec sampling) - since 18 Mar 2015 ####################
+# HaveDay1.csh processes an old day of magnetic data, but does no FTP.
+# Does second files as well as minute files
 # $1 is 3 letter code (lower case) for station
 # $2 is 2-digit year, $3 is 2-digit mth, $4 is 2-digit day
 
@@ -89,10 +89,11 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set fge_file = $year.$doy.$hr$fge_end
    set gsm_file = $year.$doy.$hr$gsm_end
 
-
-#  New program to write hourly processed files
-
-   /home/tanjap/geomag/core/hour1s $1 $day_dir $hr 
+#  Write hourly processed files
+   # for old Overhauser (5-sec sampling):
+   # /home/tanjap/geomag/core/hour1s $1 $day_dir $hr 
+   # for new Overhauser (1-sec sampling)use same as for Apia:
+   /home/tanjap/geomag/core/hour1a $1 $day_dir $hr 
 
 # Next lines are based on reading the ey1 or .sb1 files produced by hour1s
 

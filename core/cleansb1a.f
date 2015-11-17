@@ -11,6 +11,9 @@
 ! 
 !   S(1:3,0:30) contains adjustments to x, y and z for 30 seconds from
 !   the exact 15 minutes 
+!
+!   Note: if ionosonde is starting e.g. 20 sec early then use HaveDay1.csh sba 15 03 23 880
+
 	implicit none
 	integer*4 i, ihr, iyr, mth, day, doy, j,k,g,q,iend
 	integer*4 ih, im, is, idel,idum 
@@ -33,7 +36,7 @@
 	character*62 line
 	character*110 linef,lineo(744)
 
-	open(14,file= "iono.dat")		! Corrections input file
+	open(14,file= "iono.dat")		! Corrections input file located in /amp/magobs/sba/
  
 !   Next few lines are to set up output file name and header
 	
@@ -43,7 +46,7 @@
 	stnx = stn(1:2) // 'x'
 	call getarg(2,filen)		
 	open(10,file= stc//'/'// filen)
-	filel = filen(1:11)//'2'		! Output file is .sb2
+        filel = filen(1:11)//'2'		! Output file is .sb2
 	open(11,file= stc//'/'// filel)
 	call getarg(3,delay)	
 	read(delay,'(i3)') idel	

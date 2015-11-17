@@ -9,6 +9,7 @@
 # HaveDay1w.csh (for EYR at West Melton)
 # This only fixes problems if files have reached FTP server
 # 13 Dec 2012 Added fge-benmore.raw
+# 18 Mar 2015 Changed gsm-scottbase.txt to gsm-scottbase.raw
 
 set year  = `date -u --date='24 hours ago' +%Y`
 set yr  =   `date -u --date='24 hours ago' +%y`
@@ -26,7 +27,8 @@ set gsm_api_end = "00.00.gsm-apia.raw"
 set fge_eyr_end = "00.00.fge-eyrewell.txt"
 set fge_sba_end = "00.00.fge-scottbase.txt"
 set gsm_eyr_end = "00.00.westmelton.raw"
-set gsm_sba_end = "00.00.gsm-scottbase.txt"
+set gsm_sba_end = "00.00.gsm-scottbase.raw"
+#set gsm_sba_end = "00.00.gsm-scottbase.txt"
 set fge_ben_raw = "00.00.fge-benmore.raw"
 
 set AOK = 1
@@ -95,7 +97,8 @@ gawk '{ lines += $1} END { print "GSM API (86400) = " lines " lines"}' ga >> cfi
 gawk '{ lines += $1} END { print "FGE EYR (87024) = " lines " lines"}' fe >> cfile
 gawk '{ lines += $1} END { print "GSM EYR (86400) = " lines " lines"}' ge >> cfile
 gawk '{ lines += $1} END { print "FGE SBA (87024) = " lines " lines"}' fs >> cfile
-gawk '{ lines += $1} END { print "GSM SBA (17472) = " lines " lines"}' gs >> cfile
+#gawk '{ lines += $1} END { print "GSM SBA (17472) = " lines " lines"}' gs >> cfile
+gawk '{ lines += $1} END { print "GSM SBA (86400) = " lines " lines"}' gs >> cfile
 gawk '{ lines += $1} END { print "B Basalt(86400) = " lines " lines"}' bb >> cfile
 
 set fal = `gawk '{ lines += $1} END { print lines }' fa `
@@ -107,13 +110,15 @@ set gsl = `gawk '{ lines += $1} END { print lines }' gs `
 set bbl = `gawk '{ lines += $1} END { print lines }' bb `
 
 set send = 0
-# Following lines represent 5 min gap for critical files, 30 min for others
+# Following lines represent 5 min gap for critical files, 30 min (33.3 min = 2000 lines) for others
 if( $fal < 86700 ) set send = 1
 if( $fel < 86724 ) set send = 1
 if( $fsl < 86724 ) set send = 1
-if( $gal < 84600 ) set send = 1
-if( $gel < 86100 ) set send = 1
-if( $gsl < 17112 ) set send = 1
+if( $gal < 84400 ) set send = 1
+#if( $gel < 86100 ) set send = 1
+if( $gel < 84400 ) set send = 1
+#if( $gsl < 17112 ) set send = 1
+if( $gsl < 84400 ) set send = 1
 if( $bbl < 86100 ) set send = 1
 
 rm fa

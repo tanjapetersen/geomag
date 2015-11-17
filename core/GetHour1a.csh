@@ -128,7 +128,9 @@ cd ..
 
 #  Run FORTRAN program hour1a.f to create hourly processed files
 echo Calling hour1a.f now...
- /home/tanjap/geomag/core/hour1a $1 $day_dir $hr 
+# /home/tanjap/geomag/core/hour1a $1 $day_dir $hr 
+# This is part of folding the station specific programs back into one:
+/home/tanjap/geomag/core/hour1aC $1 $day_dir $hr 
 
 #  Next lines are based on reading the .ap1 files produced by hour1a
   set nhour = $yr$mth$day$hr'.'$st1
@@ -201,10 +203,6 @@ if ( $2 == 'NOW' ) then
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
       echo "K-index posted"
-      if ( $1 == "eyr" ) then
-         mail -s $stk michel.menvielle@cetp.ipsl.fr < klatest.$1
-         mail -s $stk kisgi@cetp.ipsl.fr < klatest.$1
-      endif
       mv klatest.$1 kfiles/$stk 
    endif
 endif
@@ -212,6 +210,6 @@ endif
 echo Finished GetHour1a.csh for 
    echo `date +"%Y-%m-%d %H:%M"  -u -d "$ymd"`
 echo
-#  Testing this, plot last 2 days files for Apia
-   Plota.csh $1
+#  Plot last 2 days files for Apia (puts .pdf onto ftp://ftp.gns.cri.nz/pub/tanjap/ & a .ps into /amp/magobs/api/api/
+   /home/tanjap/geomag/core/Plotx.csh $1
 

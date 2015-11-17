@@ -1,12 +1,13 @@
 #!/bin/csh 
 
-##### This version is for SBA ###############################################
-# HaveDay1.csh like LateDay1.csh but no FTP. 
-# Now does second files as well as minute files
-# Process an old day of magnetic data from ftp.geonet.org.nz 
+##### This version is for SBA manual processing
+##### with new Overhauser (1-sec sampling) - since 18 Mar 2015 ####################
+# HaveDay1.csh re-processes a day, but does not get files from ftp.geonet.org.nz 
+# Does second files as well as minute files
 # $1 is 3 letter code (lower case) for station
 # $2 is 2-digit year, $3 is 2-digit mth, $4 is 2-digit day
-# Special version: $5 is the cleaning delay [sec]
+# Special version: $5 is the cleaning delay [sec]; if ionosonde is running 20 seconds late use 20, if it runs 20 seconds early use 880. e.g. HaveDay1.csh sba 15 03 23 880
+# 18 Mar 2015 Changed using hour1s.f (5-sec proton) to hour1a.f (1-sec proton). Now using gsm-scottbase.raw instead of .txt
 
 if ($#argv == 0) then
   echo "Call as  HaveDay1.csh stn yr mth day"
@@ -15,11 +16,12 @@ endif
 
 set st3 = `echo $1 | cut -c1,2`c
 set fge_end = "00.00.fge-eyrewell.txt"
-set gsm_end = "00.00.gsm-eyrewell.txt"
+set gsm_end = "00.00.westmelton.raw"
 set st1 = ey1
 if ( $1 == "sba" ) then
    set fge_end = "00.00.fge-scottbase.txt"
-   set gsm_end = "00.00.gsm-scottbase.txt"
+# Note: The 5-seond Overhauser needed gsm-scottbase.txt format
+   set gsm_end = "00.00.gsm-scottbase.raw"
    set st1 = sb1
    set st22 = sb2
    set st4 = sb4
@@ -38,13 +40,12 @@ echo $st1 $fge_end $gsm_end
    set mth  = `date -u -d "$ymd" +%m`
    set doy  = `date -u -d "$ymd" +%j`
    set day  = `date -u -d "$ymd" +%d`
-
    set epoch  = `date -u -d "$ymd" +%s`
    @ epoch = $epoch + 86400
    set doyp =   `date -ud @$epoch +%j`
-
    set day_dir = $year.$doy
    set new_dir = $year.$doyp
+   
    set st2 = `echo $1 | cut -c1,2`
    set st3 = `echo $1 | cut -c1,2`c
    set sts = `echo $1 | cut -c1,2`s
@@ -57,9 +58,10 @@ echo $st1 $fge_end $gsm_end
    set str = $yr$mth$day'.'
    set eyk = $yr$mth$day'k.'$1
 
-#  New bit here, delete output files
+#  Delete output files
    cd /amp/magobs/$1/$1
    echo $str
+ 
    rm $str$1
    rm $str$stt
    rm $str$stx
@@ -67,7 +69,7 @@ echo $st1 $fge_end $gsm_end
    cd /amp/magobs/$1
 
 #  Rename previous .stc file
-   mv $stc $sto
+#   mv $stc $sto
 
 
 foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23)
@@ -79,7 +81,7 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set epoch  = `date -u -d "$ymd" +%s`
    @ epoch = $epoch - 3600
    set utc = "UTC 1970-01-01 "$epoch" secs"
-   #echo $utc 
+   echo $utc 
 
    set yearq =   `date -ud @$epoch +%Y`
    set yrq =   `date -ud @$epoch +%y`
@@ -91,12 +93,13 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set fge_file = $year.$doy.$hr$fge_end
    set gsm_file = $year.$doy.$hr$gsm_end
 
+#  Write hourly processed files
+   # for old Overhauser (5-sec sampling):
+   # /home/tanjap/geomag/core/hour1s $1 $day_dir $hr 
+   # for new Overhauser (1-sec sampling)use same as for Apia:
+   /home/tanjap/geomag/core/hour1a $1 $day_dir $hr 
 
-#  New program to write hourly processed files
-
-   /home/tanjap/geomag/core/hour1s $1 $day_dir $hr 
-
-# Next lines are based on reading the ey1 or .sb1 files produced by hour1s
+# Next lines are based on reading the ey1 or .sb1 files produced by hour1s or hour1a:
 
    set nhour = $yr$mth$day$hr'.'$st1
    set lhour = $yrq$mthq$dayq$hrq'.'$st1
@@ -104,15 +107,16 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
 
 #  Next lines clean effect of ionosonde at SBA from .sb1 file
 #  put in "sba" instead of "noclean" to activate cleaning!!!
-# cleansb1a_pro is the cleaning program specifically for manual processing
+#  cleansb1a_pro is the cleaning program specifically for manual processing
    if ( $1 == "sba" ) then
       set xhour = $yr$mth$day$hr'.'$st22
       set yhour = $yr$mth$day$hr'.'$st4
       echo 'Cleaning ' $nhour $xhour $yhour
-      /home/tanjap/geomag/core/cleansb1a_pro sba $nhour $5
+      /home/tanjap/geomag/core/cleansb1a sba $nhour $5 
       mv $st3/$nhour $st3/$yhour
       mv $st3/$xhour $st3/$nhour
    endif
+  
   /home/tanjap/geomag/core/onesecond $1 $nhour $lhour
   /home/tanjap/geomag/core/sendone $1 $nhour $lhour
 
@@ -123,6 +127,9 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set fmind = $1'/'$1$year$mth$day'pmin.min'
    set fming = $1$year$mth$day$hr'00pmin.min.gz'
    cat /home/tanjap/geomag/core/$1_header.txt $fmini > $fmino
+   
+# To SEND hourly minute files to Edinburgh (also in line further down!!!):
+   echo Sending hourly minute files to Edinburgh ...
    gzip $fmino
    /home/tanjap/geomag/core/mpack -s $fming $fming e_gin@mail.nmh.ac.uk
 
@@ -142,7 +149,10 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set fseco = $1$year$mth$day$hr'00psec.sec'
    set fsecg = $1$year$mth$day$hr'00psec.sec.gz'
    cat /home/tanjap/geomag/core/$1s_header.txt $fseci > $fseco
-   gzip $fseco
+   
+gzip $fseco
+
+# To SEND hourly second files to Edinburgh:
    /home/tanjap/geomag/core/mpack -s $fsecg $fsecg e_gin@mail.nmh.ac.uk
    rm $fseci
    mv $fsecg hourly

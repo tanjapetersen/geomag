@@ -3,6 +3,7 @@
 # This script is for SBA (although it still has EYR in it from pre-WestMelton days).
 # Get one hour of magnetic data from ftp.geonet.org.nz 
 # $1 is 3 letter code (lower case) for station, e.g. sba
+# 18 Mar 2015 Changed using hour1s.f (5-sec proton) to hour1a.f (1-sec proton). Now using gsm-scottbase.raw instead of .txt
 
 set source_machine = ftp.geonet.org.nz
 
@@ -39,7 +40,7 @@ set be2_end = "00.00.fge-benmore.raw"
 set st1 = ey1
 if ( $1 == "sba" ) then
    set fge_end = "00.00.fge-scottbase.txt"
-   set gsm_end = "00.00.gsm-scottbase.raw" ## usually its .txt, but Mark had to change system after laptop failure 11 mar 2014
+   set gsm_end = "00.00.gsm-scottbase.raw" ## usually its .txt, but Mark had to change system after laptop failure 11 Mar 2014. Since 18 Mar 2015 1-sec proton is active and .raw is the format needed!
    set st1 = sb1
    set st2 = sb2
    set st4 = sb4
@@ -79,7 +80,7 @@ echo
 
 # Scott Base does not need Benmore File
 if ( $1 == "sba" ) then
-/home/tanjap/geomag/core/raw2txt $1 $day_dir $hr  # put this in to go around the 11 mar 2014 problem 
+# /home/tanjap/geomag/core/raw2txt $1 $day_dir $hr  # put this in to go around the 11 mar 2014 problem. Since 18 Mar 2015 (1-second proton active) .raw is the input format.
    rm $ben_file 
    rm $be2_file 
 endif
@@ -95,7 +96,11 @@ echo fge file has $len_fge lines, gsm file has $len_gsm lines
 cd ..
 
 #  Run FORTRAN program hour1s.f to write hourly processed files
-/home/tanjap/geomag/core/hour1s $1 $day_dir $hr 
+#/home/tanjap/geomag/core/hour1s $1 $day_dir $hr 
+# Since 18 Mar 2015 (1-second proton active):
+#/home/tanjap/geomag/core/hour1a $1 $day_dir $hr
+# This is part of folding the station specific programs back into one:
+/home/tanjap/geomag/core/hour1aC $1 $day_dir $hr
 
 # Next lines are based on reading the .ey1 or .sb1 files produced by hour1s
   set nhour = $yr$mth$day$hr'.'$st1
@@ -141,12 +146,6 @@ if ( $1 == "eyr" ) then
    cd Eyrewell
    put $fmino
 endftp2
-
-#  Next lines are to put data for University of Oulu (Finland) in ftp
-   cp $fmino /amp/ftp/pub/hurst/oulu
-   set fminp = eyr$yearp$mthp$dayp$hr'00pmin.min'
-   echo Removing $fminp
-   rm /amp/ftp/pub/hurst/oulu/$fminp
 endif
 
 #  Now send second and minute files to Edinburgh for their GIN-page
@@ -179,10 +178,6 @@ endif
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
       echo "K-index posted"
-      if ( $1 == "eyr" ) then
-         mail -s $stk michel.menvielle@latmos.ipsl.fr < klatest.$1
-         mail -s $stk kisgi@latmos.ipsl.fr < klatest.$1
-      endif
       mv klatest.$1 kfiles/$stk 
    endif
 
@@ -191,6 +186,9 @@ set vfile = /amp/magobs/$1/$st3/volt
 echo $vfile
 set V = `gawk '{print $1}' < $vfile `
 echo "Volts*100 = "$V
+
+# Plots data: .pdf onto ftp.gns.cri.nz/pub/tanjap/ (in /amp/ftp/pub/tanjap/) and .ps into /amp/magobs/sba/sba/
+/home/tanjap/geomag/core/Plotx.csh sba
 
 #  Every 6 hours send low voltage warning
 foreach hr6 (00 06 12 18)
@@ -201,7 +199,6 @@ foreach hr6 (00 06 12 18)
       	set mess = $1' only '$V' Volts'
       	mail -s "$mess" "t.hurst@gns.cri.nz" < $vfile
       	mail -s "$mess" "m.chadwick@gns.cri.nz" < $vfile
-      	mail -s "$mess" "tim@chch.planet.org.nz" < $vfile
         mail -s "$mess" "t.petersen@gns.cri.nz" < $vfile
       endif
    endif

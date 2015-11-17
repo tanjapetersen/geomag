@@ -1,6 +1,11 @@
 	program hour1w
 c   This program reads 1 sec fluxgate .txt files and 1 sec proton .txt files
-c   For Eyrewell, reads the seperate Benmore file, to combine with other files
+c   For Eyrewell, reads the seperate Benmore .raw file, to combine combine the 
+c   Benmore Factor with other files.
+c   The Benmore constant from constant.eyr goes into the calculation RawF*BenmoreFactor
+c   and also into calculating RawZ. 
+c   A lot of parts in this prog are to adjust for matching the old system!! Needs to be 
+c   put into constants.eyr eventually.
 c   Remove dud Proton Mag readings and try and despike 
 c   Need to read fge to get Benmore correction, therefore combine fge & gsm
 c   into a single hourly file. All readings not present are 99999.
@@ -102,6 +107,9 @@ c	filen = yrnstr//mthnstr//daynstr//'.'//stf
 !	Cannot use case stn, as f77 doesn't support case (character)
 !       note also, may need to tidy termination of file names
 !  Expected bias values are put in here also
+!
+!       In case you want eyt & eyx files WITHOUT the benmore corr applied (also look for ey2 further down):
+!	if(stn .eq.'ey2') then 
 	if(stn .eq.'eyr') then
 	   filef = 'data/'//yearday//'.'//hrstr//'00.00.fge-eyrewell.txt'
 	   fileg = 'data/'//yearday//'.'//hrstr//'00.00.westmelton.raw'
@@ -429,6 +437,8 @@ c	end if
 	character*130 linef
 	ybhex = '00'
 	ybiasv = 00
+        !In case you need eyx & eyt WITHOUT benmore corr (also see ey2 top):
+        !if(stn .eq.'ey2') then
 	if(stn .eq.'eyr') then
 	   xbhex = '8f'
 	   xbiasv = 143

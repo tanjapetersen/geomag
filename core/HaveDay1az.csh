@@ -55,7 +55,7 @@ endif
    set str = $yr$mth$day'.'
    set eyk = $yr$mth$day'k.'$1
 
-#  New bit here, delete output files
+#  Delete output files
    cd /amp/magobs/$1/$1
   # echo $str
    echo

@@ -2,9 +2,9 @@
  Source of Data         GNS Science, New Zealand                     |
  Station Name           Eyrewell                                     |
  IAGA CODE              EYR                                          |
- Geodetic Latitude      -43.422                                      |
- Geodetic Longitude     172.355                                      |
- Elevation              120                                          |
+ Geodetic Latitude      -43.474                                      |
+ Geodetic Longitude     172.393                                      |
+ Elevation              102                                          |
  Reported               XYZF                                         |
  Sensor Orientation     HDZF                                         |
  Digital Sampling       1.0 seconds                                  |

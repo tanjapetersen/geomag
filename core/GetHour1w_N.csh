@@ -1,6 +1,6 @@
 #!/bin/csh 
 
-#get one hour of magnetic data from ftp.geonet.org.nz 
+# get one hour of magnetic data from ftp.geonet.org.nz 
 # $1 is 3 letter code (lower case) for station
 # $2 is NOW (for current date/time) or 2-digit year, 
 # If $2 is not NOW then $3 is month, $4 day, $5 hr, all 2-digit
@@ -169,10 +169,11 @@ echo fge file has $len_fge lines, gsm file has $len_gsm lines
 cd ..
 
 #  New program to write hourly processed files
+#/home/tanjap/geomag/core/hour1w $1 $day_dir $hr
+# This is part of folding the station specific programs back into one:
+/home/tanjap/geomag/core/hour1aC $1 $day_dir $hr 
 
-/home/tanjap/geomag/core/hour1w $1 $day_dir $hr 
-
-# Next lines are based on reading the ey1 or .sb1 files produced by hour1s
+# Next lines are based on reading the ey1 or .sb1 files produced by hour1w
 
   set nhour = $yr$mth$day$hr'.'$st1
   set lhour = $yrq$mthq$dayq$hrq'.'$st1
@@ -189,9 +190,6 @@ cd ..
 
 /home/tanjap/geomag/core/onesecond $1 $nhour 
 /home/tanjap/geomag/core/sendone $1 $nhour $lhour
-#if ( $1 == "eyr" ) then
-#/home/hurst/process/sendonet $1 $nhour $lhour
-#endif
 
   echo 'Finished sendone'
 # New bit here
@@ -205,10 +203,12 @@ cd ..
    set fsecg = $1$year$mth$day$hr'00psec.sec.gz'
    cat /home/tanjap/geomag/core/$1s_header.txt $fseci > $fseco
 
+## This creates a file the script Plotw.csh is working with:
    set plot = $1'plotfile.txt'
    set plott = $1'plotfile.tmp'
    mv $plot $plott
    cat $fmini $plott > $plot
+
 
 if ( $1 == "eyr" ) then
    set isgi_machine = ftp-isgi.latmos.ipsl.fr
@@ -217,12 +217,6 @@ if ( $1 == "eyr" ) then
    cd Eyrewell
    put $fmino
 endftp2
-
-#  Next lines are to put data for University of Oulu (Finland) in ftp
-   cp $fmino /amp/ftp/pub/hurst/oulu
-   set fminp = eyr$yearp$mthp$dayp$hr'00pmin.min'
-   echo Removing $fminp
-   rm /amp/ftp/pub/hurst/oulu/$fminp
 endif
 
    gzip $fmino
@@ -253,15 +247,12 @@ endif
    if($hr == '02') then
       set stk = $yrp$mthp$dayp'k.'$1
       echo kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
+#  NOTE: kindext.f uses kval.eyr parameter file!
       /home/tanjap/geomag/core/kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
 # e-mail k-indices
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
       echo "K-index posted"
-      if ( $1 == "eyr" ) then
-         mail -s $stk michel.menvielle@latmos.ipsl.fr < klatest.$1
-         mail -s $stk kisgi@latmos.ipsl.fr < klatest.$1
-      endif
       mv klatest.$1 kfiles/$stk 
    endif
 
@@ -272,7 +263,8 @@ echo $vfile
 set V = `gawk '{print $1}' < $vfile `
 echo "Volts*100 = "$V
 
-#  Plote.csh $1
+# Plots Benmore: .pdf onto ftp.gns.cri.nz/pub/tanjap/ and .ps into /amp/magobs/eyr/eyr/
+/home/tanjap/geomag/core/Plotx.csh eyr B
 
 #  Every 6 hours send low voltage warning
 foreach hr6 (00 06 12 18)

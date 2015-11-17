@@ -51,7 +51,7 @@ c   to the 7th, 8th, 10th & 11th words of the header
 		 q = tohead
 	      end if
 	      if((i .eq. 8)) then 
-		 q = 10000	        	! D-conv. factor: SBA: 10000; API: 10000 according to Jan Reda (we first thought it would be 0)
+		 q = 10000	        ! D-conv. factor: SBA: 10000; API: 10000 according to Jan Reda (we first thought it would be 0)
 	      end if
 	      if((i .eq. 10)) then 
 		 pack(1)= ichar(' ')
@@ -61,19 +61,24 @@ c   to the 7th, 8th, 10th & 11th words of the header
 		 q = tohead
 	      end if
 	      if((i .eq. 11)) then 
-		 q = 300		! K9-limit: 500 nT for EYR, 2000 nT for SBA, 300 nT for API
+		 q = 500		! K9-limit: 500 nT for EYR, 2000 nT for SBA, 300 nT for API
 	      end if
-              if ((i .eq. 3)) then      ! Colatitude: 103815 for API; comment for all other sites
-		 q = 103815
+              if ((i .eq. 3)) then     ! Colatitude: 103815 for API; 133474 for EYR; comment for SBA
+	     	 q = 133474
               end if
-              if ((i .eq. 4)) then      ! Longitude: 171781 for API; comment for all other sites
-		 q = 171781
+              if ((i .eq. 4)) then     ! Longitude: 171781 for API; 172393 for EYR; comment for SBA
+	     	 q = 172393
               end if
+
+               if ((i .eq. 5)) then     ! Elevation is 102 m for EYR; comment for all other sites
+	     	 q = 102
+              end if
+
               if((i .eq. 13)) then 
 		 pack(1)= ichar('H')
 		 pack(2)= ichar('D')
 		 pack(3)= ichar('Z')
-		 pack(4)= ichar('F')	! Sensor orientation: HDZF for API (only some of the e.g. api13.bin files have HDZ instead of HDZF)
+		 pack(4)= ichar('F')	! Sensor orientation: HDZF
 		 q = tohead
 	         end if
 	      write(20,rec=(iday-1)*5888+i) q

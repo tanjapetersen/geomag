@@ -57,15 +57,13 @@ c   Next few lines are to set up output file name and header
 	      read(10,'(a70)') line
 	      if(ih*100+im .ge. hron*100+minon) then
 	         if(ih*100+im .le. hroff*100+minoff) then
-		   ! If you would want to remove F too:
-                   !  line(63:70) = '99999.99'
                    ! If you want to remove X&Y components:
                      line(33:40) = '99999.00'                   
                      line(43:50) = '99999.00'
-                   ! If you have XYZ & F be 99999.00 and re-send the data to Intermagnet system then it will not overwrite the previously submitted data file. You have to ask Simon Flower via email to delete the whole day. Then you re-submit the day with all 4 components being 99999.00 for dud data.            
-                    line(52:60) = ' 99999.00'
+                     line(52:60) = ' 99999.00'
                    ! Instead extrapolate the Z value:
                    ! line(52:58) = '-53582.'
+                    ! line(63:70) = '99999.99'
 		 end if
 	      end if
 	      write(20,'(a70)') line

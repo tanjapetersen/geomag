@@ -3,7 +3,7 @@
 c   This program reads Intermagnet eyr/eyr20121231pmin.min etc daily files 
 c   Note:- needs to be run from 1 level above ....pmin.min files
 c   Then writes a modified version into subdirectory new
-C   This variant writes "Bad Data" 88888.00 for F for time interval
+C   This variant writes "Bad Data" 99999.00 for F for time interval
 c   If you want to do the same for XYZ components use IAGAnoXYZ 
 c   Hardwired for 1 min data, i.e. 1440 readings/day
 !   Call as IAGAnoF eyr 12 12 31 1130 1240
@@ -58,9 +58,9 @@ c   Next few lines are to set up output file name and header
 	      read(10,'(a70)') line
 	      if(ih*100+im .ge. hron*100+minon) then
 	         if(ih*100+im .le. hroff*100+minoff) then
-		     !line(63:70) = '88888.00'
                      line(63:70) = '99999.99'
-                     !line(63:70) = '38895.75'
+                     !line(63:70) = '00.0'
+                     !line(63:70) = '38920.00'
 		 end if
 	      end if
 	      write(20,'(a70)') line

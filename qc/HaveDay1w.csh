@@ -6,6 +6,8 @@
 # Process an old day of magnetic data from ftp.geonet.org.nz 
 # $1 is 3 letter code (lower case) for station
 # $2 is 2-digit year, $3 is 2-digit mth, $4 is 2-digit day
+# 
+# You can choose to activate Z spike removal by selecting hour1w10.f
 
 if ($#argv == 0) then
   echo "Call as  HaveDay1w.csh stn yr mth day"
@@ -93,7 +95,11 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
 
 #  New program to write hourly processed files
 
-   /home/tanjap/geomag/core/hour1w $1 $day_dir $hr 
+## Only F gets despiking (threshold value for Z is 500):
+  # /home/tanjap/geomag/core/hour1w $1 $day_dir $hr 
+## F & Z get despiking (threshold value for Z is 10):
+ # /home/tanjap/geomag/qc/hour1w10 $1 $day_dir $hr
+   /home/tanjap/geomag/qc/hour1w5 $1 $day_dir $hr
 
 # Next lines are based on reading the ey1 or .sb1 files produced by hour1s
 

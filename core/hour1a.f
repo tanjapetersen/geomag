@@ -128,7 +128,8 @@ c	filen = yrnstr//mthnstr//daynstr//'.'//stf
 	   filef = 'data/'//yearday//'.'//hrstr//
      &             '00.00.fge-scottbase.txt'
 	   fileg = 'data/'//yearday//'.'//hrstr//
-     &             '00.00.gsm-scottbase.txt'
+     &             '00.00.gsm-scottbase.raw'
+!          Note: changed gsm from .txt to .raw format 18 Mar 2015 (1-sec proton active)
 	   ftol = 15.0
 	   etext = '  Scott Base   '
 	end if

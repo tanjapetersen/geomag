@@ -1,17 +1,25 @@
 #!/bin/csh 
 
-# HaveDay1a.csh like LateDay1.csh but no FTP.    process VERSION, no .eyc,.eys 
-# FOR Apia, but NOT SENDING TO ZURICH (HaveDay1az.csh DOES send to Zurich & Edinburgh)
-# SENDING to Edinburgh - careful when you use script for several days/months.  
-# Now does second files as well as minute files
-# Process an old day of magnetic data from ftp.geonet.org.nz 
+##### This version is for API & manual processing ####################
+# This is the version you can alter for 
+# manual processing (qc/ directory).
+# Processes an old day of magnetic data.
+# It requires downloading missing data from 
+# ftp server, BEFORE running this script.
+# Does send minute files to Edinburgh but NOT ZURICH.
+# SENDING to Edinburgh - careful when you use 
+# script for several days/months.  
+# Does second files as well as minute files
+#
 # $1 is 3 letter code (lower case) for station
 # $2 is 2-digit year, $3 is 2-digit mth, $4 is 2-digit day
 
 if ($#argv == 0) then
-  echo "Call as  HaveDay1.csh stn yr mth day"
+  echo "Call as  HaveDay1a.csh api yr mth day"
   stop
 endif
+
+echo Running HaveDay1a.csh now ...
 
 set st3 = `echo $1 | cut -c1,2`c
 set fge_end = "00.00.fge-eyrewell.txt"
@@ -36,28 +44,28 @@ echo $st1 $fge_end $gsm_end
    set mth  = `date -u -d "$ymd" +%m`
    set doy  = `date -u -d "$ymd" +%j`
    set day  = `date -u -d "$ymd" +%d`
-
    set epoch  = `date -u -d "$ymd" +%s`
    @ epoch = $epoch + 86400
    set doyp =   `date -ud @$epoch +%j`
-
    set day_dir = $year.$doy
    set new_dir = $year.$doyp
-   set st2 = `echo $1 | cut -c1,2`
-   set st3 = `echo $1 | cut -c1,2`c
-   set sts = `echo $1 | cut -c1,2`s
+   
+   #set st2 = `echo $1 | cut -c1,2`
+   #set st3 = `echo $1 | cut -c1,2`c
+   #set sts = `echo $1 | cut -c1,2`s
    set stt = `echo $1 | cut -c1,2`t
    set stx = `echo $1 | cut -c1,2`x
-   set stb = $st3'/'$yr$mth$day'.'$st2'b'
-   set stc = $st3'/'$yr$mth$day'.'$st3
-   set stf = $st3'/'$yr$mth$day'.'$st2'f'
-   set sto = $st3'/'$yr$mth$day'.'$st2'co'
+   #set stb = $st3'/'$yr$mth$day'.'$st2'b'
+   #set stc = $st3'/'$yr$mth$day'.'$st3
+   #set stf = $st3'/'$yr$mth$day'.'$st2'f'
+   #set sto = $st3'/'$yr$mth$day'.'$st2'co'
    set str = $yr$mth$day'.'
    set eyk = $yr$mth$day'k.'$1
 
-#  New bit here, delete output files
+#  Delete output files
    cd /amp/magobs/$1/$1
    echo $str
+
    rm $str$1
    rm $str$stt
    rm $str$stx
@@ -65,8 +73,7 @@ echo $st1 $fge_end $gsm_end
    cd /amp/magobs/$1
 
 #  Rename previous .stc file
-   mv $stc $sto
-
+#   mv $stc $sto
 
 foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23)
 
@@ -77,7 +84,7 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set epoch  = `date -u -d "$ymd" +%s`
    @ epoch = $epoch - 3600
    set utc = "UTC 1970-01-01 "$epoch" secs"
-   #echo $utc 
+   echo $utc 
 
    set yearq =   `date -ud @$epoch +%Y`
    set yrq =   `date -ud @$epoch +%y`
@@ -90,7 +97,7 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set gsm_file = $year.$doy.$hr$gsm_end
 
 
-#  New program to write hourly processed files
+#  Write hourly processed files
 
    /home/tanjap/geomag/core/hour1a $1 $day_dir $hr 
 
@@ -111,12 +118,22 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set fming = $1$year$mth$day$hr'00pmin.min.gz'
    cat /home/tanjap/geomag/core/$1_header.txt $fmini > $fmino
 
-# DON'T Send to ETH, Zurich
+# Comment all this if you DON'T want to send to ETH, Zurich:
+#  Send minute files to ETH, Zurich
+#if ( $1 == "api" ) then
+#  echo Connecting to Keeling ...
+#  set eth_machine = keeling@koblizek.ethz.ch
+#  sftp -v $eth_machine << endftp3
+#  cd magdata/minute/API
+#  put $fmino
+#endftp3
+#endif
 
-gzip $fmino
 
 # To SEND hourly minute files to Edinburgh (also in line further down!!!):
-  /home/tanjap/geomag/core/mpack -s $fming $fming e_gin@mail.nmh.ac.uk
+  echo Sending hourly minute files to Edinburgh ...
+  gzip $fmino
+ /home/tanjap/geomag/core/mpack -s $fming $fming e_gin@mail.nmh.ac.uk
 
 #  Now start writing Daily IAGA-2002 Files
  
