@@ -1,13 +1,12 @@
-	program hour1aC
-c   MUST compile with f95 (not f77) as uses case statement
-c   This program reads 1 sec fluxgate .txt files and 1 sec proton .raw files.
-c   All stations now have 1 second gsm recording.
-c   For EYR (at West Melton) also reads the seperate Benmore file (*fge-benmore-raw)
-c   to correct Z and F.
-c   Remove dud Proton Mag readings and try and despike. 
+	program hour1a
+c   This program reads 1 sec fluxgate .txt files and 1 sec proton .txt files
+c   All stations now have 1 second gsm recording
+c   For West Melton also reads the seperate Benmore file, to correct Z and F
+c   Remove dud Proton Mag readings and try and despike.
 c   All readings not present are 99999.
-c   For simplicity, this program no longer reads parameters from header of input
-c   fge data file (from ftp.geonet.org.nz) to compare with header.eyr etc.
+c   For simplicity, this program no longer reads parameters from header of i
+c   fge data file to compare with header.eyr etc.
+c   MUST compile with f95 (not f77) as uses case statement
 !
 c   Arguments are stn yyyy.doy hr, e.g. eyr 2009.356 11 
 c
@@ -36,7 +35,7 @@ c   Features of this version
 !
 	implicit none
 	integer*2 i,ihr,ih,iyr,mth,day,im,is,doy 
-	integer*2 j,k,g,q,iend
+	integer*2 j,k,iend,g,q
 	integer*2 bh,bm,bs,bo		! Benmore time
 	integer*2 iyc, imc, idc ! 	! constant file year,month & day
 	integer*2 h16,h1			! decoding hex numbers
@@ -51,19 +50,19 @@ c   Features of this version
 	real*4 xcoil,ycoil,zcoil,xres,yres,zres,hc,xcorr,dminute
 	real*4 xcalc,ycalc,zcalc,step,scale,zoffset
 	real*4 fcor,fcor2,bfact,bfact2,bmax
-	character*2 hrstr,daystr,mthstr,yrstr
-	character*3 stc,st1,ste,stf,stn
-	character*7 hstr,dstr,zstr
-	character*8 yearday		! e.g. 2005.074
-	character*12 fileo 		! e.g. 2005.074.eyr
-	character*14 etext
-	character*44 fileb,filef, fileg
-	character*46 ad
-	character*62 line
-	character*130 linef,lineo(744)
+        character*2 hrstr,daystr,mthstr,yrstr,gq
+        character*3 stc,st1,ste,stf,stn
+        character*7 hstr,dstr,zstr
+        character*8 yearday		! e.g. 2005.074
+        character*12 fileo 		! e.g. 2005.074.eyr
+        character*14 etext
+        character*44 fileb,filef, fileg
+        character*46 ad
+        character*62 line
+        character*130 linef,lineo(744)
 
-	common /a/ ddata
-	
+        common /a/ ddata
+        
 !   Next few lines are to set up output file name and header
 !   using year, doy, hr
 	call getarg(2,yearday)
@@ -94,9 +93,9 @@ c   Features of this version
 	   case('api') 
 	      filef = 'data/'//yearday//'.'//hrstr//'00.00.fge-apia.txt'
 	      fileg = 'data/'//yearday//'.'//hrstr//'00.00.gsm-apia.raw'
-	      xcoil = 37683.
-	      ycoil = 37968.
-	      zcoil = 37618.
+	      xcoil = 38386.
+	      ycoil = 38543.
+	      zcoil = 38329.
 	      xres = 118.0
 	      yres = 118.0
 	      zres = 118.0
@@ -155,7 +154,7 @@ c   Features of this version
 	iymdc = 10000*iyc+100*imc+idc
 	if(iymdc .gt. iymd) call exit
 	iend = 0
-	do while (iend .lt. 1)     ! read another line of constants file
+	do while (iend .lt. 1)     ! read anothe line of constants file
 	   read(14,*,end=140) idc,imc,iyc,xb2,ddeg2,dmin2,zb2,
      &                        xts2,xte2,zts2,zte2,fcor2,bfact2
 	   iymdc = 10000*iyc+100*imc+idc
@@ -189,28 +188,18 @@ c   Features of this version
 	open(11,file=fileg)
         if ( stn .eq. 'eyr' ) open(12,file=fileb)	! Benmore correction
 
-!   First read fge file, run through header
-!   Read xbias, ybias,zbias,sensor,driver for now
-
-!  In this version, output file will be full length, will need to check data
-!
-!	print *, xbias,' ',ybias,' ',zbias
-!	print *, xcoil,' ',ycoil,' ',zcoil
-!	print *, xres,' ',yres,' ',zres, step
-!	print *, e0,' ',e1,' ',e2,' ',e3,' ',e4,' ',zoffset
- 1000	format(3i3,1x,2f7.2,3f9.4,f11.3,f10.3,2f11.3,f8.2,f9.4)
+!   Format for lines that are not free format
  1200	format(27x,3(i2,1x),4x,f9.4)
- 3000	format(2i5,1x,2f7.2,3f9.4,f11.3,f10.3,f11.3,f11.4)
 
         bmax = 99.9 ! bmax set to not overflow and look right on benmore plots
-
+!   Set up default values for missed readings
 	do i = 0,3599		! Fill array with null readings
 	   do k = 3,10
 	      ddata(i,k) = 99999.
 	   end do ! for k
-	   ddata(i,1) = 0.	! Temperature and Benmore etc null is 0
+	   ddata(i,1) = 0.	! Temperature etc null is 0
 	   ddata(i,2) = 0.
-	   ddata(i,9) = 0.
+	   ddata(i,9) = 0.      ! Null Benmore if not eyr
            if ( stn .eq. 'eyr' ) ddata(i,9) = bmax
 	   ddata(i,11) = 0.
 	   ddata(i,12) = 0.
@@ -221,7 +210,7 @@ c   Features of this version
 	   do i = 0,3599		! For 1 hour of 1 sec readings
 	      read(12,1200,end=160)bh,bm,bs,ben
 !	      write(40,*) bh,bm,bs, ben
-	      if(abs(ben) .gt. 99.9) ben = 0.0	!!Only if major reading problem 
+	      if(abs(ben) .gt. 99.9) ben = bmax	 !Only if major reading problem 
 	      j = bm*60+bs	
   	      if((j .eq. 0).and.(i .gt. 0)) goto 160		! in case blank line at end
  	      ddata(bm*60+bs,9) = ben/0.073
@@ -234,19 +223,21 @@ c   Features of this version
               end if
 	   end do
         end if
-
-!  Read fge file from Fluxgate
-!  Changing to Free Format, this will later allow more accurate 
-!  values from xraw, yraw, zraw
+!  
+c   Now run through fge file header until meeting line starting HH
+c   This will give problems if there is no line starting HH !!
+        linef(1:2) = '  '
+        do while (linef(1:2) .ne. 'HH')
+           read(10, '(a130)',end=95) linef	! Jump out when reach HH
+        end do
+   95   continue
 !
 	do i = 0,3599		! For 1 hour of 1 sec readings
-!	   read(10,1000,end=100,err=111) ih,im,is,st,dt,xr,yr,zr,xc,
 	   read(10,*,end=100,err=111) ih,im,is,st,dt,xr,yr,zr,xc,
      &                               yc,zc,fc,ic
   111	   j = im*60+is	
 	   if ((i .ne. j).or.(ih .ne. ihr)) write(32,*)" FGE Time ",
      &        "Problem ",ihr,ih,im,is, i, j
-!	   write(30,3000) i,j,st,dt,xr,yr,zr,xc,yc,zc,ddata(j,9)
 	   if(abs(xc) .gt. 1) then
 	      if(abs(st) .gt. 99.9) st = 0.0	! Prevent running together 
 	      if(abs(dt) .gt. 99.9) dt = 0.0	! of numbers in .sbc file
@@ -267,7 +258,7 @@ c             write(25,2400)ihr,im,is,xcalc,ycalc,zcalc,xc,yc,zc
 
 c   The test file should show that xc ~ xcalc etc. 
 c   xc is more accurate than xcalc, as xraw needs 5 decomal places,
-c   therefore use xc etc. for now, but change format to xcalc when this new program
+c   therefore use xc etc. for now, but change format when this new program
 c   is in operation
 
 c   Following values now use xc, yc, zc as altered using constants file
@@ -293,11 +284,18 @@ c	   write(*,*) linef
 ! 1100	format(3i3,f9.2,2i3,f6.1)
 12100	format(a26,i3,2(1x,i2),6x,f9.2,4x,2i1)
 !1100	format(a26,i3,2(1x,i2),6x,f7.0,4x,2i1)
- 1100	format(26x,i3,2(1x,i2),6x,f7.0,4x,2i1)
+ 1100	format(26x,i3,2(1x,i2),6x,f7.0,4x,a2)
 ! Raw File format 28/9 HR, 31/2 MN, 34/5 Sec, 42 on reading * 100, 53 G, 54 Q
 	do i = 0,3599		! assumes no extra readings, could change
 !	   read(11,1100,end=200) ad,ih,im,is,f
-	   read(11,1100,end=200) ih,im,is,f,g,q
+	   read(11,1100,end=200,err=200) ih,im,is,f,gq
+           if(gq(2:) .eq. '.') then      ! Avoids problems if g=0
+              g = 0
+              read(gq(:1),'(i1)') q
+           else
+              read(gq(:1),'(i1)') g
+              read(gq(2:),'(i1)') q
+           end if 
 	   f = f/100.
 	   write (41,*) ih,im,is,f,g,q
 C	   if((g .lt. 8) .or. (q .lt. 8)) write(21,*) ih, im, is, 
@@ -319,12 +317,12 @@ C     &                                                    f, g, q, v
 !	         if(abs(ddata(j,10)-fcalc) .gt. ftol) write(21,*) 
 !    &                   ih,im,is,ddata(j,10)-fcalc,g,q," Wrong Total"
 
-	         if ((ddata(j,11).lt.1.1).or.(ddata(j,12) .lt. 5.1)) 
+	         if ((ddata(j,11).lt.7.1).or.(ddata(j,12) .lt. 7.1)) 
      &           write(21,*) ih,im,is,ddata(j,11),ddata(j,12),
      &           " Poor Proton"
-	         if((abs(ddata(j,10)-fcalc) .gt. 2.0) .and.
-     &             ((ddata(j,11).lt.3.1).or.(ddata(j,12) .lt. 5.1)))
-     &           ddata(j,10) = 0.0
+!	         if((abs(ddata(j,10)-fcalc) .gt. 2.0) .and.
+!     &             ((ddata(j,11).lt.3.1).or.(ddata(j,12) .lt. 5.1)))
+!     &           ddata(j,10) = 0.0
 	      else
 	            write(21,*) ih,im,is, "No GSM data"
 	      end if
