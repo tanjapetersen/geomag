@@ -1,6 +1,6 @@
 	program one second
 !   This program reads hourly data files, and just sends the actual
-!   one-second readings calculates the .min file to intermagnet
+!   one-second readings to INTERMAGNET.
 !   Takes one parameter for station name (3 letter code, lower case),
 !   second parameter is current input files 
 !   Equivalent of Jan3005.eyr is eyr050130.eyr 

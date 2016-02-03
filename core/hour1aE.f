@@ -1,16 +1,17 @@
 	program hour1a
-c   This program reads 1 sec fluxgate .txt files and 1 sec proton .txt files
-c   All stations now have 1 second gsm recording
-c   For West Melton also reads the seperate Benmore file, to correct Z and F
+c   This program reads 1 sec fluxgate .txt files and 1 sec proton .raw files.
+c   All stations have 1 second gsm recording.
+c   For West Melton (EYR) also reads the seperate Benmore single-axis 
+c   fluxgate .raw file, to correct Z and F.
 c   Remove dud Proton Mag readings and try and despike.
 c   All readings not present are 99999.
-c   For simplicity, this program no longer reads parameters from header of i
+c   For simplicity, this program no longer reads parameters from header of input
 c   fge data file to compare with header.eyr etc.
 c   MUST compile with f95 (not f77) as uses case statement
 !
 c   Arguments are stn yyyy.doy hr, e.g. eyr 2009.356 11 
 c
-!   Header terms in case statement are
+!   Header terms in case statement are:
 c   xcoil,ycoil,zcoil (~30000) 
 c   xres,yres,zres (~60) 
 c   step
@@ -20,7 +21,7 @@ c   e0,e1,e2,e3,e4
 c   Others (scale, zpolarity, etc.) are not used 
 c
 c   
-!   Constants from constant.eyr (.sba) file
+!   Constants from constant.eyr (.sba & .api) file
 ! 
 !   xb  Add to calculated x
 !   zb  Add to calculated z
@@ -41,8 +42,9 @@ c   Features of this version
 	integer*2 h16,h1			! decoding hex numbers
 	integer*4 iymd, iymdc
 	integer*2 xbias,ybias,zbias
+        integer*2 ii(1:15)                 ! For trimmed median
 	real*4 st, dt, xr, yr, zr, xc, yc, zc, fc, ic, ben, f, v, mrad
-	real*4 med, mdiff(5)            ! Spike removal
+	real*4 med, mdiff(3),odiff            ! Spike removal
 	real*4 ddata(0:3599,1:12)	
 	real*4 mdata(0:3599,1:4)
 	real*4 ddeg,dmin,xb,zb, xts,xte,zts,zte, fcalc,ftol 
@@ -61,7 +63,7 @@ c   Features of this version
         character*62 line
         character*130 linef,lineo(744)
 
-        common /a/ ddata
+        common /a/ ddata,ii
         
 !   Next few lines are to set up output file name and header
 !   using year, doy, hr
@@ -75,7 +77,7 @@ c   Features of this version
 	write(hrstr,'(i2.2)') ihr
 	
 !  Get station name, make up file extensions
-!  These file extensions are for  Mid 2015, i.e. may not work for old data 
+!  These file extensions are for Mid 2015, i.e. may not work for old data 
 	call getarg(1,stn)
 	stc = stn(1:2) // 'c'
 	st1 = stn(1:2) // '1'
@@ -86,8 +88,15 @@ c   Features of this version
         mdiff(1) = 500.         ! x
         mdiff(2) = 500.         ! y
         mdiff(3) = 500.         ! z
-        mdiff(4) = 5000.        ! Don't alter Benmore
-        mdiff(5) = 10.          ! f
+!  Trimmed median, make sure close to symmetrical
+        do i = 1, 11
+           ii(i) = i + 2
+        end do
+        ii(12) = 2
+        ii(13) = 14
+        ii(14) = 15
+        ii(15) = 1
+
 
 	select case (stn)
 	   case('api') 
@@ -154,7 +163,7 @@ c   Features of this version
 	iymdc = 10000*iyc+100*imc+idc
 	if(iymdc .gt. iymd) call exit
 	iend = 0
-	do while (iend .lt. 1)     ! read anothe line of constants file
+	do while (iend .lt. 1)     ! read another line of constants file
 	   read(14,*,end=140) idc,imc,iyc,xb2,ddeg2,dmin2,zb2,
      &                        xts2,xte2,zts2,zte2,fcor2,bfact2
 	   iymdc = 10000*iyc+100*imc+idc
@@ -178,7 +187,7 @@ c   Features of this version
 	print *, ' fcor = ',fcor
 	mrad = 3437.747			! minutes/radian
 !	
-	write(*,*) 'Writing ', fileo  ! ap1, ey1 or sb1 1-second output file
+	write(*,*) 'Writing ', fileo  ! .ap1, .ey1 or .sb1 1-second output file
 	open(20,file= stc//'/' // fileo)
 !     .ape, eye or sbe is error file
 	open(21,file= stc//'/' // yearday//'.'//ste,access='append')
@@ -243,7 +252,7 @@ c   This will give problems if there is no line starting HH !!
 	      if(abs(dt) .gt. 99.9) dt = 0.0	! of numbers in .sbc file
 	      ddata(j,1) = st
 	      ddata(j,2) = dt
-              ddata(j,3) = xc	! these 3 lines eill be replaced later
+              ddata(j,3) = xc	! these 3 lines will be replaced later
 	      ddata(j,4) = yc
 	      ddata(j,5) = zc
 !
@@ -257,7 +266,7 @@ c   This will give problems if there is no line starting HH !!
 c             write(25,2400)ihr,im,is,xcalc,ycalc,zcalc,xc,yc,zc
 
 c   The test file should show that xc ~ xcalc etc. 
-c   xc is more accurate than xcalc, as xraw needs 5 decomal places,
+c   xc is more accurate than xcalc, as xr (i.e. xraw) needs 5 decimal places,
 c   therefore use xc etc. for now, but change format when this new program
 c   is in operation
 
@@ -335,10 +344,10 @@ C     &                                                    f, g, q, v
 !
 ! Next bit should be to remove spikes. Different for fge & gsm
 !
-!  Look for spikes on all channels
+!  Look for spikes on fluxgate channels
 !  If differs from median too much, replace by median
 !  Different limits for each component, and can be set for each site
-   	do j = 6,10             ! Will not actually despike 9 (Benmore) 
+   	do j = 6,8             ! This routine now to despike Fluxgate 
  	   do i = 0,3599
 !	      write(21,*) "XXX ",ihr,i,j,ddata(i,j)
  	      call median(i,j,med)
@@ -351,6 +360,20 @@ C     &                                                    f, g, q, v
  	   end do
  	end do
  2100	format(a,5i4,2f12.2)
+!  Look for spikes on overhauser channel
+!  If differs from median too much, replace by median
+ 	   do i = 0,3599
+!	      write(21,*) "XXX ",ihr,i,j,ddata(i,j)
+ 	      call mediano(i,med)
+        write(42,*) i, med, ddata(i,10)
+ 	      if (abs(ddata(i,10) - med) .gt. mdiff(j-5)) then
+ 	         im = i/60
+		 is = i - 60*im
+		 write(21,2150) "GSM ",i,ihr,im,is,ddata(i,10),med
+ 	         ddata(i,10) = med
+ 	      end if
+ 	   end do
+ 2150	format(a,4i4,2f12.2)
 !
 !
 c  Now write out 1 second readings, whether or not there is data there
@@ -401,14 +424,13 @@ c  j -ve, yr,doy to mth,day
 !   
 
 	subroutine median(i,n,med)
-!  This does median for fge components and total (gsm) now all 1 second
-!  Once this is running properly, look to remove ionosonde
+!  This does median for fge components
 	implicit none
-	integer*2 i,j,k,n
+	integer*2 i,j,k,n,ii(1:15)
 	real*4 data(0:3599,1:12)
 	real x(11), med	
 C	common /a/ ddata	
-	common /a/ data
+	common /a/ data,ii
 !   Does median of 11 values. Starts wirh 1-11, then uses 5 each side
 !   until ending with 3589-3599
 	if(i .lt. 5) then 
@@ -428,6 +450,53 @@ C	common /a/ ddata
 	call sort(x,k)
 !	write(31,*) (x(k), k=1,11)
 	med = x(6)
+	end
+
+	subroutine mediano(i,med)
+!  This does median for total (gsm) now 1 second
+!  Take 15 values, only use best 11
+
+	implicit none
+	integer*2 i,j,k,m,n,ii(1:15)
+	real*4 data(0:3599,1:12)
+	real f(11),x(15), y(15), med	
+C	common /a/ ddata	
+	common /a/ data,ii
+!   Does median of 11 values. Starts wirh 1-11, then uses 5 each side
+!   until ending with 3589-3599
+	if(i .lt. 7) then 
+	   do j = 1,15 
+	      x(j) = data(j-1,10)
+	      y(j) = data(j-1,11)
+	   end do
+	else if (i .gt. 3591) then
+	   do j = 3585,3599 
+	      x(j-3584) = data(j,10)
+	      y(j-3584) = data(j,11)
+	   end do
+	else
+	   do j = i-7,i+7 
+	      x(j-i+8) = data(j,10)
+	      y(j-i+8) = data(j,11)
+	   end do
+	end if
+!  Now copy best values in tillwe have 11
+        k = 0
+        do m = 9,0,-1
+           do j = 1,15
+              if (y(ii(j)).eq.m) then
+                 k = k + 1
+                 f(k) = x(ii(j))
+              end if         
+              if(k.ge.11) exit
+           end do ! for i
+        if(k.ge.11) exit
+        end do ! for m
+!       print *, 'B  ',i,k
+	k = 11
+	call sort(f,k)
+!	write(31,*) (x(k), k=1,11)
+	med = f(6)
 	end
 
       SUBROUTINE SORT (X, N)

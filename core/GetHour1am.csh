@@ -1,6 +1,7 @@
 #!/bin/csh 
 
-# get one hour of magnetic data from ftp.geonet.org.nz 
+# Get one hour of magnetic data from ftp.geonet.org.nz 
+# This version for all stations
 # $1 is 3 letter code (lower case) for station
 # $2 is NOW (for current date/time) or 2-digit year, 
 # If $2 is not NOW then $3 is month, $4 day, $5 hr, all 2-digit
@@ -11,19 +12,16 @@ set source_machine = ftp.geonet.org.nz
 # ********* 
 if ($#argv == 0) then
    echo "Call  GetHour1.csh stn NOW    for current processing"
-   echo "or    GetHour1.csh stn yr mth day hr   (all 2-digit) for reruns"
+   echo "or    GetHour1.csh stn yr mth day hr YES (all 2-digit, only add YES if you want to send to Zurich) for reruns"
    stop
 endif
 if ( $2 == 'NOW' ) then
 # ********* 
 set year  = `date -u --date='1 hours ago' +%Y`
 set yr  = `date -u --date='1 hours ago' +%y`
-########set month = `date -u --date='1 hours ago' +%b`
 set mth = `date -u --date='1 hours ago' +%m`
 set doy =   `date -u --date='1 hours ago' +%j`
-########set doyp =   `date -u --date='25 hours ago' +%j`
 set day =   `date -u --date='1 hours ago' +%d`
-######## set dow =   `date -u --date='1 hours ago' +%w`
 set hr =    `date -u --date='1 hours ago' +%H`
 
 set yearp = `date -u --date='25 hours ago' +%Y`
@@ -35,7 +33,6 @@ set yrpp  = `date -u --date='49 hours ago' +%y`
 set mthpp = `date -u --date='49 hours ago' +%m`
 set daypp = `date -u --date='49 hours ago' +%d`
 
-#######set yearq = `date -u --date='2 hours ago' +%Y`
 set yrq  =  `date -u --date='2 hours ago' +%y`
 set mthq =  `date -u --date='2 hours ago' +%m`
 set dayq =  `date -u --date='2 hours ago' +%d`
@@ -43,105 +40,78 @@ set hrq =   `date -u --date='2 hours ago' +%H`
 
 # ********* 
 else
+   set year = 20$2
+   set yr = $2
    set ymd  = "20$2-$3-$4 + $5 hours" 
+   echo Running GetHour1.csh now for 
    echo `date +"%Y-%m-%d %H:%M"  -u -d "$ymd"`
    set epoch = `date -u -d "$ymd" +%s`
    set mth = `date -ud @$epoch +%m`
    set doy = `date -ud @$epoch +%j`
    set day = `date -ud @$epoch +%d`
    set  hr = `date -ud @$epoch +%H`
-   echo $mth $doy $day $hr
+   #echo $mth $doy $day $hr
 
    @ e1 = $epoch - 3600
    set yrq =  `date -ud @$e1 +%y`
    set mthq = `date -ud @$e1 +%m`
    set dayq = `date -ud @$e1 +%d`
    set hrq =  `date -ud @$e1 +%H`
-   echo $yrq $mthq $dayq $hrq
+  # echo $yrq $mthq $dayq $hrq
 
    @ e24 = $epoch - 86400
    set yearp =  `date -ud @$e24 +%Y`
    set yrp  =   `date -ud @$e24 +%y`
    set mthp =   `date -ud @$e24 +%m`
    set dayp =   `date -ud @$e24 +%d`
-   echo $yearp $yrp $mthp $dayp
+  # echo $yearp $yrp $mthp $dayp
 
    @ e48 = $e24 - 86400
    set yrpp  =   `date -ud @$e48 +%y`
    set mthpp =   `date -ud @$e48 +%m`
    set daypp =   `date -ud @$e48 +%d`
-   echo $yrpp $mthpp $daypp
-
+   #echo $yrpp $mthpp $daypp
 endif
 
-
-# ********* 
-
-set source_machine = ftp.geonet.org.nz
-
-set year  = `date -u --date='1 hours ago' +%Y`
-set yr  = `date -u --date='1 hours ago' +%y`
-set month = `date -u --date='1 hours ago' +%b`
-set mth = `date -u --date='1 hours ago' +%m`
-set doy =   `date -u --date='1 hours ago' +%j`
-#set doyp =   `date -u --date='25 hours ago' +%j`
-set day =   `date -u --date='1 hours ago' +%d`
-set dow =   `date -u --date='1 hours ago' +%w`
-set hr =    `date -u --date='1 hours ago' +%H`
-
-set yearp = `date -u --date='25 hours ago' +%Y`
-set yrp  = `date -u --date='25 hours ago' +%y`
-set mthp = `date -u --date='25 hours ago' +%m`
-set dayp = `date -u --date='25 hours ago' +%d`
-
-set yrpp  = `date -u --date='49 hours ago' +%y`
-set mthpp = `date -u --date='49 hours ago' +%m`
-set daypp = `date -u --date='49 hours ago' +%d`
-
-set yearq = `date -u --date='2 hours ago' +%Y`
-set yrq  =  `date -u --date='2 hours ago' +%y`
-set mthq =  `date -u --date='2 hours ago' +%m`
-set dayq =  `date -u --date='2 hours ago' +%d`
-set hrq =   `date -u --date='2 hours ago' +%H`
-
-
-#set default directories and filenames, etc
-
+#  Set default directories and filenames, etc
+#  Use eyr as default, but replace if needed
 set fge_end = "00.00.fge-eyrewell.txt"
 set gsm_end = "00.00.westmelton.raw"
+set ben_end = "00.00.fge-benmore.raw"
 set st1 = ey1
 if ( $1 == "sba" ) then
    set fge_end = "00.00.fge-scottbase.txt"
-   set gsm_end = "00.00.gsm-scottbase.txt"
+   set gsm_end = "00.00.gsm-scottbase.raw"
    set st1 = sb1
-#  set st2 = sb2
-#  set st4 = sb4
+#  Next two lines to make filenames for ionosonde cleaning
+   set st2 = sb2
+   set st4 = sb4
 endif
-  echo $st1 $fge_end $gsm_end 
+if ( $1 == "api" ) then
+   set fge_end = "00.00.fge-apia.txt"
+   set gsm_end = "00.00.gsm-apia.raw"
+   set st1 = ap1
+endif
+  #echo $st1 $fge_end $gsm_end 
 
 set day_dir = $year.$doy
 set fge_file = $year.$doy.$hr$fge_end
 set gsm_file = $year.$doy.$hr$gsm_end
-if ($1 == "eyr") then
-   set ben_end = "00.00.fge-benmore.raw"
-   set ben_file = $year.$doy.$hr$ben_end
-endif
-#set be2_file = $year.$doy.$hr$be2_end
-#set tmp_file = $year.$doy.$hr$tmp_end
+set ben_file = $year.$doy.$hr$ben_end
 set st3 = `echo $1 | cut -c1,2`c
 set stc = $st3'/'$yr$mth$day'.'$st3
 set stcp = $st3'/'$yrp$mthp$dayp'.'$st3
-echo 'stc is '$stc' & stcp is '$stcp 
+#echo 'stc is '$stc' & stcp is '$stcp 
 
+#  Go into the data subdirectory /amp/magobs/$1/data/
 cd /amp/magobs/$1/data
 
-
-echo $year $doy $month $day_dir $fge_file
-echo
+echo $1$fge_file
 echo ftp starts at `date --rfc-3339='ns'`
-#do the ftp
-ftp -inv $source_machine << endftp1
-  user anonymous t.hurst 
+
+#  Get raw data from the GeoNet ftp site
+ftp -in $source_machine << endftp1
+  user anonymous t.petersen 
   cd geomag
   cd $year
   cd $day_dir
@@ -152,47 +122,48 @@ endftp1
 echo ftp ends at `date --rfc-3339='ns'`
 echo
 
-# Scott Base does not need Benmore File
-if ( $1 == "sba" ) then
-   rm $ben_file 
+#  If not eyr, delete ben_file
+if( $1 != "eyr") then
+   rm $ben_file
 endif
 
 #  Count lines in data files
+echo Counting lines in the data files:
 set len_fge = `wc -l $fge_file`
 set len_fge = `echo $len_fge | cut -d' ' -f1 `
 set len_gsm = `wc -l $gsm_file`
 set len_gsm = `echo $len_gsm | cut -d' ' -f1 `
-echo fge file has $len_fge lines, gsm file has $len_gsm lines
+echo fge has $len_fge lines, gsm has $len_gsm lines
 
-
-#  Return to main station directory
+#  Return from e.g. /amp/magobs/eyr/data/ to main station directory e.g. /amp/magobs/eyr/
 cd ..
 
-#  New program to write hourly processed files
-#/home/tanjap/geomag/core/hour1w $1 $day_dir $hr
-# This is part of folding the station specific programs back into one:
-/home/tanjap/geomag/core/hour1aC $1 $day_dir $hr 
+#  Run FORTRAN program hour1.f to create hourly processed files
+echo Calling hour1.f now...
+/home/tanjap/geomag/core/hour1aE $1 $day_dir $hr 
 
-# Next lines are based on reading the ey1 or .sb1 files produced by hour1w
-
+#  Next lines are based on reading the .ap1/.ey1/.sb1 files produced by hour1a
   set nhour = $yr$mth$day$hr'.'$st1
   set lhour = $yrq$mthq$dayq$hrq'.'$st1
-  echo 'Prepare to run sendone' $nhour '  ' $lhour
+echo  
+echo 'Prepare to run sendone' $nhour ' ' $lhour
 
-#if ( $1 == "sba" ) then
-#   set xhour = $yr$mth$day$hr'.'$st2
-#   set yhour = $yr$mth$day$hr'.'$st4
-#   cleansb1 sba $nhour 
-#   echo 'Cleaning ' $nhour
-#   mv $st3/$nhour $st3/$yhour
-#   mv $st3/$xhour $st3/$nhour
-#endif
+#  Ionosonde cleaning for sba only
+if ( $1 == "sba" ) then
+  set xhour = $yr$mth$day$hr'.'$st2
+  set yhour = $yr$mth$day$hr'.'$st4
+  /home/tanjap/geomag/core/cleansb1a sba $nhour
+  mv $st3/$nhour $st3/$yhour
+  mv $st3/$xhour $st3/$nhour
+endif
 
+#  Run FOTRAN programs onesecond.f and sendone.f
 /home/tanjap/geomag/core/onesecond $1 $nhour 
 /home/tanjap/geomag/core/sendone $1 $nhour $lhour
-
   echo 'Finished sendone'
-# New bit here
+  echo
+
+#  Create filenames for seconds and minutes files
    set fmini = $1$year$mth$day$hr'00pmin.tmp'
    set fmino = $1$year$mth$day$hr'00pmin.min'
    set fmind = $1'/'$1$year$mth$day'pmin.min'
@@ -203,39 +174,40 @@ cd ..
    set fsecg = $1$year$mth$day$hr'00psec.sec.gz'
    cat /home/tanjap/geomag/core/$1s_header.txt $fseci > $fseco
 
-## This creates a file the script Plotw.csh is working with:
    set plot = $1'plotfile.txt'
    set plott = $1'plotfile.tmp'
    mv $plot $plott
    cat $fmini $plott > $plot
 
-
-if ( $1 == "eyr" ) then
-   set isgi_machine = ftp-isgi.latmos.ipsl.fr
-   ftp -v $isgi_machine << endftp2
-   cd minute_data
-   cd Eyrewell
-   put $fmino
-endftp2
+  Send minute files to ETH, Zurich
+if (( $2 == 'NOW' )||( $6 == "YES")) then
+   if ( $1 == "api" ) then
+      echo Connecting to Keeling ...
+      set eth_machine = keeling@koblizek.ethz.ch
+#     sftp -v $eth_machine << endftp3
+      sftp $eth_machine << endftp3
+      cd magdata/minute/API
+      put $fmino
+endftp3
+   endif
 endif
 
+#  Send minute and second files to Edinburgh for their GIN-page
+   echo Sending files to Edinburgh ...
    gzip $fmino
    gzip $fseco
    /home/tanjap/geomag/core/mpack -s $fming $fming e_gin@mail.nmh.ac.uk
    /home/tanjap/geomag/core/mpack -s $fsecg $fsecg e_gin@mail.nmh.ac.uk
 
-#  Now start writing Daily IAGA-2002 Files
-
+#  Now start writing Daily IAGA-2002 Files ("pmin files") by adding headers 
+echo Writing Daily IAGA-2002 Files...
 if ( $hr == '00' ) then
-#   mv  $1$yearp$mthp$dayp'pmin.min' $1
-#  set fmind = $1$year$mth$day'pmin.min'
    cat /home/tanjap/geomag/core/$1_header.txt $fmini > $fmind
 else
    mv $fmind temp.min
    cat temp.min $fmini > $fmind
 endif
-
-
+ 
 #  Shift files to hourly sub-directory
    rm $fmini
    rm $fseci
@@ -243,39 +215,23 @@ endif
    mv $fsecg hourly 
 
 #  After first 3 hours of a day are done, do K-index for previous day
-
+if ( $2 == 'NOW' ) then
    if($hr == '02') then
       set stk = $yrp$mthp$dayp'k.'$1
       echo kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
-#  NOTE: kindext.f uses kval.eyr parameter file!
       /home/tanjap/geomag/core/kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
-# e-mail k-indices
+
+# e-mail k-indices; only the EYR K-index files are emailed to Paris
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
       echo "K-index posted"
       mv klatest.$1 kfiles/$stk 
    endif
+endif
 
-#  Next bit checks battery voltage
-set vfile = /amp/magobs/$1/$st3/volt
-echo $vfile
-#set V = `echo $vfile | gawk '{print $1}'`
-set V = `gawk '{print $1}' < $vfile `
-echo "Volts*100 = "$V
+echo Finished GetHour1.csh for 
+   echo `date +"%Y-%m-%d %H:%M"  -u -d "$ymd"`
+echo
+#  Plot last 2 days files for Apia (puts .pdf onto ftp://ftp.gns.cri.nz/pub/tanjap/ & a .ps into /amp/magobs/api/api/
+   /home/tanjap/geomag/core/Plotx.csh $1
 
-# Plots Benmore: .pdf onto ftp.gns.cri.nz/pub/tanjap/ and .ps into /amp/magobs/eyr/eyr/
-/home/tanjap/geomag/core/Plotx.csh eyr B
-
-#  Every 6 hours send low voltage warning
-foreach hr6 (00 06 12 18)
-   if ($hr6 == $hr && $V < 1260) then
-      if ($V > 0) then
-	set V = `gawk '{print $1/100.}' < $vfile `
-      	echo $hr $hr6 $V
-      	set mess = $1' only '$V' Volts'
-      	mail -s "$mess" "t.hurst@gns.cri.nz" < $vfile
-      	mail -s "$mess" "m.chadwick@gns.cri.nz" < $vfile
-        mail -s "$mess" "t.petersen@gns.cri.nz" < $vfile
-      endif
-   endif
-end

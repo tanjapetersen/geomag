@@ -3,8 +3,7 @@
 !   adjustments to compensate for the Ionosonde, which now runs at 
 !   exactly every 15 minutes  
 !
-!   cleansb1a is variant of cleansb1, to make it easier to cope with
-!   changes to the ionosonde. The corrections are read of the file iono.dat (in /amp/magsob/sba/),
+!   The corrections are read of the file iono.dat (in /amp/magsob/sba/),
 !   (for 0 to 30 seconds) but there is also a delay term (in seconds) which 
 !   allows the same pattern to be used with different delays
 !   REMEMBER:- The corrections are subtracted

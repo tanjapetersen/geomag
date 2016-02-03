@@ -1,7 +1,8 @@
 #!/bin/csh 
 
+##### HaveDay1an.csh is based on HaveDay1az.csh
+##### This version is for API, EYR & SBA
 # Process an old day of magnetic data.
-# HaveDay1az.csh is specific for API. 
 # It requires downloading missing data from 
 # ftp server, BEFORE running this script.
 # This script together with a ftp-downloading 
@@ -13,28 +14,12 @@
 # $2 is 2-digit year, $3 is 2-digit mth, $4 is 2-digit day
 
 if ($#argv == 0) then
-  echo "Call as  HaveDay1az.csh api yr mth day"
+  echo "Call as  HaveDay1an.csh api yr mth day"
   stop
 endif
 
-echo Running HaveDay1az.csh now ...
+echo Running HaveDay1an.csh now ...
 
-#set st3 = `echo $1 | cut -c1,2`c
-#set fge_end = "00.00.fge-eyrewell.txt"
-#set gsm_end = "00.00.gsm-eyrewell.txt"
-#set st1 = ey1
-#if ( $1 == "sba" ) then
-#   set fge_end = "00.00.fge-scottbase.txt"
-#   set gsm_end = "00.00.gsm-scottbase.txt"
-#   set st1 = sb1
-#endif
-if ( $1 == "api" ) then
-   set fge_end = "00.00.fge-apia.txt"
-   set gsm_end = "00.00.gsm-apia.raw"
-   set st1 = ap1
-endif
-
-#echo $st1 $fge_end $gsm_end 
 
    set ymd = "20$2-$3-$4"
    set year  = `date -u -d "$ymd" +%Y`
@@ -66,14 +51,14 @@ endif
 
    cd /amp/magobs/$1
 
-echo "HaveDay1az.csh is calling GetHour1a.csh now for every hour of the day...."
+echo "HaveDay1an.csh is calling GetHour1a.csh now for every hour of the day...."
 foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23)
 
 #  Write hourly processed files
 #  GetHour1a.csh stn yr mth day hr 
-  /home/tanjap/geomag/core/GetHour1a.csh $1 $2 $3 $4 $hr 
+  /home/tanjap/geomag/core/GetHour1am.csh $1 $2 $3 $4 $hr 
 end
-echo "HaveDay1az.csh is done for now."
+echo "HaveDay1an.csh is done for now."
 echo
 # For now, stop here
 

@@ -19,7 +19,7 @@
   mail -s $kfile t.hurst@gns.cri.nz < kbimonth.$1
   mail -s $kfile t.petersen@gns.cri.nz < kbimonth.$1
   mail -s $kfile kp_index@gfz-potsdam.de < kbimonth.$1
-  mail -s $kfile michel.menvielle@latmos.ipsl.fr < kbimonth.$1
-  mail -s $kfile kisgi@latmos.ipsl.fr < kbimonth.$1
+ # mail -s $kfile michel.menvielle@latmos.ipsl.fr < kbimonth.$1
+ # mail -s $kfile kisgi@latmos.ipsl.fr < kbimonth.$1
   mv kbimonth.$1 $kfile
 

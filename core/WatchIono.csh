@@ -20,4 +20,4 @@ cat $yr$mth$day"00.sb1" $yr$mth$day'01.sb1' $yr$mth$day'02.sb1' $yr$mth$day'03.s
 
 # Now run checksb1ex to see what ionosonde effect is
 cd ..
-/home/tanjap/geomag/qc/checksb1ex sba $yr$mth$day
+/home/tanjap/geomag/core/checksb1ex sba $yr$mth$day
