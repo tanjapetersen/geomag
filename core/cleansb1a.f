@@ -6,7 +6,7 @@
 !   The corrections are read of the file iono.dat (in /amp/magsob/sba/),
 !   (for 0 to 30 seconds) but there is also a delay term (in seconds) which 
 !   allows the same pattern to be used with different delays
-!   REMEMBER:- The corrections are subtracted
+!   REMEMBER: - The corrections are subtracted
 ! 
 !   S(1:3,0:30) contains adjustments to x, y and z for 30 seconds from
 !   the exact 15 minutes 
@@ -35,7 +35,7 @@
 	character*62 line
 	character*110 linef,lineo(744)
 
-	open(14,file= "iono.dat")		! Corrections input file located in /amp/magobs/sba/
+	open(14,file= "iono.dat")       ! Corrections input file located in /amp/magobs/sba/
  
 !   Next few lines are to set up output file name and header
 	

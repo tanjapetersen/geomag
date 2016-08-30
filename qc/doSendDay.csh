@@ -1,12 +1,8 @@
 #!/bin/csh 
 # Call script as e.g. doSendDay.csh sba 2013 03 (for March 2013)
-# This script goes into /amp/magobs/sba/new/ bzw. /amp/magobs/eyr/new/(contains the quasi-definitive data) and runs SendDay.csh (sends pmin.min files to Edinburgh) for a series of days in the chosen year. 
+# This script goes into /amp/magobs/sba/qd/ bzw. /amp/magobs/eyr/qd/(contains the quasi-definitive data) and runs SendDay.csh (sends pmin.min files to Edinburgh) for a series of days in the chosen year. 
 
-#cd /amp/magobs/api/api/
 cd /amp/magobs/{$1}/qd/
-
-#cd /scratch/GEOMAG/{$1}{$2}/new/
-#cd /scratch/GEOMAG/{$1}2014/new/
 
 echo Working in directory `pwd`...
 
@@ -25,8 +21,8 @@ end
 endif
 
 if ($mth == 02) then
-foreach day (01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28) 
 #foreach day (01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29) 
+foreach day (01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28) 
   /home/tanjap/geomag/qc/SendDay.csh $1 $yr $mth $day 
 end
 endif
@@ -39,7 +35,7 @@ endif
 
 if ($mth == 04) then
 foreach day (01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30) 
-  /home/tanjap/process/SendDay.csh $1 $yr $mth $day 
+  /home/tanjap/geomag/qc/SendDay.csh $1 $yr $mth $day 
 end
 endif
 

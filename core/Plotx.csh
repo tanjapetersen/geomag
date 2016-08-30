@@ -8,6 +8,7 @@
 # $2 $3 $4 are year(2-digit) month day of first day 
 # $5 is number of days to plot (ONLY 1 OR 2), $6 is B for plotting Benmore
 # Plotx.csh eyr 15 01 02 1 B
+# Plotx.csh api 16 03 16 
 
 # Then writes web page
 
@@ -51,16 +52,16 @@ endif
 # These are 'eyr' values:
 set yscale = 0.05
 set blo = -20
-set xlo = 19310
+set xlo = 19275
 set ylo = 8210
-set zlo = -53580
+set zlo = -53560
 set flo = 57450
 set mul = 1.0
 
 if ($1 == 'sba') then
   set yscale = 0.0125
   set xlo = -10480
-  set ylo = 5100
+  set ylo = 5150
   set zlo = -65590
   set flo = 66200
   set mul = 4.0
@@ -68,10 +69,10 @@ endif
  
 if ($1 == 'api') then
   set yscale = 0.025
-  set xlo = 32570
+  set xlo = 32500
   set ylo = 6850
   set zlo = -20120
-  set flo = 38820
+  set flo = 38790
   set mul = 2.0
 endif
  
@@ -109,7 +110,7 @@ echo $statmthps
 if (($2 == "B") || ($6 == "B")) then
 #if ($2 == "B") then
    set LIMITS = "-R"$doyb"/"$doye"/"$blo"/"$bhi
-   psbasemap ${PROJ} ${LIMITS} ${FLAGS} -Ba1f1:"Magnetic Record":/a20f20WENs -K -V -X2.5 -Y22.0 > $statmthps
+   psbasemap ${PROJ} ${LIMITS} ${FLAGS} -Ba1f1:"Magnetic Record":/a20f20WENs -K -X2.5 -Y22.0 > $statmthps
    set COLOUR = "-W1"			# black
    set label =  "B"
    gawk -v y=$doyb '{print y + $2/24. + $3/1440." " $10}' $fileb >! temp_b
@@ -131,7 +132,7 @@ if (($2 == "B") || ($6 == "B")) then
 #if ($2 == "B") then
    psbasemap ${PROJ} ${LIMITS} ${FLAGS} -Bf1/a50f25WEsn -K -O -Y-5.0  >> $statmthps
 else
-   psbasemap ${PROJ} ${LIMITS} ${FLAGS} -Ba1f1:"Magnetic Record":/a50f25WENs -K -V -X2.5 -Y20.5 > $statmthps
+   psbasemap ${PROJ} ${LIMITS} ${FLAGS} -Ba1f1:"Magnetic Record":/a50f25WENs -K -X2.5 -Y20.5 > $statmthps
 endif
    set COLOUR = "-W1/250/0/0"			# red
    set label =  "X"

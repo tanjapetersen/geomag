@@ -1,10 +1,10 @@
-	program exactiaga
-c
+	program exactiagav
+c  NOTE: this version now has correct polarity and correction for Y.
 c  Program to make Fs - Fv exactly zero or a certain value
 c  in IAGA2002 files for a whole day 
 c  Reads from directory stn, writes to directory new
-c  1st arg stn, 2nd yr, 3rd mth, 4th day (all 2-digit)
-
+c  1st arg stn, 2nd yr, 3rd mth, 4th day (all 2-digit), 5th value for Fs - Fv
+c  Main change in z, also opposite 50% change in y makes it smoother
  
 	implicit none
 
@@ -77,7 +77,8 @@ c  1st arg stn, 2nd yr, 3rd mth, 4th day (all 2-digit)
 	      end if
 	      if(i999.le. 0) then
 		 df = fs - fv
-		 z = z - 1.0 * df + v		! z -ve, therefore +v reduces absolute value
+		 z = z - 1.0 * df - v		! z -ve, therefore +v reduces absolute value
+		 y = y + 0.5 * df
 		 fv = sqrt(x * x + y * y + z * z)
 	      end if
 	      write(14,1400) line(:30),x, y, z, f

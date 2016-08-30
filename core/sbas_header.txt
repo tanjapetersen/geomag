@@ -15,7 +15,7 @@
  # = H/3438*10000.                                                   |
  # which is word 8 in the INTERMAGNET binary format and is used      |
  # to convert variations of D in minutes of arc <-> nT.              |
- # Approx H   11600                                                 |
+ # Approx H   11600                                                  |
  # padded with spaces - never with tabs.                             |
  # Definitive values will be reported as XYZF                        |
 DATE       TIME         DOY     SBAX      SBAY      SBAZ      SBAF   |

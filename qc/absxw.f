@@ -5,7 +5,6 @@
 !   This is used to calculate the instrumental constants 
 !   MUST RUN in directory above stn/*.eyx., where stn is 3-letter station code
 !   Now produces x, y and z files (d -> y, i -> x,z), also f comparison
-!   Was absonel when reading .txt files
 !   without TEMPERATURE COMPENSATION as that has already been done
 !   Eyrewell version, DOES HANDLE Benmore correction for Z & F 
 !   Benmore correction HARD-WIRED at 0.24 - Good for WEST MELTON ONLY. 
@@ -52,15 +51,16 @@ c   Next few lines are to set up output file name and header. Reads list.stn fil
 	dfp = '000000'
 	dxp = '000000'
 !   Limits that define which values to keep and which to throw out
-	dlow = -20.0
+	dlow = -30.0
+!	dlow = -20.0 ! was used for suspended fluxgate sensor at West Melton
 !	dmax = +20.0 ! was used before EYR re-location to West Melton
 	dmax = +40.0
         flow = -50.0
 	fmax = +80.0
 	hlow = -100.0
 	hmax = +100.0
-	zlow = -100.0
-	zmax = +100.0
+	zlow = -1000.0  ! should be at -100
+	zmax = +1000.0  ! should be at +100
  	do n = 1,1000			! Reading loop for lines of data in list.stn
 	   read(8,'(a72)',iostat=eof) line
      	   print *,line(1:50),' EOF ',eof

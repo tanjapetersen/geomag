@@ -233,5 +233,6 @@ echo Finished GetHour1.csh for
    echo `date +"%Y-%m-%d %H:%M"  -u -d "$ymd"`
 echo
 #  Plot last 2 days files for Apia (puts .pdf onto ftp://ftp.gns.cri.nz/pub/tanjap/ & a .ps into /amp/magobs/api/api/
-   /home/tanjap/geomag/core/Plotx.csh $1
+# $1 gives sub-directory, $2 is B for plotting Benmore
+   /home/tanjap/geomag/core/Plotx.csh $1 B
 

@@ -32,7 +32,7 @@
 	character*110 linef,lineo(744)
 
 	UMCODES = 'JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC'
-	
+! Parameters for 5-sec rounding for 1-minute values (Gaussian):	
         C(0) = 0.00229315 
         C(1) = 0.00531440 
         C(2) = 0.01115655
@@ -46,7 +46,7 @@
 	do i = 10,18
 	   C(i) = C(18-i)
 	end do
-
+! Parameters for 1-sec rounding for 1-minute values (Gaussian):	
         S(0) = 0.00045933
 	S(1) = 0.00054772
 	S(2) = 0.00065055

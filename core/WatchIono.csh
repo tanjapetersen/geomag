@@ -1,9 +1,9 @@
 #!/bin/csh 
 
-#get one hour of magnetic data from ftp.geonet.org.nz 
+# Script checks on the ionosonde effect
 # Hard-wired for sba as station
 
-# Get file for previous day 
+#  Get file for previous day 
 # (can run from processing of last hour until 10 hours next day)
 
 set yr  = `date -u --date='10 hours ago' +%y`
@@ -21,3 +21,11 @@ cat $yr$mth$day"00.sb1" $yr$mth$day'01.sb1' $yr$mth$day'02.sb1' $yr$mth$day'03.s
 # Now run checksb1ex to see what ionosonde effect is
 cd ..
 /home/tanjap/geomag/core/checksb1ex sba $yr$mth$day
+/home/tanjap/geomag/core/checksbnew sba $yr$mth$day
+
+
+# Output:  e.g. 140706.sbv in /amp/magobs/sba/sbc/
+# Now produce recleaned files in /amp/magobs/sba/new
+#foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23)
+#   /home/hurst/process/cleansb1i sba $yr$mth$day$hr'.sb1'
+#end

@@ -9,18 +9,19 @@
 !
 !   Call:  in /amp/magobs/sba/ do checksb1ex sba 140706
 !
-!   Output: e.g. 140706.sbv
+!   Output: e.g. 140706.sbv in /amp/magobs/sba/sbc/
 !   Auxiliary Outputs 140706.iono, iono.tst
 ! 
 	implicit none
-	integer*4 i, ihr, iyr, mth, day, doy, j,k,g,q,iend
+	integer*4 i, ihr, iyr, mth, day, doy, j,k,g,q,iend,idum
 	integer*4 ih, im, is 
 	integer*4 iyc, imc, idc		! constant file year, month & day
 	integer*4 iymd, iymdc
 	real*4 ST, DT, XR, YR, ZR, XC, YC, ZC, FC, IC, Ben, f, v, mrad
 	real*4 data(0:3599,1:7)
-	real*8 S(1:3,0:60), MC(1:4), zd(0:30)	
-	real*4 mdata(0:1439,1:4),tdata(0:1439,1:3),tmpd,tmph
+	real*8 S(1:3,0:60), SN(1:3,0:30), MC(1:4)	
+	real*4 mdata(0:1439,1:4),tdata(0:1439,1:3),tmpd,tmph 
+        real*4 sumsq(1:3)
 	real*4 ddeg,dmin,xbias,zbias,xts,xte,zts,zte,fcalc,fcorr 
 	real*4 ddeg2, dmin2, xbias2, zbias2, xts2, xte2, zts2, zte2 
 	character*2 hrstr,daystr,mthstr,yrstr
@@ -43,8 +44,10 @@
 	call getarg(2,filen)		
 	open(10,file= stc//'/'// filen // '.' // std)
 	open(11,file= stc//'/'// filen // '.' // stv)
-	open(12,file= stc//'/'// filen // '.iono')
+	open(12,file= stc//'/'// filen // '.ion')
 	open(13,file= stc//'/iono.tst', access='append')
+	open(14,file= 'iono.dat')
+	open(15,file= 'iono.del')
  1000	format(3i3,1x,2f7.2,3f9.4,f11.3,f10.3,2f11.3,f8.2,f9.4)
  3000	format(3i3,1x,f10.3,2f11.3,f9.2,3f7.2)
 
@@ -63,46 +66,41 @@
 !   On every 15 minutes (k passes 0 at 15 minutes) sum values up for the next 60 seconds
 	      k = i - (i/900)*900
 
-             ! This is for the normal version (ionosonde starts at axcactly on the minute):
+             ! This is for the normal version (ionosonde starts at exactly on the minute):
  	      if(k .le. 60) then
-             ! This is for when ionosonde starts 20 seconds too early:
-             ! if((k .ge. 840).and.(k .le. 900)) then  
-
-              do j = 1,3
-
-	     ! This is for the normal version(ionosonde starts at axcactly on the minute):        
+                 do j = 1,3
 	            S(j,k) = S(j,k) + data(i,j) 
-             !  This is for when ionosonde starts 20 seconds too early:
-             !     S(j,k-840) = S(j,k-840) + data(i,j) 
-
-              end do    ! for j
+                 end do    ! for j
 	      end if
  	   end do	! for i
 	end do		! for ihr
   100   continue
 	do i = 1,3
 
- ! This is for the normal version(ionosonde starts at axcactly on the minute):     
+        sumsq(i) = 0.0
+ ! This is for the normal version(ionosonde starts at exactly on the minute):    
+ ! Use 30th second after exact 15 minutes as reference, ionosonde should
+ ! have finished 
  	   do j = 0,20
- 	      write(11,*) i,j,(S(i,j)-S(i,0))/96.
- !  This is for when ionosonde starts 20 seconds too early (take the 30 seconds before the excact minute):
-!	   do j = 30,60
-!	      write(11,*) i,j,(S(i,j)-S(i,30))/96.
+ 	      write(11,*) i,j,(S(i,j)-S(i,30))/96.
+              sumsq(i) = sumsq(i) + (S(i,j)-S(i,30))*(S(i,j)-S(i,30))/96.0  
 	  
           end do ! for j
 	end do   ! for i
 
-!  This is for when ionosonde starts 20 seconds too early (take the 30 seconds before the excact minute):
-!	do j = 30,60
- ! This is for the normal version(ionosonde starts at axcactly on the minute): 
         do j = 0,30
-
-	   zd(j-30) =  (S(3,j)-S(3,30))/96.
-	   write(12,'(i5,3f8.2)') j,(S(1,j)-S(1,30))/96., (S(2,j)-S(2,30))/96.,
+	   write(15,'(i5,3f8.2)') j,(S(1,j)-S(1,30))/96., (S(2,j)-S(2,30))/96.,
      &		       (S(3,j)-S(3,30))/96.
 	end do   ! for j
-	write(13,'(a6,13f6.2)') filen,zd(10),zd(11),zd(12),zd(13),zd(14)
-     &          ,zd(15),zd(16),zd(17),zd(18),zd(19),zd(20),zd(21),zd(22)
+	write(13,'(a6,3f9.2)') filen,sqrt(sumsq(1))/31.,sqrt(sumsq(2))/31.,
+     &       sqrt(sumsq(3))/31.
+ 	do j = 0,30
+           read(14,*) idum, SN(1,j) , SN(2,j), SN(3,j)
+           SN(1,j) = SN(1,j) + (S(1,j) - S(1,30))/96.
+           SN(2,j) = SN(2,j) + (S(2,j) - S(2,30))/96.
+           SN(3,j) = SN(3,j) + (S(3,j) - S(3,30))/96.
+           write(12,'(i5,3f8.2)')idum,SN(1,j),SN(2,j),SN(3,j)
+        end do  ! for j
 	end
 
 	subroutine dayofyear(yr,doy,mth,day)

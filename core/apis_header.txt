@@ -8,7 +8,7 @@
  Reported               XYZF                                         |
  Sensor Orientation     HDZF                                         |
  Digital Sampling       1.0 seconds                                  |
- Data Interval Type     1-minute (instant)                           |
+ Data Interval Type     1-second (instant)                           |
  Data Type              Provisional                                  |
  # Station operated by Meteorology Division of Ministry of           |
  # Natural Resorces, Environment and Meteorology, Samoa              |

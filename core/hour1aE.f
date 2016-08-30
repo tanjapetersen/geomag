@@ -88,6 +88,7 @@ c   Features of this version
         mdiff(1) = 500.         ! x
         mdiff(2) = 500.         ! y
         mdiff(3) = 500.         ! z
+        odiff = 5.              ! f
 !  Trimmed median, make sure close to symmetrical
         do i = 1, 11
            ii(i) = i + 2
@@ -223,9 +224,9 @@ c   Features of this version
 	      j = bm*60+bs	
   	      if((j .eq. 0).and.(i .gt. 0)) goto 160		! in case blank line at end
  	      ddata(bm*60+bs,9) = ben/0.073
-  160	      continue
+!  160	      continue
 	   end do
-	   do i = 1,3599		! 
+  160	   do i = 1,3599		! 
 	      if(ddata(i,9) .gt. 999.0) then
                  if((ddata(i-1,9).lt.999.0).and.(ddata(i+1,9).lt.999.0)) 
      &                ddata(i,9) = (ddata(i-1,9)+ddata(i+1,9))/2.0 ! Interpolates missed data
@@ -366,7 +367,7 @@ C     &                                                    f, g, q, v
 !	      write(21,*) "XXX ",ihr,i,j,ddata(i,j)
  	      call mediano(i,med)
         write(42,*) i, med, ddata(i,10)
- 	      if (abs(ddata(i,10) - med) .gt. mdiff(j-5)) then
+ 	      if (abs(ddata(i,10) - med) .gt. odiff) then
  	         im = i/60
 		 is = i - 60*im
 		 write(21,2150) "GSM ",i,ihr,im,is,ddata(i,10),med

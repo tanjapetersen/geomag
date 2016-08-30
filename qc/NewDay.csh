@@ -13,7 +13,16 @@ endif
 set fmino = '/amp/magobs/'$1/$1/$1'20'$2$3$4'pmin.min'
 echo $fmino
 /home/tanjap/geomag/core/mpack -s $fmino $fmino e_gin@mail.nmh.ac.uk
-#/home/tanjap/process/mpack -s $fmino $fmino t.petersen@gns.cri.nz
+
+### for sending daily 1-second files from e.g /amp/magobs/sba/sba/ folder:
+#set fseco = '/amp/magobs/'$1/$1/$1'20'$2$3$4'psec.sec'
+#gzip $fseco
+#set fsecgz = '/amp/magobs/'$1/$1/$1'20'$2$3$4'psec.sec.gz'
+#echo $fsecgz
+#/home/tanjap/geomag/core/mpack -s $fsecgz $fsecgz e_gin@mail.nmh.ac.uk
+
+
+#/home/tanjap/geomag/core/mpack -s $fmino $fmino t.petersen@gns.cri.nz
 ## the unix mailing program "mpack" needs to be in the process/ directory!!:
 #mpack -s $fmino $fmino e_gin@mail.nmh.ac.uk
 ## If email gets rejected cc it to the e_gin support desk:

@@ -52,10 +52,10 @@ c  Should not alter any 99999 values
 	      open(unit=4,file =  stn // '/'//fileout)
 	      open(unit=14,file =  'new/'//fileout)
               
-c SBA baseline adjustments (maybe can be simplified later)
+c Baseline adjustments
 
 c Process is done by hour1s (called by GetHour1.csh)
-c which uses constants from /home/hurst/process/constants.sba
+c which uses constants e.g from /home/hurst/process/constants.sba
 c Spline fit was made on differences between output
 c (actually .sbx type files) and absolutes, so we don't need
 c to worry about any aspect of baselines 

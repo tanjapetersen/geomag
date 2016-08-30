@@ -4,11 +4,8 @@
 # Check each .txt file in data subdirectory i
 # Redo ftp if they are too short.
 # Then do: 
-# HaveDay1.csh (for SBA) or 
-# HaveDay1az.csh (for API) or 
-# HaveDay1w.csh (for EYR at West Melton)
+# HaveDay1an.csh
 # This only fixes problems if files have reached FTP server
-# 13 Dec 2012 Added fge-benmore.raw
 # 18 Mar 2015 Changed gsm-scottbase.txt to gsm-scottbase.raw
 
 set year  = `date -u --date='24 hours ago' +%Y`
@@ -43,12 +40,12 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
    set af = `wc -l api/data/$start$hr$fge_api_end | cut -d' ' -f1 ` 
    if ($af < 3620) then
       set AOK = 0
-     /home/tanjap/geomag/core/FtpFile.csh api $year $year.$doy $hr$fge_api_end ## not really needed because GetHour1a.csh will be getting data from ftp-server
+     /home/tanjap/geomag/core/FtpFile.csh api $year $year.$doy $hr$fge_api_end ## not really needed because GetHour1.csh will be getting data from ftp-server
    endif
    set ag = `wc -l api/data/$start$hr$gsm_api_end | cut -d' ' -f1 ` 
    if ($ag < 3595) then
       set AOK = 0
-      /home/tanjap/geomag/core/FtpFile.csh api $year $year.$doy $hr$gsm_api_end ## not really needed because GetHour1a.csh will be getting data from ftp-server
+      /home/tanjap/geomag/core/FtpFile.csh api $year $year.$doy $hr$gsm_api_end ## not really needed because GetHour1.csh will be getting data from ftp-server
    endif
    set bb = `wc -l eyr/data/$start$hr$fge_ben_raw | cut -d' ' -f1 ` 
    if ($bb < 3595) then
@@ -97,7 +94,6 @@ gawk '{ lines += $1} END { print "GSM API (86400) = " lines " lines"}' ga >> cfi
 gawk '{ lines += $1} END { print "FGE EYR (87024) = " lines " lines"}' fe >> cfile
 gawk '{ lines += $1} END { print "GSM EYR (86400) = " lines " lines"}' ge >> cfile
 gawk '{ lines += $1} END { print "FGE SBA (87024) = " lines " lines"}' fs >> cfile
-#gawk '{ lines += $1} END { print "GSM SBA (17472) = " lines " lines"}' gs >> cfile
 gawk '{ lines += $1} END { print "GSM SBA (86400) = " lines " lines"}' gs >> cfile
 gawk '{ lines += $1} END { print "B Basalt(86400) = " lines " lines"}' bb >> cfile
 
@@ -115,9 +111,7 @@ if( $fal < 86700 ) set send = 1
 if( $fel < 86724 ) set send = 1
 if( $fsl < 86724 ) set send = 1
 if( $gal < 84400 ) set send = 1
-#if( $gel < 86100 ) set send = 1
 if( $gel < 84400 ) set send = 1
-#if( $gsl < 17112 ) set send = 1
 if( $gsl < 84400 ) set send = 1
 if( $bbl < 86100 ) set send = 1
 
@@ -135,23 +129,27 @@ if ($send == 1) then
 endif
 
 if ($AOK == 0) then
-   /home/tanjap/geomag/core/HaveDay1az.csh api $yr $mth $day
+#  Note: before folding the station specific programs back into one it was:
+#  /home/tanjap/geomag/core/HaveDay1az.csh api $yr $mth $day
+   /home/tanjap/geomag/core/HaveDay1an.csh api $yr $mth $day
 #   set send = 1
    set message = ` echo $message "Api was short "`
 endif
 if ($EOK == 0) then
-   /home/tanjap/geomag/core/HaveDay1w.csh eyr $yr $mth $day
+#  Note: before folding the station specific programs back into one it was:
+# /home/tanjap/geomag/core/HaveDay1w.csh eyr $yr $mth $day
+   /home/tanjap/geomag/core/HaveDay1an.csh eyr $yr $mth $day
 #   set send = 1
    set message = ` echo $message "Eyrewell was short "`
 endif
 if ($SOK == 0) then
-   /home/tanjap/geomag/core/HaveDay1.csh sba $yr $mth $day
+#  Note: before folding the station specific programs back into one it was:
+# /home/tanjap/geomag/core/HaveDay1.csh eyr $yr $mth $day
+   /home/tanjap/geomag/core/HaveDay1an.csh sba $yr $mth $day
 #   set send = 1
    set message = ` echo $message "Scott Base was short "`
 endif
 
-# 18 May 2013 Changes that should stop "Now OK" messages    ZZZZZZZZZZZZZZZZZZ
-# 05 May 2013 Changes to remove old benmore system          ZZZZZZZZZZZZZZZZZZ
 if ( $send == 1 ) then
    mail -s "$message" "t.hurst@gns.cri.nz" < cfile
    mail -s "$message" "T.Petersen@gns.cri.nz" < cfile
