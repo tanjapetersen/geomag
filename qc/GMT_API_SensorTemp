@@ -1,0 +1,61 @@
+#!/bin/csh  
+
+#   Colour plot, A4   Monthly API Sensor Temperature Plots
+# -----------------------------------------------------
+#   uses e.g. /amp/magobs/api/api/160225.apx
+# -------------------------------------------
+#   Use as  GMT_API_SensorTemp 13 07 {Year & Month}     
+# ---- A4
+# Output for e.g. Feb 2015: /amp/magobs/api/api/1602.ps
+
+cd /amp/magobs/api/api
+set Y = $1
+set M = $2
+set H = 0
+set MAX = 32
+set MIN = -1 
+set LMIN = `echo $MAX | gawk '{print -0.9*$1}'`
+set YSCALE = `echo $MAX | gawk '{print 18./$1}'`
+echo $MAX $MIN $LMIN $YSCALE
+gmtset HEADER_FONT_SIZE = 30
+set PROJ="-Jx0.80/$YSCALE"
+set LIMITS="-R0.0/24./$MIN/$MAX"
+set ANOT="-B3"
+# -P for portrait  
+set FLAGS=" -V"
+echo $MAX $MIN $LMIN $LIMITS
+#set C = $1'01'$2'.eyt' 
+set P = $1$2'.ps' 
+#echo $C
+set Y = `echo $1 | gawk '{print substr($1,6,2)}'`
+echo  $M 20$2
+
+# Colours go red - green - blue 150/100/100=brown
+set RR = 255
+set GG = 0
+set B = 0
+
+psbasemap  ${LIMITS} ${PROJ}  ${FLAGS} -B1/1:nT:  -K -U/-1.5/-1.5/$1$2 -X3.0 -Y2.0 > $P
+foreach Day (01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31)
+#foreach Day (01 02 03 04 05 06 07 08)
+#   @ d = $Day
+   set d = `echo $Day | gawk '{print substr($1,1,2)}'`
+   set dd = `echo $Day | gawk '{print substr($1,2,1)}'`
+   echo dd $dd
+   set R = `echo $RR $dd | gawk '{print $1-8*$2}'`
+   echo R $R
+   set G = `echo $GG $dd | gawk '{print $1+8*$2}'`
+   echo G $G
+   set C = $1$2$Day'.apx' 
+   echo  $d $dd $R $G
+# gawk -v x=$d ' {print (NR-1)/60., ($8-30)/10.+x}' $C > temp.ben
+gawk -v x=$d ' {print (NR-1)/60., ($8-29)*10.+x}' $C > temp.ben
+  psxy temp.ben ${LIMITS} ${PROJ}  ${FLAGS}  -H1  -K -M">" -O -W4/$R/$G/$B   >> $P
+end
+
+
+
+# This final one is a repeat, just to close .ps file
+
+psxy temp.ben ${LIMITS} ${PROJ}  ${FLAGS}  -H1  -M">" -O -W4   >> $P
+
