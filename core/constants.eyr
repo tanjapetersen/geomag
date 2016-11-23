@@ -38,5 +38,8 @@
 30 11 15 -128.0 22 8.7 411.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.24 swapped to portable sensor
 26 01 16 -88.0 23 7.7 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.24  back to permanent sensor
 05 02 16 -98.0 23 7.8 547.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.24  permanent sensor with usual power supply
-10 02 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.24  permanent sensor with external power supply
-20 04 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  permanent sensor with external power supply
+10 02 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.24  permanent sensor with external power supply; data good
+20 04 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  permanent sensor with external power supply; data poor
+24 05 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  permanent sensor with external power supply; data good
+26 07 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  Daniel changed power supply; data poor
+03 10 16 -88.0 23 7.8 553.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  Graeme changed power supply; F diff around 0nT
