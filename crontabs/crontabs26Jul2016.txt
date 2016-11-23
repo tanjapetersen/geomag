@@ -1,0 +1,16 @@
+[tanjap@stokes core]% crontab -l
+22 * * * * /home/tanjap/geomag/core/GetHour1web.csh eyr NOW 1>> geomag/core/GetHour_eyr.log 2> /dev/null
+25 * * * * /home/tanjap/geomag/core/GetHour1web.csh api NOW 1> geomag/core/GetHour_api.log 2> /dev/null
+35 * * * * /home/tanjap/geomag/core/GetHour1web.csh sba NOW 1> geomag/core/GetHour_sba.log 2> /dev/null
+#
+42 13 * * * /home/tanjap/geomag/core/CheckDay.csh 1> geomag/core/CheckDay.log 2> /dev/null
+#
+# Eyrewell Kvalues
+40 8  1 * * /home/tanjap/geomag/core/Ksend_check.csh eyr b
+40 8  16 * * /home/tanjap/geomag/core/Ksend_check.csh eyr a
+40 16  1 * * /home/tanjap/geomag/core/Ksend.csh eyr b
+40 16 16 * * /home/tanjap/geomag/core/Ksend.csh eyr a
+#
+# SBA ionosonde check
+42 13 * * * /home/tanjap/geomag/core/WatchIono.csh
+[tanjap@stokes core]%
