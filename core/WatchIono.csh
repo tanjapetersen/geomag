@@ -24,7 +24,8 @@ cd ..
 #/home/tanjap/geomag/core/checksbnew sba $yr$mth$day
 #cp sbc/$yr$mth$day'.ipn' iono.dat
 /home/tanjap/geomag/core/checksbnew3 sba $yr$mth$day
-cp $yr$mth$day'.sym' iono.sym
+cp iono/$yr$mth$day'.sym' iono/iono.sym
 
-# Now rerun day with that days best fit cleaning
-/home/tanjap/geomag/core/HaveDay1an.csh sba $yr $mth $day
+# Now rerun day with that days best fit cleaning, now using explicit file name, # e.g. 170220.sym
+# /home/tanjap/geomag/core/HaveDay1an.csh sba $yr $mth $day
+/home/tanjap/geomag/core/HaveDay1as.csh sba $yr $mth $day

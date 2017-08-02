@@ -207,6 +207,21 @@ endftp3
    endif
 endif
 
+#  Send minute files to Craig Rodger, U of Otago
+##  see readme_otago.txt for setting up key
+if (( $2 == 'NOW' )||( $6 == "YES")) then
+   if ( $1 == "eyr" ) then
+      echo Connecting to U of Otago machine ...
+      #set otago_machine = dudwllntscp@dudwlln-t.otago.ac.nz
+      set otago_machine = dudwllntscp@auroraalert.otago.ac.nz
+#     sftp -v $otago_machine << endftp4
+      sftp $otago_machine << endftp4
+      put $fmino
+endftp4
+   endif
+endif
+
+
 #  Send minute and second files to Edinburgh for their GIN-page
    echo Sending files to Edinburgh ...
 

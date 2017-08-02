@@ -41,5 +41,7 @@
 10 02 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.24  permanent sensor with external power supply; data good
 20 04 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  permanent sensor with external power supply; data poor
 24 05 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  permanent sensor with external power supply; data good
-26 07 16 -88.0 23 7.8 567.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  Daniel changed power supply; data poor
-03 10 16 -88.0 23 7.8 553.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  Graeme changed power supply; F diff around 0nT
+26 07 16 -88.0 23 7.8 557.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  Daniel changed power supply; data poor
+03 10 16 -88.0 23 7.8 553.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  Graeme changed power supply; Fdiff around 0nT
+24 05 17 -88.0 23 7.8 592.3 +0.00000 0.0000 +0.10000 -.00000 -1.5 0.19  Graeme installed FGE noise reduction board. Adjusted Z to get Fdiff to zero.
+24 05 27 -88.0 23 7.8 561.0 +0.00000 0.0000 -0.40000 -.00000 -1.5 0.19  Graeme installed FGE noise reduction board EFFECTIVELY REMOVED till 2027

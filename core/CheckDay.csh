@@ -125,7 +125,8 @@ rm bb
 
 #  TEST LINE set send = 1
 if ($send == 1) then
-   set message = 'Magnetic File Problem - '$year.$doy' = '$year' '$mth' '$day 
+   #set message = 'Magnetic File Problem - '$year.$doy' = '$year' '$mth' '$day 
+  set message = 'Magnetic File Problem - '$year.$doy 
 endif
 
 if ($AOK == 0) then
@@ -133,21 +134,24 @@ if ($AOK == 0) then
 #  /home/tanjap/geomag/core/HaveDay1az.csh api $yr $mth $day
    /home/tanjap/geomag/core/HaveDay1an.csh api $yr $mth $day
 #   set send = 1
-   set message = ` echo $message "Api was short "`
+   #set message = ` echo $message "Api was short "`
+   set message = ` echo $message " API data gap"`
 endif
 if ($EOK == 0) then
 #  Note: before folding the station specific programs back into one it was:
 # /home/tanjap/geomag/core/HaveDay1w.csh eyr $yr $mth $day
    /home/tanjap/geomag/core/HaveDay1an.csh eyr $yr $mth $day
 #   set send = 1
-   set message = ` echo $message "Eyrewell was short "`
+   #set message = ` echo $message "Eyrewell was short "`
+   set message = ` echo $message " EYR data gap"`
 endif
 if ($SOK == 0) then
 #  Note: before folding the station specific programs back into one it was:
 # /home/tanjap/geomag/core/HaveDay1.csh eyr $yr $mth $day
    /home/tanjap/geomag/core/HaveDay1an.csh sba $yr $mth $day
 #   set send = 1
-   set message = ` echo $message "Scott Base was short "`
+   #set message = ` echo $message "Scott Base was short "`
+    set message = ` echo $message " SBA data gap"`
 endif
 
 if ( $send == 1 ) then

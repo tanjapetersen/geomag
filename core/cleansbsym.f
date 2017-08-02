@@ -3,17 +3,20 @@
 !   adjustments to compensate for the Ionosonde, which now runs at 
 !   exactly every 15 minutes  
 !
-!   The corrections are read of the file iono.sym (in /amp/magsob/sba/),
+!   The corrections are read of the file iono.sym (in /amp/magsob/sba/iono/),
 !   (for -30 to 30 seconds) so no need for a delay term  
 !   REMEMBER: - The corrections are subtracted
 ! 
 !   S(1:3,-30:30) contains adjustments to x, y and z for 30 seconds
 !   each side of the exact 15 minutes 
 !
-!
+!   Note: Last modified on 20 Feb 2017. Now: if it has a 3rd parameter, it uses 
+!   it as yr, mth, day to access a daily customised .sym file (e.g. 170220.sym)
+!   instead of iono.sym.
+
 	implicit none
 	integer*4 i, ihr, iyr, mth, day, doy, j,k,g,q,iend
-	integer*4 ih, im, is, idum 
+	integer*4 ih, im, is, idum, iargs 
 	integer*4 iyc, imc, idc		! constant file year, month & day
 	integer*4 iymd, iymdc
 	real*4 ST, DT, XR, YR, ZR, XC, YC, ZC, FC, IC, Ben, f, v, mrad
@@ -24,7 +27,7 @@
 	real*4 ddeg2, dmin2, xbias2, zbias2, xts2, xte2, zts2, zte2 
 	character*2 hrstr,daystr,mthstr,yrstr
 	character*3 dir, stc, stn, stnt, stnx, doys
-	character*6 fstr
+	character*6 fstr, ionfile
 	character*7 hstr,dstr,zstr
 	character*10 adate		! e.g. 2005-07-04
 	character*12 fileo,filel,filen	! 
@@ -33,7 +36,7 @@
 	character*62 line
 	character*110 linef,lineo(744)
 
-	open(14,file= "iono.sym")       ! Corrections input file located in /amp/magobs/sba/
+	open(14,file= "iono/iono.sym")       ! Corrections input file located in /amp/magobs/sba/iono
  
 !   Next few lines are to set up output file name and header
 	
@@ -44,6 +47,17 @@
 	call getarg(2,filen)		
 	open(10,file= stc//'/'// filen)
         filel = filen(1:11)//'2'		! Output file is .sb2
+        iargs = iargc()
+!   Now open a file of corrections for effect of ionosonde
+!   A non-zero 3rd parameter means use $yr$mth$day.sym instead of iono.sym
+        if(iargs .ge. 3) then
+	   call getarg(1,ionfile) 	! abc Station Code
+	   open(14,file= "iono/"//ionfile//".sym")       ! Day-specific correction file
+           print *, filen(1:6),".sym"
+        else
+	   open(14,file= "iono/iono.sym")       ! Current correction file located in /amp/magobs/sba/iono
+           print *, "iono.sym"
+        end if
 	open(11,file= stc//'/'// filel)
 !
 	do i = -30,30

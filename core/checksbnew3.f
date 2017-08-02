@@ -33,9 +33,9 @@
 	call getarg(1,stn) 	! abc Station Code
 	call getarg(2,filen)		
 	open(10,file= stn//'/'// stn // '20' // filen // 'psec.sec')
-	open(16,file= filen // '.sym')
-	open(14,file= 'iono.sym')
-	open(15,file= filen// '.dps')
+	open(16,file= 'iono/'// filen // '.sym')
+	open(14,file= 'iono/iono.sym')
+	open(15,file= 'iono/'// filen// '.dps')
  1000	format(3i3,1x,2f7.2,3f9.4,f11.3,f10.3,2f11.3,f8.2,f9.4)
  3000	format(3i3,1x,f10.3,2f11.3,f9.2,3f7.2)
 
@@ -52,7 +52,6 @@
 !  First read comment lines and ignore them
 	do while (comment .ne. 0)
 	   read(10,'(a70)') line
-!	   write(14,'(a70)') line
 	   if (line(:1) .ne. ' ') comment = 0
 	end do
 !  This should fail (comment = 0) on line starting with DATE,
