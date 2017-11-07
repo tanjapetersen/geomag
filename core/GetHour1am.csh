@@ -5,7 +5,7 @@
 # $1 is 3 letter code (lower case) for station
 # $2 is NOW (for current date/time) or 2-digit year, 
 # If $2 is not NOW then $3 is month, $4 day, $5 hr, all 2-digit
-# ********* shows new code sections,   #### lines can go
+# **** shows new code sections,   #### lines can go
 
 set source_machine = ftp.geonet.org.nz
 
@@ -43,7 +43,7 @@ else
    set year = 20$2
    set yr = $2
    set ymd  = "20$2-$3-$4 + $5 hours" 
-   echo Running GetHour1.csh now for 
+   echo Running GetHour1am.csh now for 
    echo `date +"%Y-%m-%d %H:%M"  -u -d "$ymd"`
    set epoch = `date -u -d "$ymd" +%s`
    set mth = `date -ud @$epoch +%m`
@@ -139,7 +139,7 @@ echo fge has $len_fge lines, gsm has $len_gsm lines
 cd ..
 
 #  Run FORTRAN program hour1.f to create hourly processed files
-echo Calling hour1.f now...
+echo Calling hour1aE.f now...
 /home/tanjap/geomag/core/hour1aE $1 $day_dir $hr 
 
 #  Next lines are based on reading the .ap1/.ey1/.sb1 files produced by hour1a
@@ -148,16 +148,16 @@ echo Calling hour1.f now...
 echo  
 echo 'Prepare to run sendone' $nhour ' ' $lhour
 
-#  Ionosonde cleaning for sba only
+#  Ionosonde cleaning for sba only using iono.sym
 if ( $1 == "sba" ) then
   set xhour = $yr$mth$day$hr'.'$st2
   set yhour = $yr$mth$day$hr'.'$st4
-  /home/tanjap/geomag/core/cleansb1a sba $nhour
+  /home/tanjap/geomag/core/cleansbsym sba $nhour
   mv $st3/$nhour $st3/$yhour
   mv $st3/$xhour $st3/$nhour
 endif
 
-#  Run FOTRAN programs onesecond.f and sendone.f
+#  Run FORTRAN programs onesecond.f and sendone.f
 /home/tanjap/geomag/core/onesecond $1 $nhour 
 /home/tanjap/geomag/core/sendone $1 $nhour $lhour
   echo 'Finished sendone'
@@ -172,6 +172,8 @@ endif
    set fseci = $1$year$mth$day$hr'00psec.tmp'
    set fseco = $1$year$mth$day$hr'00psec.sec'
    set fsecg = $1$year$mth$day$hr'00psec.sec.gz'
+   set fsecd = $1'/'$1$year$mth$day'psec.sec'
+#
    cat /home/tanjap/geomag/core/$1s_header.txt $fseci > $fseco
 
    set plot = $1'plotfile.txt'
@@ -199,13 +201,16 @@ endif
    /home/tanjap/geomag/core/mpack -s $fming $fming e_gin@mail.nmh.ac.uk
    /home/tanjap/geomag/core/mpack -s $fsecg $fsecg e_gin@mail.nmh.ac.uk
 
-#  Now start writing Daily IAGA-2002 Files ("pmin files") by adding headers 
+#  Now start writing Daily IAGA-2002 Files ("pmin & psec files") by adding headers 
 echo Writing Daily IAGA-2002 Files...
 if ( $hr == '00' ) then
    cat /home/tanjap/geomag/core/$1_header.txt $fmini > $fmind
+   cat /home/tanjap/geomag/core/$1s_header.txt $fseci > $fsecd
 else
    mv $fmind temp.min
    cat temp.min $fmini > $fmind
+   mv $fsecd temp.sec
+   cat temp.sec $fseci > $fsecd
 endif
  
 #  Shift files to hourly sub-directory
@@ -222,14 +227,14 @@ if ( $2 == 'NOW' ) then
       /home/tanjap/geomag/core/kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
 
 # e-mail k-indices; only the EYR K-index files are emailed to Paris
-      mail -s $stk t.hurst@gns.cri.nz < klatest.$1
-      mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
-      echo "K-index posted"
+#      mail -s $stk t.hurst@gns.cri.nz < klatest.$1
+#      mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
+#      echo "K-index posted"
       mv klatest.$1 kfiles/$stk 
    endif
 endif
 
-echo Finished GetHour1.csh for 
+echo Finished GetHour1am.csh for 
    echo `date +"%Y-%m-%d %H:%M"  -u -d "$ymd"`
 echo
 #  Plot last 2 days files for Apia (puts .pdf onto ftp://ftp.gns.cri.nz/pub/tanjap/ & a .ps into /amp/magobs/api/api/

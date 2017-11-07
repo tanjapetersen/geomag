@@ -11,6 +11,8 @@ if ($#argv == 0) then
 endif
 
 set fmino = '/amp/magobs/'$1/$1/$1'20'$2$3$4'pmin.min'
+## if you want to send a new quasi-definitive file:
+#set fmino = '/amp/magobs/'$1'/qd/'$1'20'$2$3$4'pmin.min'
 echo $fmino
 /home/tanjap/geomag/core/mpack -s $fmino $fmino e_gin@mail.nmh.ac.uk
 

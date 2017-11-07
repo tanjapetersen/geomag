@@ -11,7 +11,7 @@
 # $2 is 2-digit year, $3 is 2-digit mth, $4 is 2-digit day
 
 if ($#argv == 0) then
-  echo "Call as  HaveDay1.csh api yr mth day"
+  echo "Call as  HaveDay1an.csh api yr mth day"
   stop
 endif
 

@@ -258,7 +258,7 @@ if ( $2 == 'NOW' ) then
       echo kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
       /home/tanjap/geomag/core/kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
 
-# e-mail k-indices; only the EYR K-index files are emailed to Paris
+# e-mail k-indices; NOTE: only the EYR K-index files are emailed to GfZ Potsdam (via kindext.f)
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
       echo "K-index posted"

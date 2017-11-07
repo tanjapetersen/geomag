@@ -55,7 +55,7 @@ set blo = -20
 set xlo = 19275
 set ylo = 8210
 set zlo = -53560
-set flo = 57450
+set flo = 57400
 set mul = 1.0
 
 if ($1 == 'sba') then
