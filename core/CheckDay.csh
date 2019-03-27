@@ -158,6 +158,8 @@ if ( $send == 1 ) then
    mail -s "$message" "t.hurst@gns.cri.nz" < cfile
    mail -s "$message" "T.Petersen@gns.cri.nz" < cfile
    mail -s "$message" "m.chadwick@gns.cri.nz" < cfile
+   mail -s "$message" "F.Caratori.Tontini@gns.cri.nz" < cfile
+#   mail -s "$message" "g.obrien@gns.cri.nz" < cfile
 endif
 
 

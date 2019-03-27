@@ -185,9 +185,7 @@ endif
 #endif
 
 
-
-
-   cat /home/tanjap/geomag/core/$1s_header.txt $fseci > $fseco
+cat /home/tanjap/geomag/core/$1s_header.txt $fseci > $fseco
 
    set plot = $1'plotfile.txt'
    set plott = $1'plotfile.tmp'
@@ -251,6 +249,25 @@ endif
    mv $fming hourly 
    mv $fsecg hourly 
 
+#  Send minute files to Apia
+if (( $2 == 'NOW' )||( $6 == "YES")) then
+   if ( $1 == "api" ) then
+echo Sending files to Apia....
+/home/tanjap/geomag/core/mpack -s $fmind $fmind geomagdata@gmail.com 
+#/home/tanjap/geomag/core/mpack -s $fmind $fmind t.petersen@gns.cri.nz 
+   endif
+endif
+
+##  Send hourly minute files to Postdam
+if (( $2 == 'NOW' )||( $6 == "YES")) then
+   if ( $1 == "eyr" ) then
+echo Sending files to Potsdam....
+curl --upload-file $fmind ftp://ftp.gfz-potsdam.de/pub/incoming/obs_niemegk/kp_index/eyr/
+ endif
+endif
+
+
+
 #  After first 3 hours of a day are done, do K-index for previous day
 if ( $2 == 'NOW' ) then
    if($hr == '02') then
@@ -261,6 +278,9 @@ if ( $2 == 'NOW' ) then
 # e-mail k-indices; NOTE: only the EYR K-index files are emailed to GfZ Potsdam (via kindext.f)
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
+      mail -s $stk F.Caratori.Tontini@gns.cri.nz < klatest.$1
+     # mail -s $stk g.obrien@gns.cri.nz < klatest.$1
+
       echo "K-index posted"
       mv klatest.$1 kfiles/$stk 
    endif

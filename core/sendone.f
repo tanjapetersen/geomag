@@ -1,6 +1,7 @@
 	program sendone
 !   This program reads hourly data files, and calculates the .min file to 
 !   send to intermagnet, and writes an hour towards both .eyx and .eyt files,
+!   Now puts 99999.00 in .eyt if x or y not received
 !   Takes one parameter for station name (3 letter code, lower case),
 !   second & third parameters are current and previous input files 
 !   Equivalent of Jan3005.eyr is eyr050130.eyr 
@@ -222,8 +223,14 @@ c   Minute averages using filter around exact minute (and * 10,(*100 for D))
      &     mdata(i,4),tdata(i,1),tdata(i,2),tdata(i,3)
 
 !  Write .eyt, .sbt file of magnetics and temperature, filtered minute values
-	   tmph = sqrt(mdata(i,1)*mdata(i,1)+mdata(i,2)*mdata(i,2))
-	   tmpd = 60*180*atan2(mdata(i,2),mdata(i,1))/3.14159
+!  If x or y invalid (99999.00), set d and h to 99999.00
+           if((mdata(i,1).gt.90000.).or.(mdata(i,2).gt.90000.)) then
+	      tmph = 99999.00
+              tmpd = 99999.00
+           else
+              tmph = sqrt(mdata(i,1)*mdata(i,1)+mdata(i,2)*mdata(i,2))
+	      tmpd = 60*180*atan2(mdata(i,2),mdata(i,1))/3.14159
+           end if
 	   write(22,'(3i4,4(1x,f9.2),2f6.1,f8.2)') day,
      &     ih,im,tmpd,tmph,mdata(i,3),
      &     mdata(i,4),tdata(i,1),tdata(i,2),tdata(i,3)

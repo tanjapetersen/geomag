@@ -181,7 +181,7 @@ endif
    mv $plot $plott
    cat $fmini $plott > $plot
 
-  Send minute files to ETH, Zurich
+#  Send minute files to ETH, Zurich
 if (( $2 == 'NOW' )||( $6 == "YES")) then
    if ( $1 == "api" ) then
       echo Connecting to Keeling ...
@@ -200,6 +200,13 @@ endif
    gzip $fseco
    /home/tanjap/geomag/core/mpack -s $fming $fming e_gin@mail.nmh.ac.uk
    /home/tanjap/geomag/core/mpack -s $fsecg $fsecg e_gin@mail.nmh.ac.uk
+
+#  Send minute files to Apia
+# if ( $1 == "api" ) then
+# echo Sending files to Apia....
+# /home/tanjap/geomag/core/mpack -s $fming $fming geomagdata@gmail.com 
+# /home/tanjap/geomag/core/mpack -s $fming $fming t.petersen@gns.cri.nz 
+#endif
 
 #  Now start writing Daily IAGA-2002 Files ("pmin & psec files") by adding headers 
 echo Writing Daily IAGA-2002 Files...
