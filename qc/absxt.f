@@ -3,7 +3,7 @@
 !   This program is a LIST version which compares the absolute field measurements
 !   to the values found in the .eyx files, e.g. 130101.eyx 
 !   This is used to calculate the instrumental constants 
-!   MUST RUN in directory above stn/*.eyx., where stn is 3-letter station code
+!   MUST RUN in directory above eyr/ containg pmin.min & .eyx files. 
 !   Now produces x, y and z files (d -> y, i -> x,z), also f comparison
 !   without TEMPERATURE COMPENSATION as that has already been done
 !   Eyrewell version, DOES HANDLE Benmore correction for Z & F 
@@ -11,6 +11,9 @@
 !   Currently does not handle 9999999 for no reading. Effect will generally be obvious, i.e. nan   
 !   1st and only parameter in this version is 3-character station
 !   This version of absxw was was for times when EYR data quality was extremely bad; it takes all the readings from .eyx, the replaces the x, y, z & f with the values from the pmin file 
+!   You need the list.eyr file and also a subdirectory done/.
+!   The .eyx file gives the x,y,z & f, and also benmore and the two temperatures. Then absxt reads the pmin files for the same day from done/, and replaces the x,y,z and f. (In other words, only benmore and the temperatures come from .eyx). 
+! NOTE: If you have a lot of missing days (all 99999.00 values) you might want to run it in chunks (e.g set up a test are with only January 2016 data in your list.eyr and in eyr/ subdirectory).
 
  	implicit none
 	integer*4 ista,ifin,dn,fn,hn,zn,eof,header
