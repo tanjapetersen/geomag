@@ -7,15 +7,17 @@
 !   routine. This means that we have to wait until the third 
 !   hour of the next day is processed before we can run any 
 !   days kindex.  
-
-!   NOW ADDING .dka OUTPUT
+!   Has .dka output included
+!   Now incorporating sba as option
 !
 !   Call as kindext eyr 100510 100511 100512 to read 100510.eyt 100511.eyt & 100512.eyt
 !
-!   Now incorporating sba as option
+!   NOW interpolating through 99999.00 values
 !
-	integer*2 qstart,qend,doy,iyr,oyr,mth,day,odoy,k(8),ih,im,is
-	real*8 mu
+        implicit none
+	integer*2 i,j,qstart,qend,doy,iyr,oyr,mth,day,odoy,k(8),ih,im,is
+	integer*2 dgap, hgap, dstart,dend, hstart, hend, lmax
+        real*8 mu
 	real*4 qfactor, obsh, kv(9)
 	real*4 h(1800),rawh(1800),smooth(1800)
 	real*4 d(1800),rawd(1800),smootd(1800)
@@ -29,6 +31,8 @@
 	character*62 linein
 	
 	mcodes = 'JanFebMarAprMayJunJulAugSepOctNovDec'
+
+        lmax = 15       ! Interpolate over 15 minutes maximum
 
 	mu = 0.1
 	qfactor = 0.5
@@ -70,24 +74,71 @@
 	end do
 	do i = 1,180
 	      read(9,*,end=90) ih,im,is, d(i), h(i), z(i), f(i)
- 	      write(31,*) ih,im,is,h(j),d(j)
+!	      write(31,*) ih,im,is,h(j),d(j)
 	end do
 !   Now read 'today' file	
 	do i = 181,1620
 	      read(10,*,end=90) ih,im,is, d(i), h(i), z(i), f(i)
- 	      write(31,*) i,j,h(j),d(j)
+!             write(31,*) i,j,h(j),d(j)
 	end do
 !   Finally read 'next' file	
 	do i = 1621,1800
 	      read(11,*,end=90) ih,im,is, d(i), h(i), z(i), f(i)
- 	      write(31,*) i,j,h(j),d(j)
+!	      write(31,*) i,j,h(j),d(j)
 	end do
-   90	do i = 1, 1800
-  	   write(19,*) i,h(i),d(i),z(i),f(i)
- 	   d(i) = obsh / 3437.75 * d(i)
-!	   raw = 0.0
-!	   smooth = 1.0
-!	   write(20,*) i,h(i),d(i)
+   90	dgap = 1        ! Assume gap until good number read
+        dstart = 1
+        hgap = 1        ! and for h
+        hstart = 1
+        do i = 1, 1800
+!  Gap interpolation code here
+           if(dgap .eq. 1) then
+              if(d(i) .lt. 90000.) then
+                 dend = i
+                 dgap = 0
+!                do interpolation
+                 write(19,*) 'DINT', dstart, dend, d(dstart), d(dend)
+                 if((dstart .gt. 1).and.((dend-dstart).le.lmax)) then
+                    do j = dstart+1,dend-1
+                       d(j) = d(dstart) + (j-dstart)*(d(dend)-d(dstart))
+     &                                         /(dend-dstart)                
+                    end do
+                 end if
+              end if
+           else
+              if(d(i) .gt. 90000.) then
+                 dstart = i-1           ! i not 1 as initially dgap=1
+                 dgap = 1
+!                write(19,*) 'DGAP', i, dstart, dgap, d(dstart)
+              end if
+           end if
+	end do
+        do i = 1, 1800
+!  Gap interpolation code here
+           if(hgap .eq. 1) then
+              if(h(i) .lt. 90000.) then
+                 hend = i
+                 hgap = 0
+!                do interpolation
+                 write(19,*) 'HINT', hstart, hend, h(hstart), h(hend)
+                 if((hstart .gt. 1).and.((hend-hstart).le.lmax)) then
+                    do j = hstart+1,hend-1
+                       h(j) = h(hstart) + (j-hstart)*(h(hend)-h(hstart))
+     &                                          /(hend-hstart)     
+                    end do          
+                 end if
+              end if
+           else
+              if(h(i) .gt. 90000.) then
+                 hstart = i-1           ! i not 1 as initially dgap=1
+                 hgap = 1
+!                write(19,*) 'HGAP', i, hstart, hgap, h(hstart)
+              end if
+           end if
+	end do
+        do i = 1, 1800
+  	   d(i) = obsh / 3437.75 * d(i)
+  	   write(19,*) i,h(i),d(i),dgap, dstart, dend,z(i),f(i)
 	end do
 	write(*,*) 'Calling kfltr1'
  	call kfltr1(h,rawh,smooth,mu,qfactor,qstart,qend)
