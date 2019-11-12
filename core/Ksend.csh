@@ -7,8 +7,9 @@
 # NOTE: Script has to run after 16:24 NZDT (to make sure first 3 hours of the current UT day are processed, because those hours are needed to calculate the last K-index of the previous day)
 
 # Dates are '3 days ago', but actually run immediately (Days 1 & 16)
-  set yr  = `date -u --date='3 days ago' +%y`
-  set mth =   `date -u --date='3 days ago' +%m`
+  set tstamp = `date -u --date='3 days ago'`
+  set yr  = `date -u --date="$tstamp" +%y`
+  set mth =   `date -u --date="$tstamp" +%m`
 
 #set filename
 
@@ -18,7 +19,10 @@
   echo $kfile 
   mail -s $kfile t.hurst@gns.cri.nz < kbimonth.$1
   mail -s $kfile t.petersen@gns.cri.nz < kbimonth.$1
-  mail -s $kfile kp_index@gfz-potsdam.de < kbimonth.$1
+ # mail -s $kfile kp_index@gfz-potsdam.de < kbimonth.$1
+ # mail -s $kfile g.obrien@gns.cri.nz < kbimonth.$1
+  mail -s $kfile F.Caratori.Tontini@gns.cri.nz < kbimonth.$1
+  mail -s $kfile A.Benson@gns.cri.nz < kbimonth.$1
  # mail -s $kfile michel.menvielle@latmos.ipsl.fr < kbimonth.$1
  # mail -s $kfile kisgi@latmos.ipsl.fr < kbimonth.$1
   mv kbimonth.$1 $kfile

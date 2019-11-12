@@ -28,4 +28,5 @@ cp iono/$yr$mth$day'.sym' iono/iono.sym
 
 # Now rerun day with that days best fit cleaning, now using explicit file name, # e.g. 170220.sym
 # /home/tanjap/geomag/core/HaveDay1an.csh sba $yr $mth $day
-/home/tanjap/geomag/core/HaveDay1as.csh sba $yr $mth $day
+# /home/tanjap/geomag/core/HaveDay1as.csh sba $yr $mth $day
+/home/tanjap/geomag/core/HaveDay1csv.csh sba $yr $mth $day

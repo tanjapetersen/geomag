@@ -51,11 +51,11 @@ endif
 
 # These are 'eyr' values:
 set yscale = 0.05
-set blo = -20
-set xlo = 19275
-set ylo = 8210
-set zlo = -53560
-set flo = 57400
+set blo = 0
+set xlo = 19210
+set ylo = 8300
+set zlo = -53475
+set flo = 57350
 set mul = 1.0
 
 if ($1 == 'sba') then
@@ -199,8 +199,13 @@ EOF
    echo Start File Conversion
    ps2pdfwr $statmthps $1'plot.pdf'
    echo End File Conversion
-   rm /amp/ftp/pub/tanjap/$1'plot.pdf'    
-   cp $1'plot.pdf' /amp/ftp/pub/tanjap
+   # rm -f /amp/ftp/pub/tanjap/$1'plot.pdf'
+   # cp $1'plot.pdf' /amp/ftp/pub/tanjap
+   # use install to set mode and group of plot files
+   # avoids permission errors when someone who is not Tanja
+   # runs processing scripts
+   #### commented this temporarily due to request from Roger Williams, 23/10/19:
+   install --mode=664 --group=mag_p --target=/amp/ftp/pub/tanjap/geomag_plots $1'plot.pdf'
    echo End Web Service
 
 echo `date`

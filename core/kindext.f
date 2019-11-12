@@ -10,6 +10,8 @@
 !   Has .dka output included
 !   Now incorporating sba as option
 !
+!   Now interpolating gaps less than 15 minutes (set by lmax)
+!
 !   Call as kindext eyr 100510 100511 100512 to read 100510.eyt 100511.eyt & 100512.eyt
 !
 !   NOW interpolating through 99999.00 values
@@ -512,7 +514,7 @@
       BIGAk=nint(Aak/8.0)
 	write(*,*) 'Bak'
 	write(*,*) (k(i), i=1,8), Aak
-	write(16,1601) OBU,year,mth,day,(k(i), i=1,8), Aak
+	write(16,1601) OBU,year,mth,day,(k(i), i=1,8)
 	write(17,1601) OBU,year,mth,day,(k(i), i=1,8)	!   No Ak for Potsdam 
 	write(18,1801) year,mth,day,doy,(k(i), i=1,8), Aak,ksum
 	write(29,1901) day,amth(mth),yr,doy,(k(i), i=1,8), ksum
@@ -526,7 +528,7 @@
 1003  format(1x,3i2,8i1,a1)
 1005  format(i4,'-',i2.2,'-',i2.2,'(',i3.3,')',1x,f5.2,2x, 
      & 4i1,1x,4i1,3x,i3)
-1601  format(a3,i5,2i3.2,8i3,f6.0)
+1601  format(a3,i5,2i3.2,8i3)
 1701  format(i5,2i3,i4,8i3,f5.0)
 1801  format(i5,2i3,i4,8i3,f5.0,i4)
 1901  format(3x,i2.2,'-',a3,'-',a2,i6,1x,4i5,2x,4i5,i9)

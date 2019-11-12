@@ -1,0 +1,2239 @@
+Checking files for completness...
+File completeness check done ...
+Running GetDay1csv.csh now ...
+
+GetDay1csv.csh is calling GetHour1csv.csh NOW for every hour of the day....
+Running GetHour1.csh now for
+2019-11-11 00:00
+ftp starts at 2019-11-12 13:42:03.469983685+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.00.NZ_EYWM_50_LFX.csv remote: 2019.315.00.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,252,71).
+150 Opening BINARY mode data connection for 2019.315.00.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0423 secs (4256.73 Kbytes/sec)
+local: 2019.315.00.NZ_EYWM_50_LFY.csv remote: 2019.315.00.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,255,115).
+150 Opening BINARY mode data connection for 2019.315.00.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0272 secs (6475.77 Kbytes/sec)
+local: 2019.315.00.NZ_EYWM_50_LFZ.csv remote: 2019.315.00.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,7).
+150 Opening BINARY mode data connection for 2019.315.00.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0222 secs (8111.76 Kbytes/sec)
+local: 2019.315.00.NZ_EYWM_51_LFF.csv remote: 2019.315.00.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,254,188).
+550 Failed to open file.
+local: 2019.315.00.NZ_EYWM_51_LEQ.csv remote: 2019.315.00.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,255,179).
+550 Failed to open file.
+local: 2019.315.00.NZ_EYWM_50_LKD.csv remote: 2019.315.00.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,251,194).
+150 Opening BINARY mode data connection for 2019.315.00.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0238 secs (7563.98 Kbytes/sec)
+local: 2019.315.00.NZ_EYWM_50_LKS.csv remote: 2019.315.00.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,254,112).
+150 Opening BINARY mode data connection for 2019.315.00.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0231 secs (7782.44 Kbytes/sec)
+local: 2019.315.00.NZ_SMHS_50_LFZ.csv remote: 2019.315.00.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,126).
+150 Opening BINARY mode data connection for 2019.315.00.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0343 secs (4620.77 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:03.874730938+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       0    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111100.ey1
+
+Prepare to run sendone 19111100.ey1   19111023.ey1
+ ihr =  0
+ ihr =  0
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110000pmin.min (deflated 78%)
+  adding: eyr20191111000000psec.sec (deflated 87%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1647      0 --:--:-- --:--:-- --:--:--  3302  0 37643    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 36831  182   182  100 36649     84  16927  0:00:02  0:00:02 --:--:-- 29086100 36831  182   182  100 36649     84  16925  0:00:02  0:00:02 --:--:-- 29086
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110000pmin.min) Success: Data loaded OK, data file id = 5718903
+2 (eyr20191111000000psec.sec) Success: Data loaded OK, data file id = 5718904
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110000pmin.min minute file and eyr20191111000000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 00:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:09 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 01:00
+ftp starts at 2019-11-12 13:42:09.122842402+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.01.NZ_EYWM_50_LFX.csv remote: 2019.315.01.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,250,159).
+150 Opening BINARY mode data connection for 2019.315.01.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0329 secs (5467.97 Kbytes/sec)
+local: 2019.315.01.NZ_EYWM_50_LFY.csv remote: 2019.315.01.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,132).
+150 Opening BINARY mode data connection for 2019.315.01.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0398 secs (4435.84 Kbytes/sec)
+local: 2019.315.01.NZ_EYWM_50_LFZ.csv remote: 2019.315.01.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,45).
+150 Opening BINARY mode data connection for 2019.315.01.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.028 secs (6424.44 Kbytes/sec)
+local: 2019.315.01.NZ_EYWM_51_LFF.csv remote: 2019.315.01.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,253,107).
+550 Failed to open file.
+local: 2019.315.01.NZ_EYWM_51_LEQ.csv remote: 2019.315.01.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,255,84).
+550 Failed to open file.
+local: 2019.315.01.NZ_EYWM_50_LKD.csv remote: 2019.315.01.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,254,20).
+150 Opening BINARY mode data connection for 2019.315.01.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0443 secs (4065.13 Kbytes/sec)
+local: 2019.315.01.NZ_EYWM_50_LKS.csv remote: 2019.315.01.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,250,174).
+150 Opening BINARY mode data connection for 2019.315.01.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0505 secs (3565.34 Kbytes/sec)
+local: 2019.315.01.NZ_SMHS_50_LFZ.csv remote: 2019.315.01.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,27).
+150 Opening BINARY mode data connection for 2019.315.01.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0288 secs (5508.99 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:09.428054694+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       1    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111101.ey1
+
+Prepare to run sendone 19111101.ey1   19111100.ey1
+ ihr =  1
+ ihr =  1
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110100pmin.min (deflated 78%)
+  adding: eyr20191111010000psec.sec (deflated 87%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1648      0 --:--:-- --:--:-- --:--:--  3302 88 37044    0     0   91 32908      0  21875  0:00:01  0:00:01 --:--:-- 21875100 36232  182   182  100 36050     84  16735  0:00:02  0:00:02 --:--:--  4841
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110100pmin.min) Success: Data loaded OK, data file id = 5718905
+2 (eyr20191111010000psec.sec) Success: Data loaded OK, data file id = 5718906
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110100pmin.min minute file and eyr20191111010000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 01:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:14 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 02:00
+ftp starts at 2019-11-12 13:42:14.697972685+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.02.NZ_EYWM_50_LFX.csv remote: 2019.315.02.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,251,119).
+150 Opening BINARY mode data connection for 2019.315.02.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0283 secs (6368.53 Kbytes/sec)
+local: 2019.315.02.NZ_EYWM_50_LFY.csv remote: 2019.315.02.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,255,219).
+150 Opening BINARY mode data connection for 2019.315.02.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0279 secs (6330.75 Kbytes/sec)
+local: 2019.315.02.NZ_EYWM_50_LFZ.csv remote: 2019.315.02.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,129).
+150 Opening BINARY mode data connection for 2019.315.02.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.036 secs (4998.19 Kbytes/sec)
+local: 2019.315.02.NZ_EYWM_51_LFF.csv remote: 2019.315.02.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,255,45).
+550 Failed to open file.
+local: 2019.315.02.NZ_EYWM_51_LEQ.csv remote: 2019.315.02.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,253,158).
+550 Failed to open file.
+local: 2019.315.02.NZ_EYWM_50_LKD.csv remote: 2019.315.02.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,253,237).
+150 Opening BINARY mode data connection for 2019.315.02.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0196 secs (9173.38 Kbytes/sec)
+local: 2019.315.02.NZ_EYWM_50_LKS.csv remote: 2019.315.02.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,250,72).
+150 Opening BINARY mode data connection for 2019.315.02.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.027 secs (6663.95 Kbytes/sec)
+local: 2019.315.02.NZ_SMHS_50_LFZ.csv remote: 2019.315.02.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,81).
+150 Opening BINARY mode data connection for 2019.315.02.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0322 secs (4922.46 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:15.002653397+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       2    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111102.ey1
+
+Prepare to run sendone 19111102.ey1   19111101.ey1
+ ihr =  2
+ ihr =  2
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110200pmin.min (deflated 78%)
+  adding: eyr20191111020000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1642      0 --:--:-- --:--:-- --:--:--  3302  0 37756    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 36944  182   182  100 36762     84  17055  0:00:02  0:00:02 --:--:-- 29433100 36944  182   182  100 36762     84  17053  0:00:02  0:00:02 --:--:-- 29433
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110200pmin.min) Success: Data loaded OK, data file id = 5718908
+2 (eyr20191111020000psec.sec) Success: Data loaded OK, data file id = 5718909
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110200pmin.min minute file and eyr20191111020000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 02:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:20 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 03:00
+ftp starts at 2019-11-12 13:42:20.283960694+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.03.NZ_EYWM_50_LFX.csv remote: 2019.315.03.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,254,97).
+150 Opening BINARY mode data connection for 2019.315.03.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0127 secs (14150.94 Kbytes/sec)
+local: 2019.315.03.NZ_EYWM_50_LFY.csv remote: 2019.315.03.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,254,129).
+150 Opening BINARY mode data connection for 2019.315.03.NZ_EYWM_50_LFY.csv (176054 bytes).
+226 Transfer complete.
+176054 bytes received in 0.0474 secs (3714.77 Kbytes/sec)
+local: 2019.315.03.NZ_EYWM_50_LFZ.csv remote: 2019.315.03.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,193).
+150 Opening BINARY mode data connection for 2019.315.03.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0263 secs (6831.64 Kbytes/sec)
+local: 2019.315.03.NZ_EYWM_51_LFF.csv remote: 2019.315.03.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,253,194).
+550 Failed to open file.
+local: 2019.315.03.NZ_EYWM_51_LEQ.csv remote: 2019.315.03.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,251,55).
+550 Failed to open file.
+local: 2019.315.03.NZ_EYWM_50_LKD.csv remote: 2019.315.03.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,250,184).
+150 Opening BINARY mode data connection for 2019.315.03.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.012 secs (14986.26 Kbytes/sec)
+local: 2019.315.03.NZ_EYWM_50_LKS.csv remote: 2019.315.03.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,250,66).
+150 Opening BINARY mode data connection for 2019.315.03.NZ_EYWM_50_LKS.csv (179285 bytes).
+226 Transfer complete.
+179285 bytes received in 0.0233 secs (7691.66 Kbytes/sec)
+local: 2019.315.03.NZ_SMHS_50_LFZ.csv remote: 2019.315.03.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,209).
+150 Opening BINARY mode data connection for 2019.315.03.NZ_SMHS_50_LFZ.csv (157759 bytes).
+226 Transfer complete.
+157759 bytes received in 0.0233 secs (6767.29 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:20.537921663+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       3    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111103.ey1
+
+Prepare to run sendone 19111103.ey1   19111102.ey1
+ ihr =  3
+ ihr =  3
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110300pmin.min (deflated 78%)
+  adding: eyr20191111030000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1643      0 --:--:-- --:--:-- --:--:--  3302 41 39617    0     0   42 16524      0  13694  0:00:02  0:00:01  0:00:01 13694100 38805  182   182  100 38623     84  17939  0:00:02  0:00:02 --:--:-- 23335100 38805  182   182  100 38623     84  17937  0:00:02  0:00:02 --:--:-- 23335
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110300pmin.min) Success: Data loaded OK, data file id = 5718910
+2 (eyr20191111030000psec.sec) Success: Data loaded OK, data file id = 5718911
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110300pmin.min minute file and eyr20191111030000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 03:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:26 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 04:00
+ftp starts at 2019-11-12 13:42:26.161330966+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.04.NZ_EYWM_50_LFX.csv remote: 2019.315.04.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,255,246).
+150 Opening BINARY mode data connection for 2019.315.04.NZ_EYWM_50_LFX.csv (176758 bytes).
+226 Transfer complete.
+176758 bytes received in 0.00755 secs (23408.56 Kbytes/sec)
+local: 2019.315.04.NZ_EYWM_50_LFY.csv remote: 2019.315.04.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,250,26).
+150 Opening BINARY mode data connection for 2019.315.04.NZ_EYWM_50_LFY.csv (173005 bytes).
+226 Transfer complete.
+173005 bytes received in 0.0252 secs (6865.55 Kbytes/sec)
+local: 2019.315.04.NZ_EYWM_50_LFZ.csv remote: 2019.315.04.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,20).
+150 Opening BINARY mode data connection for 2019.315.04.NZ_EYWM_50_LFZ.csv (176801 bytes).
+226 Transfer complete.
+176801 bytes received in 0.0317 secs (5576.09 Kbytes/sec)
+local: 2019.315.04.NZ_EYWM_51_LFF.csv remote: 2019.315.04.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,254,148).
+550 Failed to open file.
+local: 2019.315.04.NZ_EYWM_51_LEQ.csv remote: 2019.315.04.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,255,196).
+550 Failed to open file.
+local: 2019.315.04.NZ_EYWM_50_LKD.csv remote: 2019.315.04.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,253,52).
+150 Opening BINARY mode data connection for 2019.315.04.NZ_EYWM_50_LKD.csv (176881 bytes).
+226 Transfer complete.
+176881 bytes received in 0.028 secs (6324.63 Kbytes/sec)
+local: 2019.315.04.NZ_EYWM_50_LKS.csv remote: 2019.315.04.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,255,57).
+150 Opening BINARY mode data connection for 2019.315.04.NZ_EYWM_50_LKS.csv (176889 bytes).
+226 Transfer complete.
+176889 bytes received in 0.0268 secs (6595.41 Kbytes/sec)
+local: 2019.315.04.NZ_SMHS_50_LFZ.csv remote: 2019.315.04.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,17).
+150 Opening BINARY mode data connection for 2019.315.04.NZ_SMHS_50_LFZ.csv (155494 bytes).
+226 Transfer complete.
+155494 bytes received in 0.0265 secs (5863.94 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:26.472151383+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       4    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111104.ey1
+
+Prepare to run sendone 19111104.ey1   19111103.ey1
+ ihr =  4
+ ihr =  4
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110400pmin.min (deflated 79%)
+  adding: eyr20191111040000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3302 40 40679    0     0   41 16524      0  13708  0:00:02  0:00:01  0:00:01 13708 99 39867    0     0  100 39685      0  18272  0:00:02  0:00:02 --:--:-- 23951100 39867  182   182  100 39685     83  18271  0:00:02  0:00:02 --:--:-- 23951
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110400pmin.min) Success: Data loaded OK, data file id = 5718912
+2 (eyr20191111040000psec.sec) Success: Data loaded OK, data file id = 5718913
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110400pmin.min minute file and eyr20191111040000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 04:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:31 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 05:00
+ftp starts at 2019-11-12 13:42:31.960246700+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.05.NZ_EYWM_50_LFX.csv remote: 2019.315.05.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,254,205).
+150 Opening BINARY mode data connection for 2019.315.05.NZ_EYWM_50_LFX.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0405 secs (4359.43 Kbytes/sec)
+local: 2019.315.05.NZ_EYWM_50_LFY.csv remote: 2019.315.05.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,161).
+150 Opening BINARY mode data connection for 2019.315.05.NZ_EYWM_50_LFY.csv (172800 bytes).
+226 Transfer complete.
+172800 bytes received in 0.0309 secs (5586.99 Kbytes/sec)
+local: 2019.315.05.NZ_EYWM_50_LFZ.csv remote: 2019.315.05.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,92).
+150 Opening BINARY mode data connection for 2019.315.05.NZ_EYWM_50_LFZ.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.024 secs (7341.44 Kbytes/sec)
+local: 2019.315.05.NZ_EYWM_51_LFF.csv remote: 2019.315.05.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,250,88).
+550 Failed to open file.
+local: 2019.315.05.NZ_EYWM_51_LEQ.csv remote: 2019.315.05.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,253,54).
+550 Failed to open file.
+local: 2019.315.05.NZ_EYWM_50_LKD.csv remote: 2019.315.05.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,253,113).
+150 Opening BINARY mode data connection for 2019.315.05.NZ_EYWM_50_LKD.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.03 secs (5872.56 Kbytes/sec)
+local: 2019.315.05.NZ_EYWM_50_LKS.csv remote: 2019.315.05.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,250,229).
+150 Opening BINARY mode data connection for 2019.315.05.NZ_EYWM_50_LKS.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0368 secs (4792.96 Kbytes/sec)
+local: 2019.315.05.NZ_SMHS_50_LFZ.csv remote: 2019.315.05.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,245).
+150 Opening BINARY mode data connection for 2019.315.05.NZ_SMHS_50_LFZ.csv (157373 bytes).
+226 Transfer complete.
+157373 bytes received in 0.0202 secs (7804.65 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:32.265655494+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       5    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111105.ey1
+
+Prepare to run sendone 19111105.ey1   19111104.ey1
+ ihr =  5
+ ihr =  5
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110500pmin.min (deflated 78%)
+  adding: eyr20191111050000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1644      0 --:--:-- --:--:-- --:--:--  3291 82 40030    0     0   84 32908      0  21847  0:00:01  0:00:01 --:--:-- 21847100 39218  182   182  100 39036     83  17874  0:00:02  0:00:02 --:--:--  9051
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110500pmin.min) Success: Data loaded OK, data file id = 5718916
+2 (eyr20191111050000psec.sec) Success: Data loaded OK, data file id = 5718917
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110500pmin.min minute file and eyr20191111050000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 05:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:37 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 06:00
+ftp starts at 2019-11-12 13:42:37.760831952+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.06.NZ_EYWM_50_LFX.csv remote: 2019.315.06.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,252,201).
+150 Opening BINARY mode data connection for 2019.315.06.NZ_EYWM_50_LFX.csv (176514 bytes).
+226 Transfer complete.
+176514 bytes received in 0.0415 secs (4255.30 Kbytes/sec)
+local: 2019.315.06.NZ_EYWM_50_LFY.csv remote: 2019.315.06.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,254,147).
+150 Opening BINARY mode data connection for 2019.315.06.NZ_EYWM_50_LFY.csv (172874 bytes).
+226 Transfer complete.
+172874 bytes received in 0.0394 secs (4392.01 Kbytes/sec)
+local: 2019.315.06.NZ_EYWM_50_LFZ.csv remote: 2019.315.06.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,131).
+150 Opening BINARY mode data connection for 2019.315.06.NZ_EYWM_50_LFZ.csv (176421 bytes).
+226 Transfer complete.
+176421 bytes received in 0.0298 secs (5924.14 Kbytes/sec)
+local: 2019.315.06.NZ_EYWM_51_LFF.csv remote: 2019.315.06.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,254,38).
+550 Failed to open file.
+local: 2019.315.06.NZ_EYWM_51_LEQ.csv remote: 2019.315.06.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,251,36).
+550 Failed to open file.
+local: 2019.315.06.NZ_EYWM_50_LKD.csv remote: 2019.315.06.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,250,70).
+150 Opening BINARY mode data connection for 2019.315.06.NZ_EYWM_50_LKD.csv (176774 bytes).
+226 Transfer complete.
+176774 bytes received in 0.0404 secs (4374.51 Kbytes/sec)
+local: 2019.315.06.NZ_EYWM_50_LKS.csv remote: 2019.315.06.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,254,117).
+150 Opening BINARY mode data connection for 2019.315.06.NZ_EYWM_50_LKS.csv (176757 bytes).
+226 Transfer complete.
+176757 bytes received in 0.0291 secs (6064.74 Kbytes/sec)
+local: 2019.315.06.NZ_SMHS_50_LFZ.csv remote: 2019.315.06.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,19).
+150 Opening BINARY mode data connection for 2019.315.06.NZ_SMHS_50_LFZ.csv (154984 bytes).
+226 Transfer complete.
+154984 bytes received in 0.0318 secs (4868.81 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:38.020188017+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       6    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111106.ey1
+
+Prepare to run sendone 19111106.ey1   19111105.ey1
+ ihr =  6
+ ihr =  6
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110600pmin.min (deflated 78%)
+  adding: eyr20191111060000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3280 97 42371    0     0   99 41127      0  25615  0:00:01  0:00:01 --:--:-- 25615100 41559  182   182  100 41377     83  18993  0:00:02  0:00:02 --:--:--   437
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110600pmin.min) Success: Data loaded OK, data file id = 5718919
+2 (eyr20191111060000psec.sec) Success: Data loaded OK, data file id = 5718920
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110600pmin.min minute file and eyr20191111060000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 06:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:43 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 07:00
+ftp starts at 2019-11-12 13:42:43.632560380+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.07.NZ_EYWM_50_LFX.csv remote: 2019.315.07.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,253,40).
+150 Opening BINARY mode data connection for 2019.315.07.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.023 secs (7816.23 Kbytes/sec)
+local: 2019.315.07.NZ_EYWM_50_LFY.csv remote: 2019.315.07.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,100).
+150 Opening BINARY mode data connection for 2019.315.07.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0258 secs (6837.21 Kbytes/sec)
+local: 2019.315.07.NZ_EYWM_50_LFZ.csv remote: 2019.315.07.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,137).
+150 Opening BINARY mode data connection for 2019.315.07.NZ_EYWM_50_LFZ.csv (179661 bytes).
+226 Transfer complete.
+179661 bytes received in 0.0192 secs (9369.06 Kbytes/sec)
+local: 2019.315.07.NZ_EYWM_51_LFF.csv remote: 2019.315.07.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,251,70).
+550 Failed to open file.
+local: 2019.315.07.NZ_EYWM_51_LEQ.csv remote: 2019.315.07.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,251,80).
+550 Failed to open file.
+local: 2019.315.07.NZ_EYWM_50_LKD.csv remote: 2019.315.07.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,252,10).
+150 Opening BINARY mode data connection for 2019.315.07.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0292 secs (6155.53 Kbytes/sec)
+local: 2019.315.07.NZ_EYWM_50_LKS.csv remote: 2019.315.07.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,250,97).
+150 Opening BINARY mode data connection for 2019.315.07.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00852 secs (21136.68 Kbytes/sec)
+local: 2019.315.07.NZ_SMHS_50_LFZ.csv remote: 2019.315.07.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,254,245).
+150 Opening BINARY mode data connection for 2019.315.07.NZ_SMHS_50_LFZ.csv (154800 bytes).
+226 Transfer complete.
+154800 bytes received in 0.0262 secs (5907.95 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:43.941469395+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       7    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111107.ey1
+
+Prepare to run sendone 19111107.ey1   19111106.ey1
+ ihr =  7
+ ihr =  7
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110700pmin.min (deflated 78%)
+  adding: eyr20191111070000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1647      0 --:--:-- --:--:-- --:--:--  3302  0 41353    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 40541  182   182  100 40359     84  18779  0:00:02  0:00:02 --:--:-- 32442100 40541  182   182  100 40359     84  18777  0:00:02  0:00:02 --:--:-- 32442
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110700pmin.min) Success: Data loaded OK, data file id = 5718921
+2 (eyr20191111070000psec.sec) Success: Data loaded OK, data file id = 5718922
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110700pmin.min minute file and eyr20191111070000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 07:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:49 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 08:00
+ftp starts at 2019-11-12 13:42:49.356751558+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.08.NZ_EYWM_50_LFX.csv remote: 2019.315.08.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,251,194).
+150 Opening BINARY mode data connection for 2019.315.08.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0327 secs (5501.39 Kbytes/sec)
+local: 2019.315.08.NZ_EYWM_50_LFY.csv remote: 2019.315.08.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,200).
+150 Opening BINARY mode data connection for 2019.315.08.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0288 secs (6130.53 Kbytes/sec)
+local: 2019.315.08.NZ_EYWM_50_LFZ.csv remote: 2019.315.08.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,141).
+150 Opening BINARY mode data connection for 2019.315.08.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.043 secs (4186.92 Kbytes/sec)
+local: 2019.315.08.NZ_EYWM_51_LFF.csv remote: 2019.315.08.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,252,123).
+550 Failed to open file.
+local: 2019.315.08.NZ_EYWM_51_LEQ.csv remote: 2019.315.08.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,253,180).
+550 Failed to open file.
+local: 2019.315.08.NZ_EYWM_50_LKD.csv remote: 2019.315.08.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,251,137).
+150 Opening BINARY mode data connection for 2019.315.08.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0289 secs (6228.80 Kbytes/sec)
+local: 2019.315.08.NZ_EYWM_50_LKS.csv remote: 2019.315.08.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,255,80).
+150 Opening BINARY mode data connection for 2019.315.08.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0559 secs (3218.19 Kbytes/sec)
+local: 2019.315.08.NZ_SMHS_50_LFZ.csv remote: 2019.315.08.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,147).
+150 Opening BINARY mode data connection for 2019.315.08.NZ_SMHS_50_LFZ.csv (157841 bytes).
+226 Transfer complete.
+157841 bytes received in 0.0419 secs (3763.32 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:49.684647570+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       8    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111108.ey1
+
+Prepare to run sendone 19111108.ey1   19111107.ey1
+ ihr =  8
+ ihr =  8
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110800pmin.min (deflated 78%)
+  adding: eyr20191111080000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3302  0 40116    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 99 39304    0     0  100 39122      0  18100  0:00:02  0:00:02 --:--:-- 31148100 39304  182   182  100 39122     84  18098  0:00:02  0:00:02 --:--:-- 31148
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110800pmin.min) Success: Data loaded OK, data file id = 5718923
+2 (eyr20191111080000psec.sec) Success: Data loaded OK, data file id = 5718924
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110800pmin.min minute file and eyr20191111080000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 08:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:42:55 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 09:00
+ftp starts at 2019-11-12 13:42:55.476725778+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.09.NZ_EYWM_50_LFX.csv remote: 2019.315.09.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,251,70).
+150 Opening BINARY mode data connection for 2019.315.09.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0309 secs (5828.26 Kbytes/sec)
+local: 2019.315.09.NZ_EYWM_50_LFY.csv remote: 2019.315.09.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,255,232).
+150 Opening BINARY mode data connection for 2019.315.09.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0319 secs (5528.22 Kbytes/sec)
+local: 2019.315.09.NZ_EYWM_50_LFZ.csv remote: 2019.315.09.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,71).
+150 Opening BINARY mode data connection for 2019.315.09.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0276 secs (6512.77 Kbytes/sec)
+local: 2019.315.09.NZ_EYWM_51_LFF.csv remote: 2019.315.09.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,255,83).
+550 Failed to open file.
+local: 2019.315.09.NZ_EYWM_51_LEQ.csv remote: 2019.315.09.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,251,25).
+550 Failed to open file.
+local: 2019.315.09.NZ_EYWM_50_LKD.csv remote: 2019.315.09.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,250,205).
+150 Opening BINARY mode data connection for 2019.315.09.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0262 secs (6858.45 Kbytes/sec)
+local: 2019.315.09.NZ_EYWM_50_LKS.csv remote: 2019.315.09.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,250,208).
+150 Opening BINARY mode data connection for 2019.315.09.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0507 secs (3551.84 Kbytes/sec)
+local: 2019.315.09.NZ_SMHS_50_LFZ.csv remote: 2019.315.09.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,254,176).
+150 Opening BINARY mode data connection for 2019.315.09.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0204 secs (7775.76 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:42:55.829444826+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour       9    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111109.ey1
+
+Prepare to run sendone 19111109.ey1   19111108.ey1
+ ihr =  9
+ ihr =  9
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911110900pmin.min (deflated 77%)
+  adding: eyr20191111090000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3302  0 40038    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 39226  182   182  100 39044     81  17568  0:00:02  0:00:02 --:--:-- 29668100 39226  182   182  100 39044     81  17566  0:00:02  0:00:02 --:--:-- 29646
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911110900pmin.min) Success: Data loaded OK, data file id = 5718925
+2 (eyr20191111090000psec.sec) Success: Data loaded OK, data file id = 5718926
+--------------------------- end of stdout from CURL --------------------------
+eyr201911110900pmin.min minute file and eyr20191111090000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 09:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:01 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 10:00
+ftp starts at 2019-11-12 13:43:01.740494691+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.10.NZ_EYWM_50_LFX.csv remote: 2019.315.10.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,252,143).
+150 Opening BINARY mode data connection for 2019.315.10.NZ_EYWM_50_LFX.csv (179848 bytes).
+226 Transfer complete.
+179848 bytes received in 0.231 secs (778.35 Kbytes/sec)
+local: 2019.315.10.NZ_EYWM_50_LFY.csv remote: 2019.315.10.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,254,27).
+150 Opening BINARY mode data connection for 2019.315.10.NZ_EYWM_50_LFY.csv (176071 bytes).
+226 Transfer complete.
+176071 bytes received in 0.0439 secs (4013.75 Kbytes/sec)
+local: 2019.315.10.NZ_EYWM_50_LFZ.csv remote: 2019.315.10.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,1).
+150 Opening BINARY mode data connection for 2019.315.10.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0412 secs (4372.01 Kbytes/sec)
+local: 2019.315.10.NZ_EYWM_51_LFF.csv remote: 2019.315.10.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,254,112).
+550 Failed to open file.
+local: 2019.315.10.NZ_EYWM_51_LEQ.csv remote: 2019.315.10.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,253,48).
+550 Failed to open file.
+local: 2019.315.10.NZ_EYWM_50_LKD.csv remote: 2019.315.10.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,255,138).
+150 Opening BINARY mode data connection for 2019.315.10.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.106 secs (1703.98 Kbytes/sec)
+local: 2019.315.10.NZ_EYWM_50_LKS.csv remote: 2019.315.10.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,251,43).
+150 Opening BINARY mode data connection for 2019.315.10.NZ_EYWM_50_LKS.csv (179297 bytes).
+226 Transfer complete.
+179297 bytes received in 0.0423 secs (4239.40 Kbytes/sec)
+local: 2019.315.10.NZ_SMHS_50_LFZ.csv remote: 2019.315.10.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,111).
+150 Opening BINARY mode data connection for 2019.315.10.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0381 secs (4162.07 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:02.291617577+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      10    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111110.ey1
+
+Prepare to run sendone 19111110.ey1   19111109.ey1
+ ihr =  10
+ ihr =  10
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111000pmin.min (deflated 77%)
+  adding: eyr20191111100000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1647      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291 97 42040    0     0   99 40796      0  25414  0:00:01  0:00:01 --:--:-- 25414100 41228  182   182  100 41046     84  19041  0:00:02  0:00:02 --:--:--   454
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111000pmin.min) Success: Data loaded OK, data file id = 5718928
+2 (eyr20191111100000psec.sec) Success: Data loaded OK, data file id = 5718929
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111000pmin.min minute file and eyr20191111100000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 10:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:07 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 11:00
+ftp starts at 2019-11-12 13:43:07.834122106+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.11.NZ_EYWM_50_LFX.csv remote: 2019.315.11.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,251,187).
+150 Opening BINARY mode data connection for 2019.315.11.NZ_EYWM_50_LFX.csv (178233 bytes).
+226 Transfer complete.
+178233 bytes received in 0.043 secs (4149.78 Kbytes/sec)
+local: 2019.315.11.NZ_EYWM_50_LFY.csv remote: 2019.315.11.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,255,232).
+150 Opening BINARY mode data connection for 2019.315.11.NZ_EYWM_50_LFY.csv (174179 bytes).
+226 Transfer complete.
+174179 bytes received in 0.029 secs (6012.60 Kbytes/sec)
+local: 2019.315.11.NZ_EYWM_50_LFZ.csv remote: 2019.315.11.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,175).
+150 Opening BINARY mode data connection for 2019.315.11.NZ_EYWM_50_LFZ.csv (177845 bytes).
+226 Transfer complete.
+177845 bytes received in 0.0243 secs (7318.72 Kbytes/sec)
+local: 2019.315.11.NZ_EYWM_51_LFF.csv remote: 2019.315.11.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,255,126).
+550 Failed to open file.
+local: 2019.315.11.NZ_EYWM_51_LEQ.csv remote: 2019.315.11.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,252,237).
+550 Failed to open file.
+local: 2019.315.11.NZ_EYWM_50_LKD.csv remote: 2019.315.11.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,254,222).
+150 Opening BINARY mode data connection for 2019.315.11.NZ_EYWM_50_LKD.csv (178456 bytes).
+226 Transfer complete.
+178456 bytes received in 0.0239 secs (7453.37 Kbytes/sec)
+local: 2019.315.11.NZ_EYWM_50_LKS.csv remote: 2019.315.11.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,255,44).
+150 Opening BINARY mode data connection for 2019.315.11.NZ_EYWM_50_LKS.csv (178503 bytes).
+226 Transfer complete.
+178503 bytes received in 0.0227 secs (7870.50 Kbytes/sec)
+local: 2019.315.11.NZ_SMHS_50_LFZ.csv remote: 2019.315.11.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,254,54).
+150 Opening BINARY mode data connection for 2019.315.11.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0252 secs (6291.71 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:08.052222572+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      11    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111111.ey1
+
+Prepare to run sendone 19111111.ey1   19111110.ey1
+ ihr =  11
+ ihr =  11
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111100pmin.min (deflated 77%)
+  adding: eyr20191111110000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3302  0 41713    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 97 41713    0     0  100 40719      0  23890  0:00:01  0:00:01 --:--:-- 50898100 40901  182   182  100 40719     83  18753  0:00:02  0:00:02 --:--:-- 32163
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111100pmin.min) Success: Data loaded OK, data file id = 5718930
+2 (eyr20191111110000psec.sec) Success: Data loaded OK, data file id = 5718931
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111100pmin.min minute file and eyr20191111110000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 11:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:13 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 12:00
+ftp starts at 2019-11-12 13:43:13.612586608+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.12.NZ_EYWM_50_LFX.csv remote: 2019.315.12.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,254,0).
+150 Opening BINARY mode data connection for 2019.315.12.NZ_EYWM_50_LFX.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0309 secs (5701.17 Kbytes/sec)
+local: 2019.315.12.NZ_EYWM_50_LFY.csv remote: 2019.315.12.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,254,51).
+150 Opening BINARY mode data connection for 2019.315.12.NZ_EYWM_50_LFY.csv (172800 bytes).
+226 Transfer complete.
+172800 bytes received in 0.0354 secs (4877.22 Kbytes/sec)
+local: 2019.315.12.NZ_EYWM_50_LFZ.csv remote: 2019.315.12.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,126).
+150 Opening BINARY mode data connection for 2019.315.12.NZ_EYWM_50_LFZ.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0306 secs (5756.05 Kbytes/sec)
+local: 2019.315.12.NZ_EYWM_51_LFF.csv remote: 2019.315.12.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,253,21).
+550 Failed to open file.
+local: 2019.315.12.NZ_EYWM_51_LEQ.csv remote: 2019.315.12.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,254,7).
+550 Failed to open file.
+local: 2019.315.12.NZ_EYWM_50_LKD.csv remote: 2019.315.12.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,253,231).
+150 Opening BINARY mode data connection for 2019.315.12.NZ_EYWM_50_LKD.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0263 secs (6698.82 Kbytes/sec)
+local: 2019.315.12.NZ_EYWM_50_LKS.csv remote: 2019.315.12.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,253,7).
+150 Opening BINARY mode data connection for 2019.315.12.NZ_EYWM_50_LKS.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0206 secs (8581.02 Kbytes/sec)
+local: 2019.315.12.NZ_SMHS_50_LFZ.csv remote: 2019.315.12.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,60).
+150 Opening BINARY mode data connection for 2019.315.12.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0399 secs (3972.11 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:13.848437140+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      12    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111112.ey1
+
+Prepare to run sendone 19111112.ey1   19111111.ey1
+ ihr =  12
+ ihr =  12
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111200pmin.min (deflated 77%)
+  adding: eyr20191111120000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3302  0 39948    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 99 39136    0     0  100 38954      0  18089  0:00:02  0:00:02 --:--:-- 31213100 39136  182   182  100 38954     84  18087  0:00:02  0:00:02 --:--:-- 31213
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111200pmin.min) Success: Data loaded OK, data file id = 5718933
+2 (eyr20191111120000psec.sec) Success: Data loaded OK, data file id = 5718934
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111200pmin.min minute file and eyr20191111120000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 12:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:19 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 13:00
+ftp starts at 2019-11-12 13:43:19.367600214+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.13.NZ_EYWM_50_LFX.csv remote: 2019.315.13.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,253,137).
+150 Opening BINARY mode data connection for 2019.315.13.NZ_EYWM_50_LFX.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0261 secs (6770.03 Kbytes/sec)
+local: 2019.315.13.NZ_EYWM_50_LFY.csv remote: 2019.315.13.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,138).
+150 Opening BINARY mode data connection for 2019.315.13.NZ_EYWM_50_LFY.csv (172800 bytes).
+226 Transfer complete.
+172800 bytes received in 0.0302 secs (5725.27 Kbytes/sec)
+local: 2019.315.13.NZ_EYWM_50_LFZ.csv remote: 2019.315.13.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,137).
+150 Opening BINARY mode data connection for 2019.315.13.NZ_EYWM_50_LFZ.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0386 secs (4574.93 Kbytes/sec)
+local: 2019.315.13.NZ_EYWM_51_LFF.csv remote: 2019.315.13.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,255,137).
+550 Failed to open file.
+local: 2019.315.13.NZ_EYWM_51_LEQ.csv remote: 2019.315.13.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,251,60).
+550 Failed to open file.
+local: 2019.315.13.NZ_EYWM_50_LKD.csv remote: 2019.315.13.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,252,181).
+150 Opening BINARY mode data connection for 2019.315.13.NZ_EYWM_50_LKD.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0277 secs (6374.90 Kbytes/sec)
+local: 2019.315.13.NZ_EYWM_50_LKS.csv remote: 2019.315.13.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,255,88).
+150 Opening BINARY mode data connection for 2019.315.13.NZ_EYWM_50_LKS.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0289 secs (6112.90 Kbytes/sec)
+local: 2019.315.13.NZ_SMHS_50_LFZ.csv remote: 2019.315.13.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,32).
+150 Opening BINARY mode data connection for 2019.315.13.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.00715 secs (22163.14 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:19.574132085+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      13    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111113.ey1
+
+Prepare to run sendone 19111113.ey1   19111112.ey1
+ ihr =  13
+ ihr =  13
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111300pmin.min (deflated 77%)
+  adding: eyr20191111130000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3302 41 39954    0     0   42 16524      0  13708  0:00:02  0:00:01  0:00:01 13708100 39142  182   182  100 38960     83  17933  0:00:02  0:00:02 --:--:-- 23177100 39142  182   182  100 38960     83  17931  0:00:02  0:00:02 --:--:-- 23177
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111300pmin.min) Success: Data loaded OK, data file id = 5718936
+2 (eyr20191111130000psec.sec) Success: Data loaded OK, data file id = 5718937
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111300pmin.min minute file and eyr20191111130000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 13:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:25 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 14:00
+ftp starts at 2019-11-12 13:43:25.168263736+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.14.NZ_EYWM_50_LFX.csv remote: 2019.315.14.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,255,208).
+150 Opening BINARY mode data connection for 2019.315.14.NZ_EYWM_50_LFX.csv (178414 bytes).
+226 Transfer complete.
+178414 bytes received in 0.0273 secs (6546.58 Kbytes/sec)
+local: 2019.315.14.NZ_EYWM_50_LFY.csv remote: 2019.315.14.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,253,22).
+150 Opening BINARY mode data connection for 2019.315.14.NZ_EYWM_50_LFY.csv (175114 bytes).
+226 Transfer complete.
+175114 bytes received in 0.0275 secs (6365.00 Kbytes/sec)
+local: 2019.315.14.NZ_EYWM_50_LFZ.csv remote: 2019.315.14.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,213).
+150 Opening BINARY mode data connection for 2019.315.14.NZ_EYWM_50_LFZ.csv (178197 bytes).
+226 Transfer complete.
+178197 bytes received in 0.0267 secs (6663.31 Kbytes/sec)
+local: 2019.315.14.NZ_EYWM_51_LFF.csv remote: 2019.315.14.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,253,129).
+550 Failed to open file.
+local: 2019.315.14.NZ_EYWM_51_LEQ.csv remote: 2019.315.14.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,252,35).
+550 Failed to open file.
+local: 2019.315.14.NZ_EYWM_50_LKD.csv remote: 2019.315.14.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,252,4).
+150 Opening BINARY mode data connection for 2019.315.14.NZ_EYWM_50_LKD.csv (178887 bytes).
+226 Transfer complete.
+178887 bytes received in 0.0289 secs (6187.93 Kbytes/sec)
+local: 2019.315.14.NZ_EYWM_50_LKS.csv remote: 2019.315.14.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,255,105).
+150 Opening BINARY mode data connection for 2019.315.14.NZ_EYWM_50_LKS.csv (178428 bytes).
+226 Transfer complete.
+178428 bytes received in 0.031 secs (5758.90 Kbytes/sec)
+local: 2019.315.14.NZ_SMHS_50_LFZ.csv remote: 2019.315.14.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,255,30).
+150 Opening BINARY mode data connection for 2019.315.14.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0255 secs (6217.86 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:25.383765756+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      14    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111114.ey1
+
+Prepare to run sendone 19111114.ey1   19111113.ey1
+ ihr =  14
+ ihr =  14
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111400pmin.min (deflated 77%)
+  adding: eyr20191111140000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3302 97 39770    0     0   99 38526      0  24018  0:00:01  0:00:01 --:--:-- 24018100 38958  182   182  100 38776     83  17743  0:00:02  0:00:02 --:--:--   430
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111400pmin.min) Success: Data loaded OK, data file id = 5718938
+2 (eyr20191111140000psec.sec) Success: Data loaded OK, data file id = 5718939
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111400pmin.min minute file and eyr20191111140000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 14:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:30 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 15:00
+ftp starts at 2019-11-12 13:43:31.102552355+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.15.NZ_EYWM_50_LFX.csv remote: 2019.315.15.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,253,109).
+150 Opening BINARY mode data connection for 2019.315.15.NZ_EYWM_50_LFX.csv (178742 bytes).
+226 Transfer complete.
+178742 bytes received in 0.0102 secs (17546.09 Kbytes/sec)
+local: 2019.315.15.NZ_EYWM_50_LFY.csv remote: 2019.315.15.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,254,66).
+150 Opening BINARY mode data connection for 2019.315.15.NZ_EYWM_50_LFY.csv (174936 bytes).
+226 Transfer complete.
+174936 bytes received in 0.00938 secs (18649.89 Kbytes/sec)
+local: 2019.315.15.NZ_EYWM_50_LFZ.csv remote: 2019.315.15.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,254,182).
+150 Opening BINARY mode data connection for 2019.315.15.NZ_EYWM_50_LFZ.csv (178670 bytes).
+226 Transfer complete.
+178670 bytes received in 0.0106 secs (16873.17 Kbytes/sec)
+local: 2019.315.15.NZ_EYWM_51_LFF.csv remote: 2019.315.15.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,252,79).
+550 Failed to open file.
+local: 2019.315.15.NZ_EYWM_51_LEQ.csv remote: 2019.315.15.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,254,25).
+550 Failed to open file.
+local: 2019.315.15.NZ_EYWM_50_LKD.csv remote: 2019.315.15.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,253,64).
+150 Opening BINARY mode data connection for 2019.315.15.NZ_EYWM_50_LKD.csv (178765 bytes).
+226 Transfer complete.
+178765 bytes received in 0.00936 secs (19109.03 Kbytes/sec)
+local: 2019.315.15.NZ_EYWM_50_LKS.csv remote: 2019.315.15.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,251,226).
+150 Opening BINARY mode data connection for 2019.315.15.NZ_EYWM_50_LKS.csv (178544 bytes).
+226 Transfer complete.
+178544 bytes received in 0.00893 secs (19998.21 Kbytes/sec)
+local: 2019.315.15.NZ_SMHS_50_LFZ.csv remote: 2019.315.15.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,93).
+150 Opening BINARY mode data connection for 2019.315.15.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0259 secs (6105.46 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:31.222207356+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      15    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111115.ey1
+
+Prepare to run sendone 19111115.ey1   19111114.ey1
+ ihr =  15
+ ihr =  15
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111500pmin.min (deflated 78%)
+  adding: eyr20191111150000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1647      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291 96 39048    0     0   99 37804      0  23556  0:00:01  0:00:01 --:--:-- 23556100 38236  182   182  100 38054     84  17640  0:00:02  0:00:02 --:--:--   452
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111500pmin.min) Success: Data loaded OK, data file id = 5718940
+2 (eyr20191111150000psec.sec) Success: Data loaded OK, data file id = 5718941
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111500pmin.min minute file and eyr20191111150000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 15:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:37 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 16:00
+ftp starts at 2019-11-12 13:43:37.155548644+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.16.NZ_EYWM_50_LFX.csv remote: 2019.315.16.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,250,255).
+150 Opening BINARY mode data connection for 2019.315.16.NZ_EYWM_50_LFX.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0311 secs (5670.20 Kbytes/sec)
+local: 2019.315.16.NZ_EYWM_50_LFY.csv remote: 2019.315.16.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,254,208).
+150 Opening BINARY mode data connection for 2019.315.16.NZ_EYWM_50_LFY.csv (172800 bytes).
+226 Transfer complete.
+172800 bytes received in 0.0306 secs (5650.38 Kbytes/sec)
+local: 2019.315.16.NZ_EYWM_50_LFZ.csv remote: 2019.315.16.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,204).
+150 Opening BINARY mode data connection for 2019.315.16.NZ_EYWM_50_LFZ.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0261 secs (6771.33 Kbytes/sec)
+local: 2019.315.16.NZ_EYWM_51_LFF.csv remote: 2019.315.16.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,255,144).
+550 Failed to open file.
+local: 2019.315.16.NZ_EYWM_51_LEQ.csv remote: 2019.315.16.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,255,123).
+550 Failed to open file.
+local: 2019.315.16.NZ_EYWM_50_LKD.csv remote: 2019.315.16.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,251,99).
+150 Opening BINARY mode data connection for 2019.315.16.NZ_EYWM_50_LKD.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0153 secs (11544.50 Kbytes/sec)
+local: 2019.315.16.NZ_EYWM_50_LKS.csv remote: 2019.315.16.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,251,121).
+150 Opening BINARY mode data connection for 2019.315.16.NZ_EYWM_50_LKS.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0272 secs (6483.86 Kbytes/sec)
+local: 2019.315.16.NZ_SMHS_50_LFZ.csv remote: 2019.315.16.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,185).
+150 Opening BINARY mode data connection for 2019.315.16.NZ_SMHS_50_LFZ.csv (158400 bytes).
+226 Transfer complete.
+158400 bytes received in 0.0241 secs (6566.62 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:37.355953465+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      16    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111116.ey1
+
+Prepare to run sendone 19111116.ey1   19111115.ey1
+ ihr =  16
+ ihr =  16
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111600pmin.min (deflated 78%)
+  adding: eyr20191111160000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3280 85 38664    0     0   87 32908      0  21859  0:00:01  0:00:01 --:--:-- 21859100 37852  182   182  100 37670     83  17373  0:00:02  0:00:02 --:--:--  7193
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111600pmin.min) Success: Data loaded OK, data file id = 5718942
+2 (eyr20191111160000psec.sec) Success: Data loaded OK, data file id = 5718943
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111600pmin.min minute file and eyr20191111160000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 16:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:42 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 17:00
+ftp starts at 2019-11-12 13:43:42.993590001+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.17.NZ_EYWM_50_LFX.csv remote: 2019.315.17.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,251,180).
+150 Opening BINARY mode data connection for 2019.315.17.NZ_EYWM_50_LFX.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.00725 secs (24327.68 Kbytes/sec)
+local: 2019.315.17.NZ_EYWM_50_LFY.csv remote: 2019.315.17.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,253,123).
+150 Opening BINARY mode data connection for 2019.315.17.NZ_EYWM_50_LFY.csv (172800 bytes).
+226 Transfer complete.
+172800 bytes received in 0.00712 secs (24276.48 Kbytes/sec)
+local: 2019.315.17.NZ_EYWM_50_LFZ.csv remote: 2019.315.17.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,163).
+150 Opening BINARY mode data connection for 2019.315.17.NZ_EYWM_50_LFZ.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0245 secs (7205.00 Kbytes/sec)
+local: 2019.315.17.NZ_EYWM_51_LFF.csv remote: 2019.315.17.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,255,48).
+550 Failed to open file.
+local: 2019.315.17.NZ_EYWM_51_LEQ.csv remote: 2019.315.17.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,251,97).
+550 Failed to open file.
+local: 2019.315.17.NZ_EYWM_50_LKD.csv remote: 2019.315.17.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,252,148).
+150 Opening BINARY mode data connection for 2019.315.17.NZ_EYWM_50_LKD.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0254 secs (6936.69 Kbytes/sec)
+local: 2019.315.17.NZ_EYWM_50_LKS.csv remote: 2019.315.17.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,252,154).
+150 Opening BINARY mode data connection for 2019.315.17.NZ_EYWM_50_LKS.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.0101 secs (17420.50 Kbytes/sec)
+local: 2019.315.17.NZ_SMHS_50_LFZ.csv remote: 2019.315.17.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,254,12).
+150 Opening BINARY mode data connection for 2019.315.17.NZ_SMHS_50_LFZ.csv (158187 bytes).
+226 Transfer complete.
+158187 bytes received in 0.0262 secs (6030.77 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:43.140355085+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      17    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111117.ey1
+
+Prepare to run sendone 19111117.ey1   19111116.ey1
+ ihr =  17
+ ihr =  17
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111700pmin.min (deflated 78%)
+  adding: eyr20191111170000psec.sec (deflated 86%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3280 97 38883    0     0   99 37639      0  23454  0:00:01  0:00:01 --:--:-- 23454100 38071  182   182  100 37889     84  17611  0:00:02  0:00:02 --:--:--   457
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111700pmin.min) Success: Data loaded OK, data file id = 5718944
+2 (eyr20191111170000psec.sec) Success: Data loaded OK, data file id = 5718945
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111700pmin.min minute file and eyr20191111170000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 17:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:48 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 18:00
+ftp starts at 2019-11-12 13:43:48.954451246+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.18.NZ_EYWM_50_LFX.csv remote: 2019.315.18.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,254,253).
+150 Opening BINARY mode data connection for 2019.315.18.NZ_EYWM_50_LFX.csv (177711 bytes).
+226 Transfer complete.
+177711 bytes received in 0.00698 secs (25456.38 Kbytes/sec)
+local: 2019.315.18.NZ_EYWM_50_LFY.csv remote: 2019.315.18.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,223).
+150 Opening BINARY mode data connection for 2019.315.18.NZ_EYWM_50_LFY.csv (174100 bytes).
+226 Transfer complete.
+174100 bytes received in 0.00715 secs (24359.87 Kbytes/sec)
+local: 2019.315.18.NZ_EYWM_50_LFZ.csv remote: 2019.315.18.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,20).
+150 Opening BINARY mode data connection for 2019.315.18.NZ_EYWM_50_LFZ.csv (177847 bytes).
+226 Transfer complete.
+177847 bytes received in 0.0103 secs (17273.41 Kbytes/sec)
+local: 2019.315.18.NZ_EYWM_51_LFF.csv remote: 2019.315.18.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,251,221).
+550 Failed to open file.
+local: 2019.315.18.NZ_EYWM_51_LEQ.csv remote: 2019.315.18.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,250,194).
+550 Failed to open file.
+local: 2019.315.18.NZ_EYWM_50_LKD.csv remote: 2019.315.18.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,253,202).
+150 Opening BINARY mode data connection for 2019.315.18.NZ_EYWM_50_LKD.csv (177817 bytes).
+226 Transfer complete.
+177817 bytes received in 0.0284 secs (6257.86 Kbytes/sec)
+local: 2019.315.18.NZ_EYWM_50_LKS.csv remote: 2019.315.18.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,253,218).
+150 Opening BINARY mode data connection for 2019.315.18.NZ_EYWM_50_LKS.csv (177761 bytes).
+226 Transfer complete.
+177761 bytes received in 0.0091 secs (19532.03 Kbytes/sec)
+local: 2019.315.18.NZ_SMHS_50_LFZ.csv remote: 2019.315.18.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,103).
+150 Opening BINARY mode data connection for 2019.315.18.NZ_SMHS_50_LFZ.csv (156422 bytes).
+226 Transfer complete.
+156422 bytes received in 0.00638 secs (24506.03 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:49.074786576+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      18    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111118.ey1
+
+Prepare to run sendone 19111118.ey1   19111117.ey1
+ ihr =  18
+ ihr =  18
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111800pmin.min (deflated 78%)
+  adding: eyr20191111180000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3280 97 41141    0     0   99 39897      0  24856  0:00:01  0:00:01 --:--:-- 24856100 40329  182   182  100 40147     73  16301  0:00:02  0:00:02 --:--:--   291
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111800pmin.min) Success: Data loaded OK, data file id = 5718946
+2 (eyr20191111180000psec.sec) Success: Data loaded OK, data file id = 5718947
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111800pmin.min minute file and eyr20191111180000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 18:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:43:54 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 19:00
+ftp starts at 2019-11-12 13:43:55.049835885+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.19.NZ_EYWM_50_LFX.csv remote: 2019.315.19.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,255,121).
+150 Opening BINARY mode data connection for 2019.315.19.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00765 secs (23532.49 Kbytes/sec)
+local: 2019.315.19.NZ_EYWM_50_LFY.csv remote: 2019.315.19.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,255,54).
+150 Opening BINARY mode data connection for 2019.315.19.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.00691 secs (25513.45 Kbytes/sec)
+local: 2019.315.19.NZ_EYWM_50_LFZ.csv remote: 2019.315.19.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,254,157).
+150 Opening BINARY mode data connection for 2019.315.19.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00687 secs (26189.44 Kbytes/sec)
+local: 2019.315.19.NZ_EYWM_51_LFF.csv remote: 2019.315.19.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,254,125).
+550 Failed to open file.
+local: 2019.315.19.NZ_EYWM_51_LEQ.csv remote: 2019.315.19.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,253,131).
+550 Failed to open file.
+local: 2019.315.19.NZ_EYWM_50_LKD.csv remote: 2019.315.19.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,255,82).
+150 Opening BINARY mode data connection for 2019.315.19.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0304 secs (5918.91 Kbytes/sec)
+local: 2019.315.19.NZ_EYWM_50_LKS.csv remote: 2019.315.19.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,251,231).
+150 Opening BINARY mode data connection for 2019.315.19.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0449 secs (4005.43 Kbytes/sec)
+local: 2019.315.19.NZ_SMHS_50_LFZ.csv remote: 2019.315.19.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,81).
+150 Opening BINARY mode data connection for 2019.315.19.NZ_SMHS_50_LFZ.csv (154949 bytes).
+226 Transfer complete.
+154949 bytes received in 0.0255 secs (6074.76 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:43:55.217603836+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      19    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111119.ey1
+
+Prepare to run sendone 19111119.ey1   19111118.ey1
+ ihr =  19
+ ihr =  19
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911111900pmin.min (deflated 77%)
+  adding: eyr20191111190000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1647      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291 97 41812    0     0   99 40568      0  25282  0:00:01  0:00:01 --:--:-- 25282100 41000  182   182  100 40818     84  18985  0:00:02  0:00:02 --:--:--   458
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911111900pmin.min) Success: Data loaded OK, data file id = 5718948
+2 (eyr20191111190000psec.sec) Success: Data loaded OK, data file id = 5718949
+--------------------------- end of stdout from CURL --------------------------
+eyr201911111900pmin.min minute file and eyr20191111190000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 19:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:44:00 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 20:00
+ftp starts at 2019-11-12 13:44:00.956211136+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.20.NZ_EYWM_50_LFX.csv remote: 2019.315.20.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,251,251).
+150 Opening BINARY mode data connection for 2019.315.20.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0095 secs (18957.35 Kbytes/sec)
+local: 2019.315.20.NZ_EYWM_50_LFY.csv remote: 2019.315.20.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,254,30).
+150 Opening BINARY mode data connection for 2019.315.20.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.00931 secs (18953.48 Kbytes/sec)
+local: 2019.315.20.NZ_EYWM_50_LFZ.csv remote: 2019.315.20.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,255,4).
+150 Opening BINARY mode data connection for 2019.315.20.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0145 secs (12442.11 Kbytes/sec)
+local: 2019.315.20.NZ_EYWM_51_LFF.csv remote: 2019.315.20.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,255,228).
+550 Failed to open file.
+local: 2019.315.20.NZ_EYWM_51_LEQ.csv remote: 2019.315.20.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,253,217).
+550 Failed to open file.
+local: 2019.315.20.NZ_EYWM_50_LKD.csv remote: 2019.315.20.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,251,250).
+150 Opening BINARY mode data connection for 2019.315.20.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00812 secs (22159.30 Kbytes/sec)
+local: 2019.315.20.NZ_EYWM_50_LKS.csv remote: 2019.315.20.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,252,170).
+150 Opening BINARY mode data connection for 2019.315.20.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00987 secs (18233.39 Kbytes/sec)
+local: 2019.315.20.NZ_SMHS_50_LFZ.csv remote: 2019.315.20.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,250,25).
+150 Opening BINARY mode data connection for 2019.315.20.NZ_SMHS_50_LFZ.csv (154800 bytes).
+226 Transfer complete.
+154800 bytes received in 0.00742 secs (20873.79 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:44:01.063530965+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      20    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111120.ey1
+
+Prepare to run sendone 19111120.ey1   19111119.ey1
+ ihr =  20
+ ihr =  20
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911112000pmin.min (deflated 77%)
+  adding: eyr20191111200000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3280 97 41502    0     0   99 40258      0  25069  0:00:01  0:00:01 --:--:-- 25069100 40690  182   182  100 40508     73  16455  0:00:02  0:00:02 --:--:--   292
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911112000pmin.min) Success: Data loaded OK, data file id = 5718950
+2 (eyr20191111200000psec.sec) Success: Data loaded OK, data file id = 5718951
+--------------------------- end of stdout from CURL --------------------------
+eyr201911112000pmin.min minute file and eyr20191111200000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 20:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:44:06 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 21:00
+ftp starts at 2019-11-12 13:44:07.120051241+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.21.NZ_EYWM_50_LFX.csv remote: 2019.315.21.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,255,32).
+150 Opening BINARY mode data connection for 2019.315.21.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00867 secs (20761.24 Kbytes/sec)
+local: 2019.315.21.NZ_EYWM_50_LFY.csv remote: 2019.315.21.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,78).
+150 Opening BINARY mode data connection for 2019.315.21.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.00935 secs (18866.31 Kbytes/sec)
+local: 2019.315.21.NZ_EYWM_50_LFZ.csv remote: 2019.315.21.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,171).
+150 Opening BINARY mode data connection for 2019.315.21.NZ_EYWM_50_LFZ.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00892 secs (20181.64 Kbytes/sec)
+local: 2019.315.21.NZ_EYWM_51_LFF.csv remote: 2019.315.21.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,250,152).
+550 Failed to open file.
+local: 2019.315.21.NZ_EYWM_51_LEQ.csv remote: 2019.315.21.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,252,81).
+550 Failed to open file.
+local: 2019.315.21.NZ_EYWM_50_LKD.csv remote: 2019.315.21.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,251,172).
+150 Opening BINARY mode data connection for 2019.315.21.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00877 secs (20531.54 Kbytes/sec)
+local: 2019.315.21.NZ_EYWM_50_LKS.csv remote: 2019.315.21.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,254,63).
+150 Opening BINARY mode data connection for 2019.315.21.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00907 secs (19839.08 Kbytes/sec)
+local: 2019.315.21.NZ_SMHS_50_LFZ.csv remote: 2019.315.21.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,252,111).
+150 Opening BINARY mode data connection for 2019.315.21.NZ_SMHS_50_LFZ.csv (154800 bytes).
+226 Transfer complete.
+154800 bytes received in 0.00646 secs (23951.72 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:44:07.218311559+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      21    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111121.ey1
+
+Prepare to run sendone 19111121.ey1   19111120.ey1
+ ihr =  21
+ ihr =  21
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911112100pmin.min (deflated 78%)
+  adding: eyr20191111210000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1646      0 --:--:-- --:--:-- --:--:--  3291110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3280 97 41111    0     0   99 39867      0  24832  0:00:01  0:00:01 --:--:-- 24832100 40299  182   182  100 40117     84  18522  0:00:02  0:00:02 --:--:--   446
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911112100pmin.min) Success: Data loaded OK, data file id = 5718952
+2 (eyr20191111210000psec.sec) Success: Data loaded OK, data file id = 5718953
+--------------------------- end of stdout from CURL --------------------------
+eyr201911112100pmin.min minute file and eyr20191111210000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 21:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:44:12 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 22:00
+ftp starts at 2019-11-12 13:44:12.848424575+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.22.NZ_EYWM_50_LFX.csv remote: 2019.315.22.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,253,177).
+150 Opening BINARY mode data connection for 2019.315.22.NZ_EYWM_50_LFX.csv (179655 bytes).
+226 Transfer complete.
+179655 bytes received in 0.00747 secs (24043.76 Kbytes/sec)
+local: 2019.315.22.NZ_EYWM_50_LFY.csv remote: 2019.315.22.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,171).
+150 Opening BINARY mode data connection for 2019.315.22.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.00821 secs (21496.47 Kbytes/sec)
+local: 2019.315.22.NZ_EYWM_50_LFZ.csv remote: 2019.315.22.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,253,206).
+150 Opening BINARY mode data connection for 2019.315.22.NZ_EYWM_50_LFZ.csv (178955 bytes).
+226 Transfer complete.
+178955 bytes received in 0.0071 secs (25201.38 Kbytes/sec)
+local: 2019.315.22.NZ_EYWM_51_LFF.csv remote: 2019.315.22.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,254,76).
+550 Failed to open file.
+local: 2019.315.22.NZ_EYWM_51_LEQ.csv remote: 2019.315.22.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,254,51).
+550 Failed to open file.
+local: 2019.315.22.NZ_EYWM_50_LKD.csv remote: 2019.315.22.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,254,157).
+150 Opening BINARY mode data connection for 2019.315.22.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0076 secs (23687.33 Kbytes/sec)
+local: 2019.315.22.NZ_EYWM_50_LKS.csv remote: 2019.315.22.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,254,139).
+150 Opening BINARY mode data connection for 2019.315.22.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00876 secs (20538.57 Kbytes/sec)
+local: 2019.315.22.NZ_SMHS_50_LFZ.csv remote: 2019.315.22.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,110).
+150 Opening BINARY mode data connection for 2019.315.22.NZ_SMHS_50_LFZ.csv (154800 bytes).
+226 Transfer complete.
+154800 bytes received in 0.00686 secs (22562.31 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:44:12.943461110+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      22    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111122.ey1
+
+Prepare to run sendone 19111122.ey1   19111121.ey1
+ ihr =  22
+ ihr =  22
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911112200pmin.min (deflated 78%)
+  adding: eyr20191111220000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3291  0 41343    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 40531  182   182  100 40349     83  18620  0:00:02  0:00:02 --:--:-- 31997100 40531  182   182  100 40349     83  18618  0:00:02  0:00:02 --:--:-- 31997
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911112200pmin.min) Success: Data loaded OK, data file id = 5718954
+2 (eyr20191111220000psec.sec) Success: Data loaded OK, data file id = 5718955
+--------------------------- end of stdout from CURL --------------------------
+eyr201911112200pmin.min minute file and eyr20191111220000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 22:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:44:18 NZDT 2019
+Running GetHour1.csh now for
+2019-11-11 23:00
+ftp starts at 2019-11-12 13:44:18.644441994+13:00
+Connected to ftp.geonet.org.nz (161.65.59.67).
+220 Welcome to GeoNet FTP service.
+331 Please specify the password.
+230 Login successful.
+200 Switching to Binary mode.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+250 Directory successfully changed.
+local: 2019.315.23.NZ_EYWM_50_LFX.csv remote: 2019.315.23.NZ_EYWM_50_LFX.csv
+227 Entering Passive Mode (161,65,59,67,251,15).
+150 Opening BINARY mode data connection for 2019.315.23.NZ_EYWM_50_LFX.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00759 secs (23718.54 Kbytes/sec)
+local: 2019.315.23.NZ_EYWM_50_LFY.csv remote: 2019.315.23.NZ_EYWM_50_LFY.csv
+227 Entering Passive Mode (161,65,59,67,251,145).
+150 Opening BINARY mode data connection for 2019.315.23.NZ_EYWM_50_LFY.csv (176400 bytes).
+226 Transfer complete.
+176400 bytes received in 0.00746 secs (23655.62 Kbytes/sec)
+local: 2019.315.23.NZ_EYWM_50_LFZ.csv remote: 2019.315.23.NZ_EYWM_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,251,136).
+150 Opening BINARY mode data connection for 2019.315.23.NZ_EYWM_50_LFZ.csv (179664 bytes).
+226 Transfer complete.
+179664 bytes received in 0.00692 secs (25948.01 Kbytes/sec)
+local: 2019.315.23.NZ_EYWM_51_LFF.csv remote: 2019.315.23.NZ_EYWM_51_LFF.csv
+227 Entering Passive Mode (161,65,59,67,250,177).
+550 Failed to open file.
+local: 2019.315.23.NZ_EYWM_51_LEQ.csv remote: 2019.315.23.NZ_EYWM_51_LEQ.csv
+227 Entering Passive Mode (161,65,59,67,255,150).
+550 Failed to open file.
+local: 2019.315.23.NZ_EYWM_50_LKD.csv remote: 2019.315.23.NZ_EYWM_50_LKD.csv
+227 Entering Passive Mode (161,65,59,67,252,209).
+150 Opening BINARY mode data connection for 2019.315.23.NZ_EYWM_50_LKD.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.0069 secs (26090.74 Kbytes/sec)
+local: 2019.315.23.NZ_EYWM_50_LKS.csv remote: 2019.315.23.NZ_EYWM_50_LKS.csv
+227 Entering Passive Mode (161,65,59,67,255,2).
+150 Opening BINARY mode data connection for 2019.315.23.NZ_EYWM_50_LKS.csv (180000 bytes).
+226 Transfer complete.
+180000 bytes received in 0.00751 secs (23961.66 Kbytes/sec)
+local: 2019.315.23.NZ_SMHS_50_LFZ.csv remote: 2019.315.23.NZ_SMHS_50_LFZ.csv
+227 Entering Passive Mode (161,65,59,67,254,207).
+150 Opening BINARY mode data connection for 2019.315.23.NZ_SMHS_50_LFZ.csv (154800 bytes).
+226 Transfer complete.
+154800 bytes received in 0.00629 secs (24614.41 Kbytes/sec)
+221 Goodbye.
+ftp ends at 2019-11-12 13:44:18.729753142+13:00
+
+lfx has 3600 lines, lfy has 3600 lines
+Calling hour1test now...
+Currently in sub-directory /amp/magobs/eyr
+ 19      315       19
+    315     19
+ Yr     19 ; Mth     11 ; Day      11 ; 11 19        191111   hour      23    191111
+     24      5     27  -86.000000       23.000000       8.3000002       587.29999       0.0000000       0.0000000      0.10000000      -0.0000000      -1.5000000      0.19000000    
+  fcor =   -1.5000000    
+ Writing 19111123.ey1
+
+Prepare to run sendone 19111123.ey1   19111122.ey1
+ ihr =  23
+ ihr =  23
+Finished sendone
+
+Sending files to Edinburgh ...
+  adding: eyr201911112300pmin.min (deflated 78%)
+  adding: eyr20191111230000psec.sec (deflated 85%)
+gin_upload.sh: curl exit status = 0
+------------------------------ stderr from CURL ------------------------------
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0110   994  110   994    0     0   1645      0 --:--:-- --:--:-- --:--:--  3291 40 40882    0     0   41 16524      0  13702  0:00:02  0:00:01  0:00:01 13702100 40070  182   182  100 39888     83  18216  0:00:02  0:00:02 --:--:-- 23743100 40070  182   182  100 39888     83  18214  0:00:02  0:00:02 --:--:-- 23743
+--------------------------- end of stderr from CURL --------------------------
+------------------------------ stdout from CURL ------------------------------
+Success
+Zip file, 2 entries
+1 (eyr201911112300pmin.min) Success: Data loaded OK, data file id = 5718957
+2 (eyr20191111230000psec.sec) Success: Data loaded OK, data file id = 5718958
+--------------------------- end of stdout from CURL --------------------------
+eyr201911112300pmin.min minute file and eyr20191111230000psec.sec second file sent
+Writing Daily IAGA-2002 Files...
+Finished GetHour1.csh for
+2019-11-11 23:00
+
+19 19 11 11 11 12 315 316 317
+191112.eyx
+eyr191111B.ps
+Start File Conversion
+End File Conversion
+End Web Service
+Tue Nov 12 13:44:24 NZDT 2019
+GetDay1csv.csh is done for now.
+
