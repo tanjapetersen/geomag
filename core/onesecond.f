@@ -1,89 +1,96 @@
-	program one second
-!   This program reads hourly data files, and just sends the actual
-!   one-second readings to INTERMAGNET.
-!   Takes one parameter for station name (3 letter code, lower case),
-!   second parameter is current input files 
-!   Equivalent of Jan3005.eyr is eyr050130.eyr 
-!   Designed for x,y,z  outputs
+	program raw2txt
+!
+c   Arguments are stn yyyy.doy hr, e.g. eyr 2009.356 11 
+!
+!   xcoil,ycoil,zcoil (~30000) 
+!   xres,yres,zres (~60) 
+!   step
+!   xbias,ybias,zbias (~0x6f,y=0) hex code for number of bias steps
+!   zoffset (38000)  extra zbias in nT
+!   e0,e1,e2,e3,e4
+!   Others (scale, zpolarity, etc.) are not used 
+!
+!   
+!   Constants from constant.eyr (.sba) file
+! 
+!   xb  Add to calculated x
+!   zb  Add to calculated z
+!   ddeg   Declination (whole degrees) at Y null
+!   dmin   Declination (minute part (real)) at Y null
+!   xts,xte  X Temperature Coefficients (nt/degree C) sensor & electronics
+!   zts,zte  Z Temperature Coefficients (nt/degree C) sensor & electronics
+!   fcor    Difference between Continuous Proton F & Absolute Proton F reading
+!   bfact   Multiplicative factor for Benmore line correction (only for eyr)
+!
+!   Features of this version
+!
+!   Voltage Detector (from gsm output) checking for dud battery. Output is in file    volt
+!   Benmore line check. Output is in file  benmore
+!
 	implicit none
-	integer*4 i, ihr, iyr, mth, day, doy, j,k,g,q,iend
-	integer*4 ih, im, is 
-	integer*4 iyc, imc, idc		! constant file year, month & day
+	integer*2 i,ihr,ih,iyr,mth,day,im,is,doy !,doyp,doyn,
+	integer*2 j,k,g,q,iend
+	integer*2 bh,bm,bs,bo		! Benmore time
+	integer*2 iyc, imc, idc ! 	! constant file year,month & day
+	integer*2 h16,h1,nv			! decoding hex numbers
 	integer*4 iymd, iymdc
-	real*4 ST, DT, XR, YR, ZR, XC, YC, ZC, FC, IC, Ben, f, v, mrad
-	real*4 data(0:3599,1:7)
-	real*8 C(0:18), S(0:90), MC(1:4)	
-	real*4 mdata(0:1439,1:4),tdata(0:1439,1:3),tmpd,tmph
-	real*4 ddeg,dmin,xbias,zbias,xts,xte,zts,zte,fcalc,fcorr 
-	real*4 ddeg2, dmin2, xbias2, zbias2, xts2, xte2, zts2, zte2 
-	character*2 hrstr,daystr,mthstr,yrstr
-	character*3 dir, stc, stn, stnt, stnx, doys
-	character*6 fstr
+	integer*2 xbias,ybias,zbias,xbiasv,ybiasv,zbiasv
+	real*4 st, dt, xr, yr, zr, xc, yc, zc, fc, ic, ben, f, v, mrad
+	real*4 med,bdummy(10)
+	real*4 ddata(0:3599,1:12)	
+	real*4 mdata(0:719,1:4)
+	real*4 ddeg,dmin,xb,zb, xts,xte,zts,zte, fcalc,ftol 
+	real*4 ddeg2, dmin2, xb2, zb2, xts2, xte2, zts2, zte2 
+	real*4 xcoil,ycoil,zcoil,xres,yres,zres,hc,xcorr,dminute
+	real*4 e0,e1,e2,e3,e4,xcalc,ycalc,zcalc,step,scale,zoffset
+	real*4 fcor,fcor2,vav,bsum,bsumsq,bvar,bfact,bfact2	
+!  vav, bsum etc. used to check battery voltage & benmore line OK
+	character*2 hrstr,daystr,mthstr,yrstr,hexstr,xbhex,ybhex,zbhex
+c	character*2 daynstr,mthnstr,yrnstr
+	character*3 stc,st1,ste,stf,stn
+	character*6 fstr,change
 	character*7 hstr,dstr,zstr
-	character*10 adate		! e.g. 2005-07-04
-	character*12 fileo,filel,filen	! 
-	character*34 filef, fileg
-	character*36 mcodes, UMCODES
-	character*62 line
-	character*110 linef,lineo(744)
+	character*8 yearday,prevday		! e.g. 2005.074
+	character*12 fileo,ferror !,filen		! e.g. 2005.074.eyr
+	character*14 etext
+	character*44 fileb,filef, fileg
+	character*36 mcodes
+	character*62 l
+	character*130 linef,lineo(744)
 
-	UMCODES = 'JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC'
+	common /a/ ddata	
 	
-!   Next few lines are to set up output file name and header
+c   Next few lines are to set up output file name and header
 	
-	call getarg(1,stn) 	! abc Station Code
-	stc = stn(1:2)//'c'
-	call getarg(2,filen)		
-	open(10,file= stc//'/'// filen)
-	open(20,file= stn //'20'// filen(1:8) // '00psec.tmp')
-	read(filen(1:2),'(i2)') iyr
-	iyr = iyr+2000
-	read(filen(3:4),'(i2)') mth
-	read(filen(5:6),'(i2)') day
-	read(filen(7:8),'(i2)') ihr
-	adate = '20' // filen(1:2) // '-' //filen(3:4)//'-'//
-     &                  filen(5:6)
-	call dayofyear(iyr,doy,mth,day)
-	write(doys,'(i3.3)') doy
- 1000	format(3i3,1x,2f7.2,3f9.4,f11.3,f10.3,2f11.3,f8.2,f9.4)
- 3000	format(3i4,1x,2f9.2,f10.2,f9.2,3f7.2)
- 2003	format(a10,i3.2,':',i2.2,':',i2.2,'.000',i4.3,3x,4(1x,f9.2))
 
-!  In data(,) lines 0:3599 are current hour
-	print *,'ihr = ',ihr
-	do i = 0,3599		! assumes no extra readings
-	   read(10,*,end=100) ih,im,is,data(i,1),data(i,2),
-     &       data(i,3),data(i,4), data(i,5),data(i,6),data(i,7)
-	     j = ih*3600+im*60+is	
-!   Write IAGA-2002 Format File
-	   write(20,2003) adate,ih,im,is,doy,data(i,1),
-     &     data(i,2),data(i,3),data(i,4)
- 	   write(33,3000) ih,im,is,data(i,1),data(i,2),
-     &            data(i,3),data(i,4),data(i,5),data(i,6),data(i,7)
-	   if (i+3600*ihr .ne. j) write(*,*)" Time Problem ",ih,im,i
-     &     ,is, i+3600*ihr, j, data(i,1)
- 	end do
-  100	continue
-	end
+	call getarg(3,hrstr)
+	read(hrstr,'(i2)') ihr
+	write(hrstr,'(i2.2)') ihr
 
+!   This bit now does current day 
+	call getarg(2,yearday)
+	yrstr = yearday(3:4)
+	read(yearday(6:8),'(i3)') doy
+	read(yrstr,'(i2)') iyr
+	write(*,*) yrstr, '  ',doy,' ',iyr
+	i = -1
+	
+c  Get station name, make up file extensions
 
-
-	subroutine dayofyear(yr,doy,mth,day)
-	integer*4 i, yr, mth, day, doy, dimth(12)
-c  yr,mth,day to doy
-	do i = 1,12
-	   dimth(i) =31
+	call getarg(1,stn)
+	stc = stn(1:2) // 'c'
+	st1 = stn(1:2) // '1'
+	ste = stn(1:2) // 'e'
+	stf = stn(1:2) // 'f'
+c	filen = yrnstr//mthnstr//daynstr//'.'//stf
+	open(8,file=yearday//'.'//hrstr//'00.00.gsm-scottbase.raw')
+	open(9,file=yearday//'.'//hrstr//'00.00.gsm-scottbase.txt')
+	write(9,'(8a)') 'HH MM SS'
+	do i = 1,4000
+	   read(8,'(a62)',end=100) l 
+   	   write(9,*) l(28:29),' ',l(31:32),' ',l(34:35),' ',l(42:46),'.',l(47:48),' ',l(53:53),' ',l(54:54)
+	   write(*,*) l 
 	end do
-	dimth(2) = 28
-	dimth(4) = 30
-	dimth(6) = 30
-	dimth(9) = 30
-	dimth(11) = 30
-	if(mod(yr,4) .EQ. 0) dimth(2) = 29
-	doy = day
-	   if(mth .GT. 1) then
-	      do i=1,mth-1
-	         doy = doy + dimth(i)
-	      end do
-	   end if
-	end 
+  100	continue
+
+	end
