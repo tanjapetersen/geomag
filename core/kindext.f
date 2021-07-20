@@ -1,5 +1,5 @@
  	program kindext
-!       f77 kindext.f -o kindext
+!       f95 kindext.f -o kindext -dusty
 !
 !   Calculates K-indices for a days data. This version uses the  
 !   yymmdd.eyt files, and to get good smoothing, we add 3 hours 
