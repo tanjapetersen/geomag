@@ -11,8 +11,8 @@
 set source_machine = ftp.geonet.org.nz
 
 if ($#argv == 0) then
-   echo "Call  GetHour1.csh stn NOW    for current processing"
-   echo "or    GetHour1.csh stn yr mth day hr YES (all 2-digit, only add YES if you want to send to Zurich) for reruns"
+   echo "Call  GetHour1csv.csh stn NOW    for current processing"
+   echo "or    GetHour1csv.csh stn yr mth day hr YES (all 2-digit, only add YES if you want to send to Zurich) for reruns"
    stop
 endif
 if ( $2 == 'NOW' ) then
@@ -280,7 +280,7 @@ echo Sending files to Apia data display....
    endif
 endif
 
-##  Send hourly minute files to Postdam (we might want to take this out since we have the real time system seding files too)
+##  Send hourly minute files to Postdam NOTE: The quasi-real time system in /home/tanjap/geomag/rt/ is sending files every ~10 minutes.
 if (( $2 == 'NOW' )||( $6 == "YES")) then
    if ( $1 == "eyr" ) then
 echo Sending files to Potsdam....
@@ -297,11 +297,12 @@ if ( $2 == 'NOW' ) then
       echo kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
       /home/tanjap/geomag/core/kindext $1 $yrpp$mthpp$daypp $yrp$mthp$dayp $yr$mth$day
 
-# e-mail k-indices; NOTE: only the EYR K-index files are emailed to GfZ Potsdam (via kindext.f)
+# e-mail k-indices;
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
-      mail -s $stk F.Caratori.Tontini@gns.cri.nz < klatest.$1
-      mail -s $stk A.Benson@gns.cri.nz < klatest.$1
+      mail -s $stk M.Thornton@gns.cri.nz < klatest.$1
+     # mail -s $stk F.Caratori.Tontini@gns.cri.nz < klatest.$1
+     # mail -s $stk A.Benson@gns.cri.nz < klatest.$1
      # mail -s $stk g.obrien@gns.cri.nz < klatest.$1
 
       echo "K-index posted"
@@ -315,4 +316,3 @@ echo
 #  Plot last 2 days files for Apia (puts .pdf onto ftp://ftp.gns.cri.nz/pub/tanjap/ & a .ps into /amp/magobs/api/api/
 # $1 gives sub-directory, $2 is B for plotting Benmore
    /home/tanjap/geomag/core/Plotx.csh $1 B
-
