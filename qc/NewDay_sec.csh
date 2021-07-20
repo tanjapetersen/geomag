@@ -20,7 +20,8 @@ set fseco = '/amp/magobs/'$1/$1/$1'20'$2$3$4'psec.sec'
 gzip $fseco
 set fsecgz = '/amp/magobs/'$1/$1/$1'20'$2$3$4'psec.sec.gz'
 echo $fsecgz
-/home/tanjap/geomag/core/mpack -s $fsecgz $fsecgz e_gin@mail.nmh.ac.uk
+#/home/tanjap/geomag/core/mpack -s $fsecgz $fsecgz e_gin@mail.nmh.ac.uk
+mailx -a $fsecgz $fsecgz e_gin@mail.nmh.ac.uk < /dev/null
 gunzip $fseco
 
 
@@ -31,10 +32,4 @@ gunzip $fseco
 #mpack -s $fmino $fmino e_gin@mail.nmh.ac.uk emailsupport@smxemail.com
 
 # Stop here
-
-
-
-
-
-
 
