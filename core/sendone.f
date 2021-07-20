@@ -215,7 +215,9 @@ c   Minute averages using filter around exact minute (and * 10,(*100 for D))
 	   end do
 !   Write IAGA-2002 Format File
  2002	format(a10,i3.2,':',i2.2,':00.000',i4.3,3x,4(1x,f9.2))
-	   write(20,2002) adate,ih,im,doy,mdata(i,1), mdata(i,2),mdata(i,3),mdata(i,4)
+	   write(20,2002) adate,ih,im,doy,mdata(i,1),mdata(i,2),
+     &                    mdata(i,3),mdata(i,4)
+
 
 !  Write .eyx, .sbx file of magnetics and temperature, filtered minute values
 	   write(23,'(3i4,4(1x,f9.2),2f6.1,f8.2)') day,
