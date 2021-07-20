@@ -16,14 +16,26 @@
   set kfile = $1$yr$mth$2.k
   cd /amp/magobs/$1
 
-  echo $kfile 
-  mail -s $kfile t.hurst@gns.cri.nz < kbimonth.$1
-  mail -s $kfile t.petersen@gns.cri.nz < kbimonth.$1
- # mail -s $kfile kp_index@gfz-potsdam.de < kbimonth.$1
- # mail -s $kfile g.obrien@gns.cri.nz < kbimonth.$1
-  mail -s $kfile F.Caratori.Tontini@gns.cri.nz < kbimonth.$1
-  mail -s $kfile A.Benson@gns.cri.nz < kbimonth.$1
- # mail -s $kfile michel.menvielle@latmos.ipsl.fr < kbimonth.$1
- # mail -s $kfile kisgi@latmos.ipsl.fr < kbimonth.$1
-  mv kbimonth.$1 $kfile
+if( -e kbimonth.$1) then
+  set lines = `wc -l < kbimonth.$1`
+   echo $kfile $lines
+   if( $lines < 100 ) then
+     mail -s $kfile t.hurst@gns.cri.nz < kbimonth.$1
+     mail -s $kfile t.petersen@gns.cri.nz < kbimonth.$1
+    # mail -s $kfile kp_index@gfz-potsdam.de < kbimonth.$1
+    # mail -s $kfile F.Caratori.Tontini@gns.cri.nz < kbimonth.$1
+      mail -s $kfile A.Benson@gns.cri.nz < kbimonth.$1
+      mail -s $kfile m.thornton@gns.cri.nz < kbimonth.$1
+    # mail -s $kfile michel.menvielle@latmos.ipsl.fr < kbimonth.$1
+    # mail -s $kfile kisgi@latmos.ipsl.fr < kbimonth.$1
+      mv kbimonth.$1 $kfile
+   else
+      echo 'File too long' | mail -s kbimonth.$1 t.hurst@gns.cri.nz 
+      echo 'File too long' | mail -s kbimonth.$1 t.petersen@gns.cri.nz 
+   endif
+else
+   echo 'Does not exist' | mail -s kbimonth.$1 t.hurst@gns.cri.nz 
+   echo 'Does not exist' | mail -s kbimonth.$1 t.petersen@gns.cri.nz 
+endif
+
 
