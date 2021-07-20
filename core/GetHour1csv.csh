@@ -1,5 +1,5 @@
 #!/bin/csh 
-
+#getHour1csv.csh
 # Get one hour of magnetic data from ftp.geonet.org.nz 
 # This version for all stations STILL CHECKING
 # $1 is 3 letter code (lower case) for station
@@ -275,7 +275,8 @@ endif
 if (( $2 == 'NOW' )||( $6 == "YES")) then
    if ( $1 == "api" ) then
 echo Sending files to Apia data display....
-/home/tanjap/geomag/core/mpack -s $fmind $fmind geomagdata@gmail.com 
+#/home/tanjap/geomag/core/mpack -s $fmind $fmind geomagdata@gmail.com 
+mailx -a $fmind $fmind geomagdata@gmail.com < /dev/null
 #/home/tanjap/geomag/core/mpack -s $fmind $fmind t.petersen@gns.cri.nz 
    endif
 endif
@@ -316,3 +317,4 @@ echo
 #  Plot last 2 days files for Apia (puts .pdf onto ftp://ftp.gns.cri.nz/pub/tanjap/ & a .ps into /amp/magobs/api/api/
 # $1 gives sub-directory, $2 is B for plotting Benmore
    /home/tanjap/geomag/core/Plotx.csh $1 B
+
