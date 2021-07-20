@@ -150,16 +150,23 @@ foreach hr (00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22
 end
  echo File completeness check done ...
 if ($EOK == 0) then
+   echo eyr $yr $mth $day
    /home/tanjap/geomag/core/GetDay1csv.csh eyr $yr $mth $day
+#  /home/tanjap/geomag/qc/NewDay.csh eyr $yr $mth $day
+#  /home/tanjap/geomag/qc/NewDay_sec.csh eyr $yr $mth $day
    set send = 1
 endif
 if ($SOK == 0) then
    /home/tanjap/geomag/core/GetDay1csv.csh sba $yr $mth $day
+#  /home/tanjap/geomag/qc/NewDay.csh sba $yr $mth $day
+#  /home/tanjap/geomag/qc/NewDay_sec.csh sba $yr $mth $day
    set send = 1
 endif
 if ($AOK == 0) then
-#   /home/tanjap/geomag/core/GetDay1csv.csh api $yr $mth $day
-#  set send = 1
+   /home/tanjap/geomag/core/GetDay1csv.csh api $yr $mth $day
+#  /home/tanjap/geomag/qc/NewDay.csh api $yr $mth $day   
+#  /home/tanjap/geomag/qc/NewDay_sec.csh api $yr $mth $day   
+   set send = 1
 endif
 #  Now calculate daily numbers for each file after required GetDay1csv.csh, 
 #  and list all (daily) file lengths if send = 1
@@ -287,7 +294,7 @@ if ($send == 1) then
       mail -s "$message" "a.benson@gns.cri.nz" < cfile
    else
       set message = 'No Magnetic File Problem - '$year.$doy 
-#     mail -s "$message" "T.Petersen@gns.cri.nz" < cfile
+#    mail -s "$message" "T.Petersen@gns.cri.nz" < cfile
 #     mail -s "$message" "t.hurst@gns.cri.nz" < cfile
    endif
 # Remove temporary files
@@ -314,5 +321,3 @@ if ($send == 1) then
    rm faq
    rm faf
 endif
-
-
