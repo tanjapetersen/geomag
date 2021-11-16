@@ -1,12 +1,12 @@
 #!/bin/csh 
 
-# Tony Hurst, Feb 2019
+## Tony Hurst, Feb 2019
 # POTSDAM VERSION
-# Start this program about 5 minutes after a whole hour (doesn't work at <5 minutes!)
+# Start this program about 6 minutes after a whole hour (doesn't work at <6 minutes!)
 # to check data arrival from real-time (rt) files in ftp.geonet.org.nz 
 # for this hour. Keeps running until all file present, or 1 day later
 
-set source_machine = ftp.geonet.org.nz
+#set source_machine = ftp.geonet.org.nz
 
 set year  = `date -u --date='now' +%Y`		# Todays year
 set yearp  = `date -u --date='1 day ago' +%Y`	# Yesterdays year (for 0000UT)
@@ -27,7 +27,7 @@ set end1 = 'EYWM_50_LFX.csv' 		# X data file
 set end2 = 'EYWM_50_LFY.csv' 		# Y data file
 
 set day_dir = $year.$doy
-
+# Backup store
 cd /amp/magobs/eyr/rt/in/
 
 # Does yymmddhh.pst exist? If not, write in 0
@@ -47,20 +47,29 @@ while (($hrn != $hr) || ( $minn > $min))
    echo XXX $year $mth $day $day_dir $hr $min $hrn $minn
    echo YYY $yearp   $mthp $dayp    
    echo
-   echo ftp starts at `date --rfc-3339='ns'`
+#   echo ftp starts at `date --rfc-3339='ns'`
 #do the ftp
-   ftp -in $source_machine   <<endftp1 
-     user anonymous tanjap 
-     cd geomag
-     cd rt
-     cd $year
-     cd $day_dir
-     get $filetime$end1  
-     get $filetime$end2  
-     bye 
-endftp1
+#   ftp -in $source_machine   <<endftp1 
+#     user anonymous tanjap 
+#     cd geomag
+#     cd rt
+#     cd $year
+#     cd $day_dir
+#     get $filetime$end1  
+#     get $filetime$end2  
+#     bye 
+#endftp1
+   
+#   echo ftp ends at `date --rfc-3339='ns'`
+# cp /amp/geomag/rt/$year/$day_dir/$filetime$end1 .
+cp /scratch/tanjap/geomag/$year/$day_dir/$filetime$end1 .
+# cp /amp/geomag/rt/$year/$day_dir/$filetime$end2 .
+cp /scratch/tanjap/geomag/$year/$day_dir/$filetime$end2 .
+## NOTE: change cp to "rsync -u" eventually?
+## Or use uniq to avoid duplicate lines?
 
-   echo ftp ends at `date --rfc-3339='ns'`
+#stop
+
    echo
    set len1 = `wc -l $filetime$end1`
    set len1 = `echo $len1 | cut -d' ' -f1 `
