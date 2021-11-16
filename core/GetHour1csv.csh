@@ -1,14 +1,13 @@
 #!/bin/csh 
-#getHour1csv.csh
-# Get one hour of magnetic data from ftp.geonet.org.nz 
+
+# Get one hour of magnetic data from /scratch/tanjap/geomag/ 
 # This version for all stations STILL CHECKING
 # $1 is 3 letter code (lower case) for station
 # $2 is NOW (for current date/time) or 2-digit year, 
 # If $2 is not NOW then $3 is month, $4 day, $5 hr, all 2-digit
-# LAST CHANGE - Version for accessing .csv files, not .txt files
 # ********* shows new code sections,   #### lines can go
 
-set source_machine = ftp.geonet.org.nz
+#set source_machine = ftp.geonet.org.nz
 
 if ($#argv == 0) then
    echo "Call  GetHour1csv.csh stn NOW    for current processing"
@@ -119,28 +118,45 @@ set stcp = $st3'/'$yrp$mthp$dayp'.'$st3
 #  Go into the data subdirectory /amp/magobs/$1/data/
 cd /amp/magobs/$1/data
 
-echo ftp starts at `date --rfc-3339='ns'`
-
+#echo ftp starts at `date --rfc-3339='ns'`
 #  Get raw data from the GeoNet ftp site
-ftp -v -in $source_machine << endftp1
-  user anonymous t.petersen
-  binary
-  cd geomag
-  cd rt
-  cd $year
-  cd $day_dir
-  get $lfx_file
-  get $lfy_file
-  get $lfz_file
-  get $lff_file
-  get $leq_file
-  get $lkd_file
-  get $lks_file
-  get $sum_file
-endftp1
-echo ftp ends at `date --rfc-3339='ns'`
-echo
-
+#ftp -v -in $source_machine << endftp1
+#  user anonymous t.petersen
+#  binary
+#  cd geomag
+#  cd rt
+#  cd $year
+#  cd $day_dir
+#  get $lfx_file
+#  get $lfy_file
+#  get $lfz_file
+#  get $lff_file
+#  get $leq_file
+#  get $lkd_file
+#  get $lks_file
+#  get $sum_file
+#endftp1
+#echo ftp ends at `date --rfc-3339='ns'`
+## NOTE: change cp to "rsync -u" eventually?
+## Or use uniq to avoid duplicate lines:
+## Example: sort /amp/geomag/rt/$year/$day_dir/$lfx_file | uniq > $lfx_file
+#cp /amp/geomag/rt/$year/$day_dir/$lfx_file .
+#cp /amp/geomag/rt/$year/$day_dir/$lfy_file .
+#cp /amp/geomag/rt/$year/$day_dir/$lfz_file .
+#cp /amp/geomag/rt/$year/$day_dir/$lff_file .
+#cp /amp/geomag/rt/$year/$day_dir/$leq_file .
+#cp /amp/geomag/rt/$year/$day_dir/$lkd_file .
+#cp /amp/geomag/rt/$year/$day_dir/$lks_file .
+#cp /amp/geomag/rt/$year/$day_dir/$sum_file .
+## Note: The sort | bit should no longer be necessary but can't hurst as it takes little processing power.
+sort /scratch/tanjap/geomag/$year/$day_dir/$lfx_file | uniq > $lfx_file
+sort /scratch/tanjap/geomag/$year/$day_dir/$lfy_file | uniq > $lfy_file
+sort /scratch/tanjap/geomag/$year/$day_dir/$lfz_file | uniq > $lfz_file
+sort /scratch/tanjap/geomag/$year/$day_dir/$lff_file | uniq > $lff_file
+sort /scratch/tanjap/geomag/$year/$day_dir/$leq_file | uniq > $leq_file
+sort /scratch/tanjap/geomag/$year/$day_dir/$lkd_file | uniq > $lkd_file
+sort /scratch/tanjap/geomag/$year/$day_dir/$lks_file | uniq > $lks_file
+sort /scratch/tanjap/geomag/$year/$day_dir/$sum_file | uniq > $sum_file
 
 #  Check number of lines in each file
 #
@@ -159,7 +175,7 @@ endif
 cd ..
 
 #  Run FORTRAN program hour1.f to create hourly processed files
-echo Calling hour1test now...
+#echo Calling hour1test now...
 echo Currently in sub-directory  `pwd` 
 #/home/tanjap/geomag/core/hour1aE $1 $day_dir $hr 
 /home/tanjap/geomag/core/hour1csv $1 $day_dir $hr 
@@ -275,8 +291,7 @@ endif
 if (( $2 == 'NOW' )||( $6 == "YES")) then
    if ( $1 == "api" ) then
 echo Sending files to Apia data display....
-#/home/tanjap/geomag/core/mpack -s $fmind $fmind geomagdata@gmail.com 
-mailx -a $fmind $fmind geomagdata@gmail.com < /dev/null
+/home/tanjap/geomag/core/mpack -s $fmind $fmind geomagdata@gmail.com 
 #/home/tanjap/geomag/core/mpack -s $fmind $fmind t.petersen@gns.cri.nz 
    endif
 endif
@@ -301,9 +316,8 @@ if ( $2 == 'NOW' ) then
 # e-mail k-indices;
       mail -s $stk t.hurst@gns.cri.nz < klatest.$1
       mail -s $stk T.Petersen@gns.cri.nz < klatest.$1
-      mail -s $stk M.Thornton@gns.cri.nz < klatest.$1
-     # mail -s $stk F.Caratori.Tontini@gns.cri.nz < klatest.$1
-     # mail -s $stk A.Benson@gns.cri.nz < klatest.$1
+  #    mail -s $stk F.Caratori.Tontini@gns.cri.nz < klatest.$1
+      mail -s $stk A.Benson@gns.cri.nz < klatest.$1
      # mail -s $stk g.obrien@gns.cri.nz < klatest.$1
 
       echo "K-index posted"
